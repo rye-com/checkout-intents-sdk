@@ -1,12 +1,12 @@
 {
   "name": "checkout-intents",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The official TypeScript library for the Checkout Intents API",
   "author": "Checkout Intents <yang@rye.com>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",
-  "repository": "github:stainless-sdks/checkout-intents-typescript",
+  "repository": "github:rye-com/checkout-intents-sdk",
   "license": "Apache-2.0",
   "packageManager": "yarn@1.22.22",
   "files": [
