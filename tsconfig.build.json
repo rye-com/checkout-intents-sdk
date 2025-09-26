@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "checkout-intents/*": ["dist/src/*"],
-      "checkout-intents": ["dist/src/index.ts"]
+      "checkout-intents/*": ["./dist/src/*"],
+      "checkout-intents": ["./dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,

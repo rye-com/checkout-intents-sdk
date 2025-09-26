@@ -7,10 +7,9 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "baseUrl": "./",
     "paths": {
-      "checkout-intents/*": ["src/*"],
-      "checkout-intents": ["src/index.ts"]
+      "checkout-intents/*": ["./src/*"],
+      "checkout-intents": ["./src/index.ts"]
     },
     "noEmit": true,
 
