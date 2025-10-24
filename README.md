@@ -38,7 +38,7 @@ const checkoutIntent = await client.checkoutIntents.create({
     postalCode: '10001',
     province: 'NY',
   },
-  productUrl: 'productUrl',
+  productUrl: 'https://google.com',
   quantity: 0,
 });
 ```
