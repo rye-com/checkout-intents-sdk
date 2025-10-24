@@ -9,8 +9,8 @@ const client = new CheckoutIntents({
 
 describe('resource brands', () => {
   // Prism tests are disabled
-  test.skip('retrieveByDomain', async () => {
-    const responsePromise = client.api.v1.brands.retrieveByDomain('shop.aloyoga.com');
+  test.skip('retrieve', async () => {
+    const responsePromise = client.brands.retrieve('shop.aloyoga.com');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;

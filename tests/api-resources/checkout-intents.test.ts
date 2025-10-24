@@ -10,7 +10,7 @@ const client = new CheckoutIntents({
 describe('resource checkoutIntents', () => {
   // Prism tests are disabled
   test.skip('create: only required params', async () => {
-    const responsePromise = client.api.v1.checkoutIntents.create({
+    const responsePromise = client.checkoutIntents.create({
       buyer: {
         address1: '123 Main St',
         city: 'New York',
@@ -36,7 +36,7 @@ describe('resource checkoutIntents', () => {
 
   // Prism tests are disabled
   test.skip('create: required and optional params', async () => {
-    const response = await client.api.v1.checkoutIntents.create({
+    const response = await client.checkoutIntents.create({
       buyer: {
         address1: '123 Main St',
         city: 'New York',
@@ -56,7 +56,7 @@ describe('resource checkoutIntents', () => {
 
   // Prism tests are disabled
   test.skip('retrieve', async () => {
-    const responsePromise = client.api.v1.checkoutIntents.retrieve('id');
+    const responsePromise = client.checkoutIntents.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -68,7 +68,7 @@ describe('resource checkoutIntents', () => {
 
   // Prism tests are disabled
   test.skip('confirm: only required params', async () => {
-    const responsePromise = client.api.v1.checkoutIntents.confirm('id', {
+    const responsePromise = client.checkoutIntents.confirm('id', {
       paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
     });
     const rawResponse = await responsePromise.asResponse();
@@ -82,7 +82,7 @@ describe('resource checkoutIntents', () => {
 
   // Prism tests are disabled
   test.skip('confirm: required and optional params', async () => {
-    const response = await client.api.v1.checkoutIntents.confirm('id', {
+    const response = await client.checkoutIntents.confirm('id', {
       paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
     });
   });

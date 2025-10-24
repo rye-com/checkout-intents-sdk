@@ -1,12 +1,12 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../../core/resource';
+import { APIResource } from '../core/resource';
 import * as CheckoutIntentsAPI from './checkout-intents';
-import { APIPromise } from '../../../core/api-promise';
-import { RequestOptions } from '../../../internal/request-options';
-import { path } from '../../../internal/utils/path';
+import { APIPromise } from '../core/api-promise';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
-export class CheckoutIntents extends APIResource {
+export class CheckoutIntentsResource extends APIResource {
   /**
    * Create a checkout intent with the given request body.
    */
@@ -193,7 +193,7 @@ export interface CheckoutIntentConfirmParams {
   paymentMethod: StripeTokenPaymentMethod;
 }
 
-export declare namespace CheckoutIntents {
+export declare namespace CheckoutIntentsResource {
   export {
     type BaseCheckoutIntent as BaseCheckoutIntent,
     type Buyer as Buyer,

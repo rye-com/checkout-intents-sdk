@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../../core/resource';
-import { APIPromise } from '../../../core/api-promise';
-import { RequestOptions } from '../../../internal/request-options';
-import { path } from '../../../internal/utils/path';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Brands extends APIResource {
   /**
@@ -12,12 +12,12 @@ export class Brands extends APIResource {
    * Look up a brand by its domain name (e.g. "aloyoga.com"). Returns brand
    * information including the marketplace type if the lookup succeeds.
    */
-  retrieveByDomain(domain: string, options?: RequestOptions): APIPromise<BrandRetrieveByDomainResponse> {
+  retrieve(domain: string, options?: RequestOptions): APIPromise<BrandRetrieveResponse> {
     return this._client.get(path`/api/v1/brands/domain/${domain}`, options);
   }
 }
 
-export interface BrandRetrieveByDomainResponse {
+export interface BrandRetrieveResponse {
   /**
    * A unique identifier for the brand.
    */
@@ -36,5 +36,5 @@ export interface BrandRetrieveByDomainResponse {
 }
 
 export declare namespace Brands {
-  export { type BrandRetrieveByDomainResponse as BrandRetrieveByDomainResponse };
+  export { type BrandRetrieveResponse as BrandRetrieveResponse };
 }
