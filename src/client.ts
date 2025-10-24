@@ -16,8 +16,18 @@ import * as Errors from './core/error';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
-import { Health, HealthCheckResponse } from './resources/health';
-import { API as ApiapiAPI } from './resources/api/api';
+import { BrandRetrieveResponse, Brands } from './resources/brands';
+import {
+  BaseCheckoutIntent,
+  Buyer,
+  CheckoutIntent,
+  CheckoutIntentConfirmParams,
+  CheckoutIntentCreateParams,
+  CheckoutIntentsResource,
+  Money,
+  Offer,
+  StripeTokenPaymentMethod,
+} from './resources/checkout-intents';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
@@ -715,17 +725,27 @@ export class CheckoutIntents {
 
   static toFile = Uploads.toFile;
 
-  health: API.Health = new API.Health(this);
-  api: API.API = new API.API(this);
+  checkoutIntents: API.CheckoutIntentsResource = new API.CheckoutIntentsResource(this);
+  brands: API.Brands = new API.Brands(this);
 }
 
-CheckoutIntents.Health = Health;
-CheckoutIntents.API = ApiapiAPI;
+CheckoutIntents.CheckoutIntentsResource = CheckoutIntentsResource;
+CheckoutIntents.Brands = Brands;
 
 export declare namespace CheckoutIntents {
   export type RequestOptions = Opts.RequestOptions;
 
-  export { Health as Health, type HealthCheckResponse as HealthCheckResponse };
+  export {
+    CheckoutIntentsResource as CheckoutIntentsResource,
+    type BaseCheckoutIntent as BaseCheckoutIntent,
+    type Buyer as Buyer,
+    type CheckoutIntent as CheckoutIntent,
+    type Money as Money,
+    type Offer as Offer,
+    type StripeTokenPaymentMethod as StripeTokenPaymentMethod,
+    type CheckoutIntentCreateParams as CheckoutIntentCreateParams,
+    type CheckoutIntentConfirmParams as CheckoutIntentConfirmParams,
+  };
 
-  export { ApiapiAPI as API };
+  export { Brands as Brands, type BrandRetrieveResponse as BrandRetrieveResponse };
 }
