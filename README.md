@@ -22,11 +22,25 @@ The full API of this library can be found in [api.md](api.md).
 ```js
 import CheckoutIntents from 'checkout-intents';
 
-const client = new CheckoutIntents();
+const client = new CheckoutIntents({
+  apiKey: process.env['CHECKOUT_INTENTS_API_KEY'], // This is the default and can be omitted
+});
 
-const response = await client.health.check();
-
-console.log(response.message);
+const checkoutIntent = await client.checkoutIntents.create({
+  buyer: {
+    address1: '123 Main St',
+    city: 'New York',
+    country: 'US',
+    email: 'john.doe@example.com',
+    firstName: 'John',
+    lastName: 'Doe',
+    phone: '5555555555',
+    postalCode: '10001',
+    province: 'NY',
+  },
+  productUrl: 'productUrl',
+  quantity: 0,
+});
 ```
 
 ### Request & Response types
@@ -37,9 +51,26 @@ This library includes TypeScript definitions for all request params and response
 ```ts
 import CheckoutIntents from 'checkout-intents';
 
-const client = new CheckoutIntents();
+const client = new CheckoutIntents({
+  apiKey: process.env['CHECKOUT_INTENTS_API_KEY'], // This is the default and can be omitted
+});
 
-const response: CheckoutIntents.HealthCheckResponse = await client.health.check();
+const params: CheckoutIntents.CheckoutIntentCreateParams = {
+  buyer: {
+    address1: '123 Main St',
+    city: 'New York',
+    country: 'US',
+    email: 'john.doe@example.com',
+    firstName: 'John',
+    lastName: 'Doe',
+    phone: '5555555555',
+    postalCode: '10001',
+    province: 'NY',
+  },
+  productUrl: 'productUrl',
+  quantity: 0,
+};
+const checkoutIntent: CheckoutIntents.CheckoutIntent = await client.checkoutIntents.create(params);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -52,15 +83,31 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-const response = await client.health.check().catch(async (err) => {
-  if (err instanceof CheckoutIntents.APIError) {
-    console.log(err.status); // 400
-    console.log(err.name); // BadRequestError
-    console.log(err.headers); // {server: 'nginx', ...}
-  } else {
-    throw err;
-  }
-});
+const checkoutIntent = await client.checkoutIntents
+  .create({
+    buyer: {
+      address1: '123 Main St',
+      city: 'New York',
+      country: 'US',
+      email: 'john.doe@example.com',
+      firstName: 'John',
+      lastName: 'Doe',
+      phone: '5555555555',
+      postalCode: '10001',
+      province: 'NY',
+    },
+    productUrl: 'productUrl',
+    quantity: 0,
+  })
+  .catch(async (err) => {
+    if (err instanceof CheckoutIntents.APIError) {
+      console.log(err.status); // 400
+      console.log(err.name); // BadRequestError
+      console.log(err.headers); // {server: 'nginx', ...}
+    } else {
+      throw err;
+    }
+  });
 ```
 
 Error codes are as follows:
@@ -92,7 +139,7 @@ const client = new CheckoutIntents({
 });
 
 // Or, configure per-request:
-await client.health.check({
+await client.checkoutIntents.create({ buyer: { address1: '123 Main St', city: 'New York', country: 'US', email: 'john.doe@example.com', firstName: 'John', lastName: 'Doe', phone: '5555555555', postalCode: '10001', province: 'NY' }, productUrl: 'productUrl', quantity: 0 }, {
   maxRetries: 5,
 });
 ```
@@ -109,7 +156,7 @@ const client = new CheckoutIntents({
 });
 
 // Override per-request:
-await client.health.check({
+await client.checkoutIntents.create({ buyer: { address1: '123 Main St', city: 'New York', country: 'US', email: 'john.doe@example.com', firstName: 'John', lastName: 'Doe', phone: '5555555555', postalCode: '10001', province: 'NY' }, productUrl: 'productUrl', quantity: 0 }, {
   timeout: 5 * 1000,
 });
 ```
@@ -132,13 +179,45 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 ```ts
 const client = new CheckoutIntents();
 
-const response = await client.health.check().asResponse();
+const response = await client.checkoutIntents
+  .create({
+    buyer: {
+      address1: '123 Main St',
+      city: 'New York',
+      country: 'US',
+      email: 'john.doe@example.com',
+      firstName: 'John',
+      lastName: 'Doe',
+      phone: '5555555555',
+      postalCode: '10001',
+      province: 'NY',
+    },
+    productUrl: 'productUrl',
+    quantity: 0,
+  })
+  .asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: response, response: raw } = await client.health.check().withResponse();
+const { data: checkoutIntent, response: raw } = await client.checkoutIntents
+  .create({
+    buyer: {
+      address1: '123 Main St',
+      city: 'New York',
+      country: 'US',
+      email: 'john.doe@example.com',
+      firstName: 'John',
+      lastName: 'Doe',
+      phone: '5555555555',
+      postalCode: '10001',
+      province: 'NY',
+    },
+    productUrl: 'productUrl',
+    quantity: 0,
+  })
+  .withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(response.message);
+console.log(checkoutIntent);
 ```
 
 ### Logging
@@ -218,7 +297,7 @@ parameter. This library doesn't validate at runtime that the request matches the
 send will be sent as-is.
 
 ```ts
-client.health.check({
+client.checkoutIntents.create({
   // ...
   // @ts-expect-error baz is not yet public
   baz: 'undocumented option',
