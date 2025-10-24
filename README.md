@@ -38,8 +38,8 @@ const checkoutIntent = await client.checkoutIntents.create({
     postalCode: '10001',
     province: 'NY',
   },
-  productUrl: 'https://google.com',
-  quantity: 0,
+  productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker',
+  quantity: 1,
 });
 ```
 
