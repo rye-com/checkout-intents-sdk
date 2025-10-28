@@ -21,12 +21,14 @@ import {
   BaseCheckoutIntent,
   Buyer,
   CheckoutIntent,
+  CheckoutIntentAddPaymentParams,
   CheckoutIntentConfirmParams,
   CheckoutIntentCreateParams,
   CheckoutIntentsResource,
   Money,
   Offer,
-  StripeTokenPaymentMethod,
+  PaymentMethod,
+  VariantSelection,
 } from './resources/checkout-intents';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
@@ -41,11 +43,26 @@ import {
 } from './internal/utils/log';
 import { isEmptyObj } from './internal/utils/values';
 
+const environments = {
+  staging: 'https://staging.api.rye.com/',
+  production: 'https://api.rye.com/',
+};
+type Environment = keyof typeof environments;
+
 export interface ClientOptions {
   /**
    * Rye API key. Format: `Bearer <RYE_API_KEY>`
    */
   apiKey?: string | undefined;
+
+  /**
+   * Specifies the environment to use for the API.
+   *
+   * Each environment maps to a different base URL:
+   * - `staging` corresponds to `https://staging.api.rye.com/`
+   * - `production` corresponds to `https://api.rye.com/`
+   */
+  environment?: Environment | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -138,6 +155,7 @@ export class CheckoutIntents {
    * API Client for interfacing with the Checkout Intents API.
    *
    * @param {string | undefined} [opts.apiKey=process.env['CHECKOUT_INTENTS_API_KEY'] ?? undefined]
+   * @param {Environment} [opts.environment=staging] - Specifies the environment URL to use for the API.
    * @param {string} [opts.baseURL=process.env['CHECKOUT_INTENTS_BASE_URL'] ?? https://staging.api.rye.com/] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
@@ -160,10 +178,17 @@ export class CheckoutIntents {
     const options: ClientOptions = {
       apiKey,
       ...opts,
-      baseURL: baseURL || `https://staging.api.rye.com/`,
+      baseURL,
+      environment: opts.environment ?? 'staging',
     };
 
-    this.baseURL = options.baseURL!;
+    if (baseURL && opts.environment) {
+      throw new Errors.CheckoutIntentsError(
+        'Ambiguous URL; The `baseURL` option (or CHECKOUT_INTENTS_BASE_URL env var) and the `environment` option are given. If you want to use the environment you must pass baseURL: null',
+      );
+    }
+
+    this.baseURL = options.baseURL || environments[options.environment || 'staging'];
     this.timeout = options.timeout ?? CheckoutIntents.DEFAULT_TIMEOUT /* 1 minute */;
     this.logger = options.logger ?? console;
     const defaultLogLevel = 'warn';
@@ -189,7 +214,8 @@ export class CheckoutIntents {
   withOptions(options: Partial<ClientOptions>): this {
     const client = new (this.constructor as any as new (props: ClientOptions) => typeof this)({
       ...this._options,
-      baseURL: this.baseURL,
+      environment: options.environment ? options.environment : undefined,
+      baseURL: options.environment ? undefined : this.baseURL,
       maxRetries: this.maxRetries,
       timeout: this.timeout,
       logger: this.logger,
@@ -206,7 +232,7 @@ export class CheckoutIntents {
    * Check whether the base URL is set to its default.
    */
   #baseURLOverridden(): boolean {
-    return this.baseURL !== 'https://staging.api.rye.com/';
+    return this.baseURL !== environments[this._options.environment || 'staging'];
   }
 
   protected defaultQuery(): Record<string, string | undefined> | undefined {
@@ -218,7 +244,7 @@ export class CheckoutIntents {
   }
 
   protected async authHeaders(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
-    return buildHeaders([{ Authorization: `Bearer ${this.apiKey}` }]);
+    return buildHeaders([{ Authorization: this.apiKey }]);
   }
 
   /**
@@ -742,8 +768,10 @@ export declare namespace CheckoutIntents {
     type CheckoutIntent as CheckoutIntent,
     type Money as Money,
     type Offer as Offer,
-    type StripeTokenPaymentMethod as StripeTokenPaymentMethod,
+    type PaymentMethod as PaymentMethod,
+    type VariantSelection as VariantSelection,
     type CheckoutIntentCreateParams as CheckoutIntentCreateParams,
+    type CheckoutIntentAddPaymentParams as CheckoutIntentAddPaymentParams,
     type CheckoutIntentConfirmParams as CheckoutIntentConfirmParams,
   };
 

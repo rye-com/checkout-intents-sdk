@@ -4,7 +4,7 @@
 
 This library provides convenient access to the Checkout Intents REST API from server-side TypeScript or JavaScript.
 
-The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [docs.rye.com](https://docs.rye.com). The full API of this library can be found in [api.md](api.md).
 
 It is generated with [Stainless](https://www.stainless.com/).
 
@@ -24,17 +24,18 @@ import CheckoutIntents from 'checkout-intents';
 
 const client = new CheckoutIntents({
   apiKey: process.env['CHECKOUT_INTENTS_API_KEY'], // This is the default and can be omitted
+  environment: 'production', // defaults to 'staging'
 });
 
 const checkoutIntent = await client.checkoutIntents.create({
   buyer: {
     address1: '123 Main St',
     city: 'New York',
-    country: 'US',
+    country: 'United States',
     email: 'john.doe@example.com',
     firstName: 'John',
     lastName: 'Doe',
-    phone: '5555555555',
+    phone: '+1234567890',
     postalCode: '10001',
     province: 'NY',
   },
@@ -53,22 +54,23 @@ import CheckoutIntents from 'checkout-intents';
 
 const client = new CheckoutIntents({
   apiKey: process.env['CHECKOUT_INTENTS_API_KEY'], // This is the default and can be omitted
+  environment: 'production', // defaults to 'staging'
 });
 
 const params: CheckoutIntents.CheckoutIntentCreateParams = {
   buyer: {
     address1: '123 Main St',
     city: 'New York',
-    country: 'US',
+    country: 'United States',
     email: 'john.doe@example.com',
     firstName: 'John',
     lastName: 'Doe',
-    phone: '5555555555',
+    phone: '+1234567890',
     postalCode: '10001',
     province: 'NY',
   },
-  productUrl: 'productUrl',
-  quantity: 0,
+  productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker',
+  quantity: 1,
 };
 const checkoutIntent: CheckoutIntents.CheckoutIntent = await client.checkoutIntents.create(params);
 ```
@@ -88,16 +90,16 @@ const checkoutIntent = await client.checkoutIntents
     buyer: {
       address1: '123 Main St',
       city: 'New York',
-      country: 'US',
+      country: 'United States',
       email: 'john.doe@example.com',
       firstName: 'John',
       lastName: 'Doe',
-      phone: '5555555555',
+      phone: '+1234567890',
       postalCode: '10001',
       province: 'NY',
     },
-    productUrl: 'productUrl',
-    quantity: 0,
+    productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker',
+    quantity: 1,
   })
   .catch(async (err) => {
     if (err instanceof CheckoutIntents.APIError) {
@@ -139,7 +141,7 @@ const client = new CheckoutIntents({
 });
 
 // Or, configure per-request:
-await client.checkoutIntents.create({ buyer: { address1: '123 Main St', city: 'New York', country: 'US', email: 'john.doe@example.com', firstName: 'John', lastName: 'Doe', phone: '5555555555', postalCode: '10001', province: 'NY' }, productUrl: 'productUrl', quantity: 0 }, {
+await client.checkoutIntents.create({ buyer: { address1: '123 Main St', city: 'New York', country: 'United States', email: 'john.doe@example.com', firstName: 'John', lastName: 'Doe', phone: '+1234567890', postalCode: '10001', province: 'NY' }, productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker', quantity: 1 }, {
   maxRetries: 5,
 });
 ```
@@ -156,7 +158,7 @@ const client = new CheckoutIntents({
 });
 
 // Override per-request:
-await client.checkoutIntents.create({ buyer: { address1: '123 Main St', city: 'New York', country: 'US', email: 'john.doe@example.com', firstName: 'John', lastName: 'Doe', phone: '5555555555', postalCode: '10001', province: 'NY' }, productUrl: 'productUrl', quantity: 0 }, {
+await client.checkoutIntents.create({ buyer: { address1: '123 Main St', city: 'New York', country: 'United States', email: 'john.doe@example.com', firstName: 'John', lastName: 'Doe', phone: '+1234567890', postalCode: '10001', province: 'NY' }, productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker', quantity: 1 }, {
   timeout: 5 * 1000,
 });
 ```
@@ -184,16 +186,16 @@ const response = await client.checkoutIntents
     buyer: {
       address1: '123 Main St',
       city: 'New York',
-      country: 'US',
+      country: 'United States',
       email: 'john.doe@example.com',
       firstName: 'John',
       lastName: 'Doe',
-      phone: '5555555555',
+      phone: '+1234567890',
       postalCode: '10001',
       province: 'NY',
     },
-    productUrl: 'productUrl',
-    quantity: 0,
+    productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker',
+    quantity: 1,
   })
   .asResponse();
 console.log(response.headers.get('X-My-Header'));
@@ -204,16 +206,16 @@ const { data: checkoutIntent, response: raw } = await client.checkoutIntents
     buyer: {
       address1: '123 Main St',
       city: 'New York',
-      country: 'US',
+      country: 'United States',
       email: 'john.doe@example.com',
       firstName: 'John',
       lastName: 'Doe',
-      phone: '5555555555',
+      phone: '+1234567890',
       postalCode: '10001',
       province: 'NY',
     },
-    productUrl: 'productUrl',
-    quantity: 0,
+    productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker',
+    quantity: 1,
   })
   .withResponse();
 console.log(raw.headers.get('X-My-Header'));

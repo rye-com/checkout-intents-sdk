@@ -20,7 +20,7 @@ or products provided by Checkout Intents, please follow the respective company's
 
 ### Checkout Intents Terms and Policies
 
-Please contact yang@rye.com for any questions or concerns regarding the security of our services.
+Please contact dev@rye.com for any questions or concerns regarding the security of our services.
 
 ---
 
