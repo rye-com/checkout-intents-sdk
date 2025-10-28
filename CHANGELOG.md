@@ -1,5 +1,40 @@
 # Changelog
 
+## 0.2.0 (2025-10-28)
+
+Full Changelog: [v0.1.0...v0.2.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.1.0...v0.2.0)
+
+### Features
+
+* **api:** manual updates ([331e1d4](https://github.com/rye-com/checkout-intents-sdk/commit/331e1d4f5cad412b14ab65f34c7f2166137bcab1))
+* **api:** manual updates ([f82341d](https://github.com/rye-com/checkout-intents-sdk/commit/f82341d4f7b134e1b8e63f98af7e88e6eee9ca0b))
+* **api:** manual updates ([51267f5](https://github.com/rye-com/checkout-intents-sdk/commit/51267f5c6fa4e7e05a2ce0102a66df96e7f37129))
+* **api:** manual updates ([098c026](https://github.com/rye-com/checkout-intents-sdk/commit/098c026df38d82b479ebdf0b3cdba0f704973fef))
+* **api:** manual updates ([604f474](https://github.com/rye-com/checkout-intents-sdk/commit/604f474d6c2c78cf6b469e19ab0711e00b566017))
+
+
+### Bug Fixes
+
+* coerce nullable values to undefined ([7c8b73f](https://github.com/rye-com/checkout-intents-sdk/commit/7c8b73fdd2f14ec3a1f33e46e4cea315d35fa67e))
+
+
+### Performance Improvements
+
+* faster formatting ([801020b](https://github.com/rye-com/checkout-intents-sdk/commit/801020b43aa79c2e4c75affa174fd0cb6553f220))
+
+
+### Chores
+
+* ci build action ([b25e9a2](https://github.com/rye-com/checkout-intents-sdk/commit/b25e9a27a1475b541960731f04830044e7caf230))
+* do not install brew dependencies in ./scripts/bootstrap by default ([1894473](https://github.com/rye-com/checkout-intents-sdk/commit/1894473dda990e25992fdcfc3660f001f602f11b))
+* **internal:** codegen related update ([532b280](https://github.com/rye-com/checkout-intents-sdk/commit/532b28008e458d657cb05dc7f7c3497c9082b60d))
+* **internal:** fix incremental formatting in some cases ([d68a4ef](https://github.com/rye-com/checkout-intents-sdk/commit/d68a4ef214f16c7764d617e0ce6785dccb1e9f26))
+* **internal:** ignore .eslintcache ([2712360](https://github.com/rye-com/checkout-intents-sdk/commit/27123608348099f05997629c6f115766ee0c0288))
+* **internal:** remove .eslintcache ([7b2fe5e](https://github.com/rye-com/checkout-intents-sdk/commit/7b2fe5e3c43b8c02abfd122182c61b00b9c96d9a))
+* **internal:** remove deprecated `compilerOptions.baseUrl` from tsconfig.json ([56a2d07](https://github.com/rye-com/checkout-intents-sdk/commit/56a2d079855c28411cd87c738c9a4a4682ba8ca3))
+* **internal:** use npm pack for build uploads ([3aafc7c](https://github.com/rye-com/checkout-intents-sdk/commit/3aafc7c407bc371c49a25ab13a29b43d164893db))
+* **jsdoc:** fix [@link](https://github.com/link) annotations to refer only to parts of the package‘s public interface ([9e9f246](https://github.com/rye-com/checkout-intents-sdk/commit/9e9f2469a0a2d54aba24bde8eb98baf62daba976))
+
 ## 0.1.0 (2025-09-02)
 
 Full Changelog: [v0.0.2...v0.1.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.0.2...v0.1.0)
