@@ -321,6 +321,19 @@ describe('instantiate client', () => {
       expect(client.baseURL).toEqual('https://staging.api.rye.com/');
     });
 
+    test('env variable with environment', () => {
+      process.env['CHECKOUT_INTENTS_BASE_URL'] = 'https://example.com/from_env';
+
+      expect(
+        () => new CheckoutIntents({ apiKey: 'My API Key', environment: 'staging' }),
+      ).toThrowErrorMatchingInlineSnapshot(
+        `"Ambiguous URL; The \`baseURL\` option (or CHECKOUT_INTENTS_BASE_URL env var) and the \`environment\` option are given. If you want to use the environment you must pass baseURL: null"`,
+      );
+
+      const client = new CheckoutIntents({ apiKey: 'My API Key', baseURL: null, environment: 'staging' });
+      expect(client.baseURL).toEqual('https://staging.api.rye.com/');
+    });
+
     test('in request options', () => {
       const client = new CheckoutIntents({ apiKey: 'My API Key' });
       expect(client.buildURL('/foo', null, 'http://localhost:5000/option')).toEqual(

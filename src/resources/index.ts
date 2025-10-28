@@ -8,7 +8,9 @@ export {
   type CheckoutIntent,
   type Money,
   type Offer,
-  type StripeTokenPaymentMethod,
+  type PaymentMethod,
+  type VariantSelection,
   type CheckoutIntentCreateParams,
+  type CheckoutIntentAddPaymentParams,
   type CheckoutIntentConfirmParams,
 } from './checkout-intents';
