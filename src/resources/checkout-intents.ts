@@ -9,6 +9,25 @@ import { path } from '../internal/utils/path';
 export class CheckoutIntentsResource extends APIResource {
   /**
    * Create a checkout intent with the given request body.
+   *
+   * @example
+   * ```ts
+   * const checkoutIntent = await client.checkoutIntents.create({
+   *   buyer: {
+   *     address1: '123 Main St',
+   *     city: 'New York',
+   *     country: 'United States',
+   *     email: 'john.doe@example.com',
+   *     firstName: 'John',
+   *     lastName: 'Doe',
+   *     phone: '+1234567890',
+   *     postalCode: '10001',
+   *     province: 'NY',
+   *   },
+   *   productUrl: 'productUrl',
+   *   quantity: 1,
+   * });
+   * ```
    */
   create(body: CheckoutIntentCreateParams, options?: RequestOptions): APIPromise<CheckoutIntent> {
     return this._client.post('/api/v1/checkout-intents', { body, ...options });
@@ -18,9 +37,37 @@ export class CheckoutIntentsResource extends APIResource {
    * Retrieve a checkout intent by id
    *
    * Returns checkout intent information if the lookup succeeds.
+   *
+   * @example
+   * ```ts
+   * const checkoutIntent =
+   *   await client.checkoutIntents.retrieve('id');
+   * ```
    */
   retrieve(id: string, options?: RequestOptions): APIPromise<CheckoutIntent> {
     return this._client.get(path`/api/v1/checkout-intents/${id}`, options);
+  }
+
+  /**
+   * Add payment details to a checkout intent
+   *
+   * @example
+   * ```ts
+   * const checkoutIntent =
+   *   await client.checkoutIntents.addPayment('id', {
+   *     paymentMethod: {
+   *       stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH',
+   *       type: 'stripe_token',
+   *     },
+   *   });
+   * ```
+   */
+  addPayment(
+    id: string,
+    body: CheckoutIntentAddPaymentParams,
+    options?: RequestOptions,
+  ): APIPromise<CheckoutIntent> {
+    return this._client.post(path`/api/v1/checkout-intents/${id}/payment`, { body, ...options });
   }
 
   /**
@@ -28,6 +75,19 @@ export class CheckoutIntentsResource extends APIResource {
    *
    * Confirm means we have buyer's name, address and payment info, so we can move
    * forward to place the order.
+   *
+   * @example
+   * ```ts
+   * const checkoutIntent = await client.checkoutIntents.confirm(
+   *   'id',
+   *   {
+   *     paymentMethod: {
+   *       stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH',
+   *       type: 'stripe_token',
+   *     },
+   *   },
+   * );
+   * ```
    */
   confirm(
     id: string,
@@ -48,6 +108,8 @@ export interface BaseCheckoutIntent {
   productUrl: string;
 
   quantity: number;
+
+  variantSelections?: Array<VariantSelection>;
 }
 
 export interface Buyer {
@@ -88,12 +150,14 @@ export namespace CheckoutIntent {
     offer: CheckoutIntentsAPI.Offer;
 
     state: 'awaiting_confirmation';
+
+    paymentMethod?: CheckoutIntentsAPI.PaymentMethod;
   }
 
   export interface PlacingOrderCheckoutIntent extends CheckoutIntentsAPI.BaseCheckoutIntent {
     offer: CheckoutIntentsAPI.Offer;
 
-    paymentMethod: CheckoutIntentsAPI.StripeTokenPaymentMethod;
+    paymentMethod: CheckoutIntentsAPI.PaymentMethod;
 
     state: 'placing_order';
   }
@@ -101,7 +165,7 @@ export namespace CheckoutIntent {
   export interface CompletedCheckoutIntent extends CheckoutIntentsAPI.BaseCheckoutIntent {
     offer: CheckoutIntentsAPI.Offer;
 
-    paymentMethod: CheckoutIntentsAPI.StripeTokenPaymentMethod;
+    paymentMethod: CheckoutIntentsAPI.PaymentMethod;
 
     state: 'completed';
   }
@@ -113,7 +177,7 @@ export namespace CheckoutIntent {
 
     offer?: CheckoutIntentsAPI.Offer;
 
-    paymentMethod?: CheckoutIntentsAPI.StripeTokenPaymentMethod;
+    paymentMethod?: CheckoutIntentsAPI.PaymentMethod;
   }
 
   export namespace FailedCheckoutIntent {
@@ -175,10 +239,40 @@ export namespace Offer {
   }
 }
 
-export interface StripeTokenPaymentMethod {
-  stripeToken: string;
+export type PaymentMethod =
+  | PaymentMethod.StripeTokenPaymentMethod
+  | PaymentMethod.BasisTheoryPaymentMethod
+  | PaymentMethod.NekudaPaymentMethod;
 
-  type: 'stripe_token';
+export namespace PaymentMethod {
+  export interface StripeTokenPaymentMethod {
+    stripeToken: string;
+
+    type: 'stripe_token';
+  }
+
+  export interface BasisTheoryPaymentMethod {
+    basisTheoryToken: string;
+
+    type: 'basis_theory_token';
+  }
+
+  export interface NekudaPaymentMethod {
+    nekudaUserId: string;
+
+    type: 'nekuda_token';
+
+    /**
+     * Construct a type with a set of properties K of type T
+     */
+    nekudaMandateData?: { [key: string]: string | number };
+  }
+}
+
+export interface VariantSelection {
+  label: string;
+
+  value: string | number;
 }
 
 export interface CheckoutIntentCreateParams {
@@ -187,10 +281,16 @@ export interface CheckoutIntentCreateParams {
   productUrl: string;
 
   quantity: number;
+
+  variantSelections?: Array<VariantSelection>;
+}
+
+export interface CheckoutIntentAddPaymentParams {
+  paymentMethod: PaymentMethod;
 }
 
 export interface CheckoutIntentConfirmParams {
-  paymentMethod: StripeTokenPaymentMethod;
+  paymentMethod: PaymentMethod;
 }
 
 export declare namespace CheckoutIntentsResource {
@@ -200,8 +300,10 @@ export declare namespace CheckoutIntentsResource {
     type CheckoutIntent as CheckoutIntent,
     type Money as Money,
     type Offer as Offer,
-    type StripeTokenPaymentMethod as StripeTokenPaymentMethod,
+    type PaymentMethod as PaymentMethod,
+    type VariantSelection as VariantSelection,
     type CheckoutIntentCreateParams as CheckoutIntentCreateParams,
+    type CheckoutIntentAddPaymentParams as CheckoutIntentAddPaymentParams,
     type CheckoutIntentConfirmParams as CheckoutIntentConfirmParams,
   };
 }
