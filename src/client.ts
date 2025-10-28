@@ -51,7 +51,7 @@ type Environment = keyof typeof environments;
 
 export interface ClientOptions {
   /**
-   * Rye API key. Format: `Bearer <RYE_API_KEY>`
+   * Rye API key. Format: `RYE/{environment}-abcdef`
    */
   apiKey?: string | undefined;
 
@@ -244,7 +244,7 @@ export class CheckoutIntents {
   }
 
   protected async authHeaders(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
-    return buildHeaders([{ Authorization: this.apiKey }]);
+    return buildHeaders([{ Authorization: `Bearer ${this.apiKey}` }]);
   }
 
   /**
