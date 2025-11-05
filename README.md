@@ -43,6 +43,61 @@ const checkoutIntent = await client.checkoutIntents.create({
 });
 ```
 
+### Polling Helpers
+
+This SDK includes helper methods for the asynchronous checkout flow. The recommended pattern follows Rye's two-phase checkout:
+
+<!-- prettier-ignore -->
+```js
+// Phase 1: Create and wait for offer
+const intent = await client.checkoutIntents.createAndPoll({
+  buyer: {
+    address1: '123 Main St',
+    city: 'New York',
+    country: 'United States',
+    email: 'john.doe@example.com',
+    firstName: 'John',
+    lastName: 'Doe',
+    phone: '+1234567890',
+    postalCode: '10001',
+    province: 'NY',
+  },
+  productUrl: 'https://example.com/product',
+  quantity: 1,
+});
+
+// Handle failure during offer retrieval
+if (intent.state === 'failed') {
+  console.log('Failed:', intent.failureReason);
+  return;
+}
+
+// Review pricing with user
+console.log('Total:', intent.offer.cost.total);
+
+// Phase 2: Confirm and wait for completion
+const completed = await client.checkoutIntents.confirmAndPoll(intent.id, {
+  paymentMethod: {
+    type: 'stripe_token',
+    stripeToken: 'tok_visa',
+  },
+});
+
+console.log('Status:', completed.state);
+```
+
+For more examples, see the [`examples/`](./examples) directory:
+
+- [`complete-checkout-intent.ts`](./examples/complete-checkout-intent.ts) - Recommended two-phase flow
+- [`error-handling.ts`](./examples/error-handling.ts) - Timeout and error handling
+
+Available polling methods:
+
+- `createAndPoll()` - Create and poll until offer is ready (awaiting_confirmation or failed)
+- `confirmAndPoll()` - Confirm and poll until completion (completed or failed)
+- `pollUntilCompleted()` - Poll until completed or failed
+- `pollUntilAwaitingConfirmation()` - Poll until offer is ready or failed
+
 ### Request & Response types
 
 This library includes TypeScript definitions for all request params and response fields. You may import and use them like so:
