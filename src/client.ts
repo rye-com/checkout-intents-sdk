@@ -49,6 +49,17 @@ const environments = {
 };
 type Environment = keyof typeof environments;
 
+/**
+ * Extracts the environment from a Rye API key.
+ * API keys follow the format: RYE/{environment}-{key}
+ * @param apiKey - The API key to parse
+ * @returns The extracted environment ('staging' or 'production'), or null if the format doesn't match
+ */
+function extractEnvironmentFromApiKey(apiKey: string): Environment | null {
+  const match = apiKey.match(/^RYE\/(staging|production)-/);
+  return match ? (match[1] as Environment) : null;
+}
+
 export interface ClientOptions {
   /**
    * Rye API key. Format: `RYE/{environment}-abcdef`
@@ -175,11 +186,22 @@ export class CheckoutIntents {
       );
     }
 
+    // Auto-infer environment from API key
+    const inferredEnvironment = extractEnvironmentFromApiKey(apiKey);
+
+    // Validate environment option matches API key (if both provided)
+    if (opts.environment && inferredEnvironment && opts.environment !== inferredEnvironment) {
+      throw new Errors.CheckoutIntentsError(
+        `Environment mismatch: API key is for '${inferredEnvironment}' environment but 'environment' option is set to '${opts.environment}'. Please use an API key that matches your desired environment or omit the 'environment' option to auto-detect from the API key (only auto-detectable with the RYE/{environment}-abcdef api key format).`,
+      );
+    }
+
     const options: ClientOptions = {
       apiKey,
       ...opts,
       baseURL,
-      environment: opts.environment ?? 'staging',
+      // Use provided environment, or infer from API key, or default to staging
+      environment: opts.environment ?? inferredEnvironment ?? 'staging',
     };
 
     if (baseURL && opts.environment) {

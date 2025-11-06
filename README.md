@@ -24,7 +24,6 @@ import CheckoutIntents from 'checkout-intents';
 
 const client = new CheckoutIntents({
   apiKey: process.env['CHECKOUT_INTENTS_API_KEY'], // This is the default and can be omitted
-  environment: 'production', // defaults to 'staging'
 });
 
 const checkoutIntent = await client.checkoutIntents.create({
@@ -54,7 +53,6 @@ import CheckoutIntents from 'checkout-intents';
 
 const client = new CheckoutIntents({
   apiKey: process.env['CHECKOUT_INTENTS_API_KEY'], // This is the default and can be omitted
-  environment: 'production', // defaults to 'staging'
 });
 
 const params: CheckoutIntents.CheckoutIntentCreateParams = {
