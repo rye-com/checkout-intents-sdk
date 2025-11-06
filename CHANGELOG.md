@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.3.0 (2025-11-06)
+
+Full Changelog: [v0.2.0...v0.3.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.2.0...v0.3.0)
+
+### Features
+
+* **api:** add pollUntil helper functions ([f115fa0](https://github.com/rye-com/checkout-intents-sdk/commit/f115fa0d853763070b70c252e32339ccbd7b76e9))
+* **api:** auto infer environment from api key ([3427e20](https://github.com/rye-com/checkout-intents-sdk/commit/3427e20153d52c5a1c4b1bbc6663efe7380c593a))
+
+
+### Documentation
+
+* **api:** add polling functions ([4335fd3](https://github.com/rye-com/checkout-intents-sdk/commit/4335fd3d71c146a593aaf05c24921e5aedb26ba7))
+
 ## 0.2.0 (2025-10-28)
 
 Full Changelog: [v0.1.0...v0.2.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.1.0...v0.2.0)
