@@ -14,16 +14,16 @@ describe('resource checkoutIntents', () => {
       buyer: {
         address1: '123 Main St',
         city: 'New York',
-        country: 'United States',
+        country: 'US',
         email: 'john.doe@example.com',
         firstName: 'John',
         lastName: 'Doe',
-        phone: '+1234567890',
+        phone: '5555555555',
         postalCode: '10001',
         province: 'NY',
       },
       productUrl: 'productUrl',
-      quantity: 1,
+      quantity: 0,
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -40,17 +40,17 @@ describe('resource checkoutIntents', () => {
       buyer: {
         address1: '123 Main St',
         city: 'New York',
-        country: 'United States',
+        country: 'US',
         email: 'john.doe@example.com',
         firstName: 'John',
         lastName: 'Doe',
-        phone: '+1234567890',
+        phone: '5555555555',
         postalCode: '10001',
         province: 'NY',
         address2: 'Apt 1',
       },
       productUrl: 'productUrl',
-      quantity: 1,
+      quantity: 0,
       variantSelections: [{ label: 'Size, Color, etc.', value: 'Small, Red, XS, L, etc.' }],
     });
   });
@@ -69,9 +69,7 @@ describe('resource checkoutIntents', () => {
 
   // Prism tests are disabled
   test.skip('addPayment: only required params', async () => {
-    const responsePromise = client.checkoutIntents.addPayment('id', {
-      paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
-    });
+    const responsePromise = client.checkoutIntents.addPayment('id', { body: {} });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -83,9 +81,7 @@ describe('resource checkoutIntents', () => {
 
   // Prism tests are disabled
   test.skip('addPayment: required and optional params', async () => {
-    const response = await client.checkoutIntents.addPayment('id', {
-      paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
-    });
+    const response = await client.checkoutIntents.addPayment('id', { body: {} });
   });
 
   // Prism tests are disabled

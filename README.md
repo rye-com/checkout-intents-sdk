@@ -23,7 +23,6 @@ The full API of this library can be found in [api.md](api.md).
 import CheckoutIntents from 'checkout-intents';
 
 const client = new CheckoutIntents({
-  apiKey: process.env['CHECKOUT_INTENTS_API_KEY'], // This is the default and can be omitted
   environment: 'production', // defaults to 'staging'
 });
 
@@ -31,11 +30,11 @@ const checkoutIntent = await client.checkoutIntents.create({
   buyer: {
     address1: '123 Main St',
     city: 'New York',
-    country: 'United States',
+    country: 'US',
     email: 'john.doe@example.com',
     firstName: 'John',
     lastName: 'Doe',
-    phone: '+1234567890',
+    phone: '5555555555',
     postalCode: '10001',
     province: 'NY',
   },
@@ -53,7 +52,6 @@ This library includes TypeScript definitions for all request params and response
 import CheckoutIntents from 'checkout-intents';
 
 const client = new CheckoutIntents({
-  apiKey: process.env['CHECKOUT_INTENTS_API_KEY'], // This is the default and can be omitted
   environment: 'production', // defaults to 'staging'
 });
 
@@ -61,11 +59,11 @@ const params: CheckoutIntents.CheckoutIntentCreateParams = {
   buyer: {
     address1: '123 Main St',
     city: 'New York',
-    country: 'United States',
+    country: 'US',
     email: 'john.doe@example.com',
     firstName: 'John',
     lastName: 'Doe',
-    phone: '+1234567890',
+    phone: '5555555555',
     postalCode: '10001',
     province: 'NY',
   },
@@ -90,11 +88,11 @@ const checkoutIntent = await client.checkoutIntents
     buyer: {
       address1: '123 Main St',
       city: 'New York',
-      country: 'United States',
+      country: 'US',
       email: 'john.doe@example.com',
       firstName: 'John',
       lastName: 'Doe',
-      phone: '+1234567890',
+      phone: '5555555555',
       postalCode: '10001',
       province: 'NY',
     },
@@ -141,7 +139,7 @@ const client = new CheckoutIntents({
 });
 
 // Or, configure per-request:
-await client.checkoutIntents.create({ buyer: { address1: '123 Main St', city: 'New York', country: 'United States', email: 'john.doe@example.com', firstName: 'John', lastName: 'Doe', phone: '+1234567890', postalCode: '10001', province: 'NY' }, productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker', quantity: 1 }, {
+await client.checkoutIntents.create({ buyer: { address1: '123 Main St', city: 'New York', country: 'US', email: 'john.doe@example.com', firstName: 'John', lastName: 'Doe', phone: '5555555555', postalCode: '10001', province: 'NY' }, productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker', quantity: 1 }, {
   maxRetries: 5,
 });
 ```
@@ -158,7 +156,7 @@ const client = new CheckoutIntents({
 });
 
 // Override per-request:
-await client.checkoutIntents.create({ buyer: { address1: '123 Main St', city: 'New York', country: 'United States', email: 'john.doe@example.com', firstName: 'John', lastName: 'Doe', phone: '+1234567890', postalCode: '10001', province: 'NY' }, productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker', quantity: 1 }, {
+await client.checkoutIntents.create({ buyer: { address1: '123 Main St', city: 'New York', country: 'US', email: 'john.doe@example.com', firstName: 'John', lastName: 'Doe', phone: '5555555555', postalCode: '10001', province: 'NY' }, productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker', quantity: 1 }, {
   timeout: 5 * 1000,
 });
 ```
@@ -186,11 +184,11 @@ const response = await client.checkoutIntents
     buyer: {
       address1: '123 Main St',
       city: 'New York',
-      country: 'United States',
+      country: 'US',
       email: 'john.doe@example.com',
       firstName: 'John',
       lastName: 'Doe',
-      phone: '+1234567890',
+      phone: '5555555555',
       postalCode: '10001',
       province: 'NY',
     },
@@ -206,11 +204,11 @@ const { data: checkoutIntent, response: raw } = await client.checkoutIntents
     buyer: {
       address1: '123 Main St',
       city: 'New York',
-      country: 'United States',
+      country: 'US',
       email: 'john.doe@example.com',
       firstName: 'John',
       lastName: 'Doe',
-      phone: '+1234567890',
+      phone: '5555555555',
       postalCode: '10001',
       province: 'NY',
     },

@@ -9,25 +9,6 @@ import { path } from '../internal/utils/path';
 export class CheckoutIntentsResource extends APIResource {
   /**
    * Create a checkout intent with the given request body.
-   *
-   * @example
-   * ```ts
-   * const checkoutIntent = await client.checkoutIntents.create({
-   *   buyer: {
-   *     address1: '123 Main St',
-   *     city: 'New York',
-   *     country: 'United States',
-   *     email: 'john.doe@example.com',
-   *     firstName: 'John',
-   *     lastName: 'Doe',
-   *     phone: '+1234567890',
-   *     postalCode: '10001',
-   *     province: 'NY',
-   *   },
-   *   productUrl: 'productUrl',
-   *   quantity: 1,
-   * });
-   * ```
    */
   create(body: CheckoutIntentCreateParams, options?: RequestOptions): APIPromise<CheckoutIntent> {
     return this._client.post('/api/v1/checkout-intents', { body, ...options });
@@ -37,12 +18,6 @@ export class CheckoutIntentsResource extends APIResource {
    * Retrieve a checkout intent by id
    *
    * Returns checkout intent information if the lookup succeeds.
-   *
-   * @example
-   * ```ts
-   * const checkoutIntent =
-   *   await client.checkoutIntents.retrieve('id');
-   * ```
    */
   retrieve(id: string, options?: RequestOptions): APIPromise<CheckoutIntent> {
     return this._client.get(path`/api/v1/checkout-intents/${id}`, options);
@@ -50,24 +25,14 @@ export class CheckoutIntentsResource extends APIResource {
 
   /**
    * Add payment details to a checkout intent
-   *
-   * @example
-   * ```ts
-   * const checkoutIntent =
-   *   await client.checkoutIntents.addPayment('id', {
-   *     paymentMethod: {
-   *       stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH',
-   *       type: 'stripe_token',
-   *     },
-   *   });
-   * ```
    */
   addPayment(
     id: string,
-    body: CheckoutIntentAddPaymentParams,
+    params: CheckoutIntentAddPaymentParams,
     options?: RequestOptions,
   ): APIPromise<CheckoutIntent> {
-    return this._client.post(path`/api/v1/checkout-intents/${id}/payment`, { body, ...options });
+    const { body } = params;
+    return this._client.post(path`/api/v1/checkout-intents/${id}/payment`, { body: body, ...options });
   }
 
   /**
@@ -75,19 +40,6 @@ export class CheckoutIntentsResource extends APIResource {
    *
    * Confirm means we have buyer's name, address and payment info, so we can move
    * forward to place the order.
-   *
-   * @example
-   * ```ts
-   * const checkoutIntent = await client.checkoutIntents.confirm(
-   *   'id',
-   *   {
-   *     paymentMethod: {
-   *       stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH',
-   *       type: 'stripe_token',
-   *     },
-   *   },
-   * );
-   * ```
    */
   confirm(
     id: string,
@@ -150,8 +102,6 @@ export namespace CheckoutIntent {
     offer: CheckoutIntentsAPI.Offer;
 
     state: 'awaiting_confirmation';
-
-    paymentMethod?: CheckoutIntentsAPI.PaymentMethod;
   }
 
   export interface PlacingOrderCheckoutIntent extends CheckoutIntentsAPI.BaseCheckoutIntent {
@@ -239,39 +189,26 @@ export namespace Offer {
   }
 }
 
-export type PaymentMethod =
-  | PaymentMethod.StripeTokenPaymentMethod
-  | PaymentMethod.BasisTheoryPaymentMethod
-  | PaymentMethod.NekudaPaymentMethod;
+export interface PaymentMethod {
+  stripeToken: string;
 
-export namespace PaymentMethod {
-  export interface StripeTokenPaymentMethod {
-    stripeToken: string;
-
-    type: 'stripe_token';
-  }
-
-  export interface BasisTheoryPaymentMethod {
-    basisTheoryToken: string;
-
-    type: 'basis_theory_token';
-  }
-
-  export interface NekudaPaymentMethod {
-    nekudaUserId: string;
-
-    type: 'nekuda_token';
-
-    /**
-     * Construct a type with a set of properties K of type T
-     */
-    nekudaMandateData?: { [key: string]: string | number };
-  }
+  type: 'stripe_token';
 }
 
+/**
+ * Represents variant selections for a product, such as size, color, etc.
+ */
 export interface VariantSelection {
+  /**
+   * The label of the variant being selected. Match this label with what is used on
+   * the product page.
+   */
   label: string;
 
+  /**
+   * The value of the variant being selected. Match this value with what is used on
+   * the product page.
+   */
   value: string | number;
 }
 
@@ -286,7 +223,10 @@ export interface CheckoutIntentCreateParams {
 }
 
 export interface CheckoutIntentAddPaymentParams {
-  paymentMethod: PaymentMethod;
+  /**
+   * The request body containing the payment details
+   */
+  body: unknown;
 }
 
 export interface CheckoutIntentConfirmParams {
