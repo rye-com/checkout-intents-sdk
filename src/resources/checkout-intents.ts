@@ -28,11 +28,10 @@ export class CheckoutIntentsResource extends APIResource {
    */
   addPayment(
     id: string,
-    params: CheckoutIntentAddPaymentParams,
+    body: CheckoutIntentAddPaymentParams,
     options?: RequestOptions,
   ): APIPromise<CheckoutIntent> {
-    const { body } = params;
-    return this._client.post(path`/api/v1/checkout-intents/${id}/payment`, { body: body, ...options });
+    return this._client.post(path`/api/v1/checkout-intents/${id}/payment`, { body, ...options });
   }
 
   /**
@@ -223,10 +222,7 @@ export interface CheckoutIntentCreateParams {
 }
 
 export interface CheckoutIntentAddPaymentParams {
-  /**
-   * The request body containing the payment details
-   */
-  body: unknown;
+  paymentMethod: PaymentMethod;
 }
 
 export interface CheckoutIntentConfirmParams {
