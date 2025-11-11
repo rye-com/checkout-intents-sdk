@@ -70,7 +70,9 @@ describe('resource checkoutIntents', () => {
 
   // Prism tests are disabled
   test.skip('addPayment: only required params', async () => {
-    const responsePromise = client.checkoutIntents.addPayment('id', { body: {} });
+    const responsePromise = client.checkoutIntents.addPayment('id', {
+      paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -82,7 +84,9 @@ describe('resource checkoutIntents', () => {
 
   // Prism tests are disabled
   test.skip('addPayment: required and optional params', async () => {
-    const response = await client.checkoutIntents.addPayment('id', { body: {} });
+    const response = await client.checkoutIntents.addPayment('id', {
+      paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
+    });
   });
 
   // Prism tests are disabled
