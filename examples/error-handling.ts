@@ -1,14 +1,16 @@
 #!/usr/bin/env -S npm run tsn -T
 
-import CheckoutIntents from 'checkout-intents';
+import CheckoutIntents, { PollTimeoutError, CheckoutIntentsError } from 'checkout-intents';
 
 /**
  * Handling polling timeouts and errors.
  *
  * This example demonstrates:
- * - How to catch polling timeout errors
+ * - How to catch PollTimeoutError specifically
+ * - How to access timeout error details
  * - How to configure polling parameters
  * - How to handle different error scenarios
+ * - Best practices for error handling
  */
 
 const client = new CheckoutIntents({
@@ -47,21 +49,32 @@ async function main() {
 
     console.log('✓ Polling succeeded (unexpected)');
   } catch (error) {
-    if (error instanceof Error && error.message.includes('Polling timeout')) {
+    if (error instanceof PollTimeoutError) {
       console.log('✗ Polling timed out as expected');
+      console.log('\nPollTimeoutError details:');
+      console.log(`  Intent ID: ${error.intentId}`);
+      console.log(`  Attempts made: ${error.attempts}`);
+      console.log(`  Time elapsed: ${(error.attempts * error.pollIntervalMs) / 1000}s`);
+      console.log(`  Poll interval: ${error.pollIntervalMs}ms`);
+      console.log(`  Max attempts: ${error.maxAttempts}`);
+      console.log(`\nError message:\n  ${error.message}`);
+
       console.log('\nTo fix this:');
-      console.log('  - Increase maxAttempts (e.g., 60 for 2 minutes)');
+      console.log('  - Increase maxAttempts (e.g., 60 for ~5 minutes with 5s interval)');
       console.log('  - Increase pollIntervalMs if you want less frequent checks');
       console.log('  - Use appropriate polling method (pollUntilAwaitingConfirmation or pollUntilCompleted)');
+
+      // You can also retrieve the intent manually to check its current state
+      console.log('\nManually checking intent state...');
+      const currentIntent = await client.checkoutIntents.retrieve(error.intentId);
+      console.log(`  Current state: ${currentIntent.state}`);
+    } else if (error instanceof CheckoutIntentsError) {
+      // Catch other SDK errors (API errors, network errors, etc.)
+      console.log('✗ Other error:', error);
     } else {
-      console.error('✗ Unexpected error:', error);
+      throw error;
     }
   }
-
-  console.log('\nBest practices:');
-  console.log('  - Use 5000ms (5s) for pollIntervalMs (default)');
-  console.log('  - Use 120 maxAttempts for ~10 minute timeout (default)');
-  console.log('  - Always handle the "failed" state in your condition');
 }
 
 main();

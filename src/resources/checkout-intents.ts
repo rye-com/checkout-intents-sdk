@@ -2,6 +2,7 @@
 
 import { APIResource } from '../core/resource';
 import * as CheckoutIntentsAPI from './checkout-intents';
+import { PollTimeoutError } from '../core/error';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -158,11 +159,12 @@ export class CheckoutIntentsResource extends APIResource {
 
       // If we've reached max attempts, throw an error
       if (attempts >= maxAttempts) {
-        throw new Error(
-          `Polling timeout: condition not met after ${maxAttempts} attempts (${
-            (maxAttempts * pollIntervalMs) / 1000
-          }s)`,
-        );
+        throw new PollTimeoutError({
+          intentId: intent.id,
+          attempts,
+          maxAttempts,
+          pollIntervalMs,
+        });
       }
 
       // Check if server suggests a polling interval
