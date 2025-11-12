@@ -89,7 +89,7 @@ console.log('Status:', completed.state);
 For more examples, see the [`examples/`](./examples) directory:
 
 - [`complete-checkout-intent.ts`](./examples/complete-checkout-intent.ts) - Recommended two-phase flow
-- [`error-handling.ts`](./examples/error-handling.ts) - Timeout and error handling
+- [`error-handling.ts`](./examples/error-handling.ts) - Timeout and error handling with `PollTimeoutError`
 
 Available polling methods:
 
@@ -97,6 +97,44 @@ Available polling methods:
 - `confirmAndPoll()` - Confirm and poll until completion (completed or failed)
 - `pollUntilCompleted()` - Poll until completed or failed
 - `pollUntilAwaitingConfirmation()` - Poll until offer is ready or failed
+
+All polling methods support customizable timeouts:
+
+<!-- prettier-ignore -->
+```ts
+// Configure polling behavior
+const intent = await client.checkoutIntents.pollUntilCompleted(intentId, {
+  pollIntervalMs: 5000, // Poll every 5 seconds (default)
+  maxAttempts: 120, // Try up to 120 times, ~10 minutes (default)
+});
+```
+
+#### Handling Polling Timeouts
+
+When polling operations exceed `maxAttempts`, a `PollTimeoutError` is raised with helpful context:
+
+<!-- prettier-ignore -->
+```ts
+import CheckoutIntents, { PollTimeoutError } from 'checkout-intents';
+
+const client = new CheckoutIntents();
+
+try {
+  const intent = await client.checkoutIntents.pollUntilCompleted(intentId, {
+    pollIntervalMs: 5000,
+    maxAttempts: 60,
+  });
+} catch (error) {
+  if (error instanceof PollTimeoutError) {
+    console.log(`Polling timed out for intent: ${error.intentId}`);
+    console.log(`Attempted ${error.attempts} times over ${(error.attempts * error.pollIntervalMs) / 1000}s`);
+    
+    // You can retrieve the current state manually
+    const currentIntent = await client.checkoutIntents.retrieve(error.intentId);
+    console.log(`Current state: ${currentIntent.state}`);
+  }
+}
+```
 
 ### Request & Response types
 
@@ -177,6 +215,7 @@ Error codes are as follows:
 | 429         | `RateLimitError`           |
 | >=500       | `InternalServerError`      |
 | N/A         | `APIConnectionError`       |
+| N/A         | `PollTimeoutError`         |
 
 ### Retries
 
