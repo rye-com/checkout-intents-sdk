@@ -8,6 +8,7 @@ import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 import { sleep } from '../internal/utils/sleep';
 import { buildHeaders } from '../internal/headers';
+import { loggerFor } from '../internal/utils/log';
 
 /**
  * Options for polling operations.
@@ -132,9 +133,16 @@ export class CheckoutIntentsResource extends APIResource {
     condition: (intent: CheckoutIntent) => intent is T,
     options?: RequestOptions & PollOptions,
   ): Promise<T> {
-    const maxAttempts = options?.maxAttempts ?? 120; // Default: 120 attempts
+    let maxAttempts = options?.maxAttempts ?? 120; // Default: 120 attempts
     const pollIntervalMs = options?.pollIntervalMs ?? 5000; // Default: 5 seconds
-    let attempts = 0;
+
+    if (maxAttempts < 1) {
+      loggerFor(this._client).warn(
+        `[Checkout Intents SDK] Invalid maxAttempts value: ${maxAttempts}. maxAttempts must be >= 1. Defaulting to 1 to ensure at least one polling attempt.`,
+      );
+
+      maxAttempts = 1;
+    }
 
     const headers = buildHeaders([
       options?.headers,
@@ -144,11 +152,16 @@ export class CheckoutIntentsResource extends APIResource {
       },
     ]);
 
+    let intent: CheckoutIntentsAPI.CheckoutIntent;
+    let attempts = 0;
+
     while (attempts < maxAttempts) {
-      const { data: intent, response } = await this.retrieve(id, {
+      const { data, response } = await this.retrieve(id, {
         ...options,
         headers: { ...options?.headers, ...headers.values },
       }).withResponse();
+
+      intent = data;
 
       // Check if condition is met
       if (condition(intent)) {
@@ -164,6 +177,9 @@ export class CheckoutIntentsResource extends APIResource {
           attempts,
           maxAttempts,
           pollIntervalMs,
+          message: `Polling timeout: condition not met after ${maxAttempts} attempts (${
+            (maxAttempts * pollIntervalMs) / 1000
+          }s)`,
         });
       }
 
@@ -181,7 +197,13 @@ export class CheckoutIntentsResource extends APIResource {
     }
 
     // This should never be reached due to the throw above, but TypeScript needs it
-    throw new Error(`Polling timeout: condition not met after ${maxAttempts} attempts`);
+    throw new PollTimeoutError({
+      intentId: intent!.id,
+      attempts,
+      maxAttempts,
+      pollIntervalMs,
+      message: `Polling timeout: condition not met after ${maxAttempts} attempts`,
+    });
   }
 
   /**

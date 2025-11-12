@@ -416,5 +416,61 @@ describe('resource checkoutIntents', () => {
       client.checkoutIntents.create = originalCreate;
       client.checkoutIntents.pollUntilAwaitingConfirmation = originalPollUntilAwaitingConfirmation;
     });
+
+    test('pollUntilCompleted: coerces maxAttempts < 1 to 1 and logs warning', async () => {
+      const originalRetrieve = client.checkoutIntents.retrieve;
+      const originalWarn = console.warn;
+      const warnSpy = jest.fn();
+      console.warn = warnSpy;
+
+      // Mock the retrieve method
+      client.checkoutIntents.retrieve = jest.fn().mockImplementation(() => {
+        return {
+          withResponse: async () => ({
+            data: {
+              id: 'test-id',
+              state: 'completed',
+              buyer: {
+                address1: '123 Main St',
+                city: 'New York',
+                country: 'US',
+                email: 'test@example.com',
+                firstName: 'John',
+                lastName: 'Doe',
+                phone: '+1234567890',
+                postalCode: '10001',
+                province: 'NY',
+              },
+              createdAt: new Date().toISOString(),
+              productUrl: 'https://example.com/product',
+              quantity: 1,
+              paymentMethod: {
+                type: 'stripe_token',
+                stripeToken: 'tok_test',
+              },
+            },
+            response: new Response(null, { headers: new Headers() }),
+          }),
+        };
+      });
+
+      // Test with maxAttempts = 0
+      const result = await client.checkoutIntents.pollUntilCompleted('test-id', {
+        pollIntervalMs: 10,
+        maxAttempts: 0,
+      });
+
+      expect(result.state).toBe('completed');
+      // Should have been called exactly once (coerced to 1)
+      expect(client.checkoutIntents.retrieve).toHaveBeenCalledTimes(1);
+      // Should have logged a warning
+      expect(warnSpy).toHaveBeenCalledWith(
+        expect.stringContaining('[Checkout Intents SDK] Invalid maxAttempts value: 0'),
+      );
+
+      // Restore
+      client.checkoutIntents.retrieve = originalRetrieve;
+      console.warn = originalWarn;
+    });
   });
 });
