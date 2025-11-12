@@ -19,4 +19,5 @@ export {
   InternalServerError,
   PermissionDeniedError,
   UnprocessableEntityError,
+  PollTimeoutError,
 } from './core/error';
