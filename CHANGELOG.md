@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.4.0 (2025-11-13)
+
+Full Changelog: [v0.3.0...v0.4.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.3.0...v0.4.0)
+
+### Features
+
+* **api:** improve thrown poll timeout error ([2f2e006](https://github.com/rye-com/checkout-intents-sdk/commit/2f2e00623f04d241f6e212c1fa02b5d99e75184a))
+
+
+### Chores
+
+* **api:** improve maxAttempts value handling ([023b227](https://github.com/rye-com/checkout-intents-sdk/commit/023b227f3baf5428547921bcaed14977299035f9))
+
+
+### Documentation
+
+* **api:** add PollTimeoutError examples ([d294ae6](https://github.com/rye-com/checkout-intents-sdk/commit/d294ae64aded0d76e4f5ac8eede8780f06864bae))
+
 ## 0.3.0 (2025-11-06)
 
 Full Changelog: [v0.2.0...v0.3.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.2.0...v0.3.0)
