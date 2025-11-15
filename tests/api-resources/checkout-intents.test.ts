@@ -19,12 +19,12 @@ describe('resource checkoutIntents', () => {
         email: 'john.doe@example.com',
         firstName: 'John',
         lastName: 'Doe',
-        phone: '+1234567890',
+        phone: '5555555555',
         postalCode: '10001',
         province: 'NY',
       },
       productUrl: 'productUrl',
-      quantity: 1,
+      quantity: 0,
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -45,13 +45,13 @@ describe('resource checkoutIntents', () => {
         email: 'john.doe@example.com',
         firstName: 'John',
         lastName: 'Doe',
-        phone: '+1234567890',
+        phone: '5555555555',
         postalCode: '10001',
         province: 'NY',
         address2: 'Apt 1',
       },
       productUrl: 'productUrl',
-      quantity: 1,
+      quantity: 0,
       variantSelections: [{ label: 'Size, Color, etc.', value: 'Small, Red, XS, L, etc.' }],
     });
   });
