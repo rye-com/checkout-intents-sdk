@@ -11,6 +11,8 @@ export {
   type PaymentMethod,
   type VariantSelection,
   type CheckoutIntentCreateParams,
+  type CheckoutIntentListParams,
   type CheckoutIntentAddPaymentParams,
   type CheckoutIntentConfirmParams,
+  type CheckoutIntentsCursorPagination,
 } from './checkout-intents';

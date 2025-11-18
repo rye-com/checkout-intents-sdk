@@ -9,8 +9,8 @@ export class Brands extends APIResource {
   /**
    * Retrieve brand information by domain name
    *
-   * Look up a brand by its domain name (e.g. "aloyoga.com"). Returns brand
-   * information including the marketplace type if the lookup succeeds.
+   * Look up a brand by its domain name (e.g. "aloyoga.com" or "www.amazon.com").
+   * Returns brand information including the marketplace type if the lookup succeeds.
    */
   retrieve(domain: string, options?: RequestOptions): APIPromise<BrandRetrieveResponse> {
     return this._client.get(path`/api/v1/brands/domain/${domain}`, options);
