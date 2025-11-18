@@ -11,8 +11,11 @@ import type { APIResponseProps } from './internal/parse';
 import { getPlatformHeaders } from './internal/detect-platform';
 import * as Shims from './internal/shims';
 import * as Opts from './internal/request-options';
+import * as qs from './internal/qs';
 import { VERSION } from './version';
 import * as Errors from './core/error';
+import * as Pagination from './core/pagination';
+import { AbstractPage, type CursorPaginationParams, CursorPaginationResponse } from './core/pagination';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
@@ -24,6 +27,8 @@ import {
   CheckoutIntentAddPaymentParams,
   CheckoutIntentConfirmParams,
   CheckoutIntentCreateParams,
+  CheckoutIntentListParams,
+  CheckoutIntentsCursorPagination,
   CheckoutIntentsResource,
   Money,
   Offer,
@@ -247,24 +252,8 @@ export class CheckoutIntents {
     return buildHeaders([{ Authorization: `Bearer ${this.apiKey}` }]);
   }
 
-  /**
-   * Basic re-implementation of `qs.stringify` for primitive types.
-   */
   protected stringifyQuery(query: Record<string, unknown>): string {
-    return Object.entries(query)
-      .filter(([_, value]) => typeof value !== 'undefined')
-      .map(([key, value]) => {
-        if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
-          return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
-        }
-        if (value === null) {
-          return `${encodeURIComponent(key)}=`;
-        }
-        throw new Errors.CheckoutIntentsError(
-          `Cannot stringify type ${typeof value}; Expected string, number, boolean, or null. If you need to pass nested query parameters, you can manually encode them, e.g. { query: { 'foo[key1]': value1, 'foo[key2]': value2 } }, and please open a GitHub issue requesting better support for your use case.`,
-        );
-      })
-      .join('&');
+    return qs.stringify(query, { arrayFormat: 'comma' });
   }
 
   private getUserAgent(): string {
@@ -519,6 +508,25 @@ export class CheckoutIntents {
     return { response, options, controller, requestLogID, retryOfRequestLogID, startTime };
   }
 
+  getAPIList<Item, PageClass extends Pagination.AbstractPage<Item> = Pagination.AbstractPage<Item>>(
+    path: string,
+    Page: new (...args: any[]) => PageClass,
+    opts?: RequestOptions,
+  ): Pagination.PagePromise<PageClass, Item> {
+    return this.requestAPIList(Page, { method: 'get', path, ...opts });
+  }
+
+  requestAPIList<
+    Item = unknown,
+    PageClass extends Pagination.AbstractPage<Item> = Pagination.AbstractPage<Item>,
+  >(
+    Page: new (...args: ConstructorParameters<typeof Pagination.AbstractPage>) => PageClass,
+    options: FinalRequestOptions,
+  ): Pagination.PagePromise<PageClass, Item> {
+    const request = this.makeRequest(options, null, undefined);
+    return new Pagination.PagePromise<PageClass, Item>(this as any as CheckoutIntents, request, Page);
+  }
+
   async fetchWithTimeout(
     url: RequestInfo,
     init: RequestInit | undefined,
@@ -761,6 +769,12 @@ CheckoutIntents.Brands = Brands;
 export declare namespace CheckoutIntents {
   export type RequestOptions = Opts.RequestOptions;
 
+  export import CursorPagination = Pagination.CursorPagination;
+  export {
+    type CursorPaginationParams as CursorPaginationParams,
+    type CursorPaginationResponse as CursorPaginationResponse,
+  };
+
   export {
     CheckoutIntentsResource as CheckoutIntentsResource,
     type BaseCheckoutIntent as BaseCheckoutIntent,
@@ -770,7 +784,9 @@ export declare namespace CheckoutIntents {
     type Offer as Offer,
     type PaymentMethod as PaymentMethod,
     type VariantSelection as VariantSelection,
+    type CheckoutIntentsCursorPagination as CheckoutIntentsCursorPagination,
     type CheckoutIntentCreateParams as CheckoutIntentCreateParams,
+    type CheckoutIntentListParams as CheckoutIntentListParams,
     type CheckoutIntentAddPaymentParams as CheckoutIntentAddPaymentParams,
     type CheckoutIntentConfirmParams as CheckoutIntentConfirmParams,
   };
