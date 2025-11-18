@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.5.0 (2025-11-18)
+
+Full Changelog: [v0.4.0...v0.5.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.4.0...v0.5.0)
+
+### Features
+
+* Add python sdk target to stainless config ([d702c75](https://github.com/rye-com/checkout-intents-sdk/commit/d702c750099d8fcb9b09ea6933744e0374c00518))
+* **api:** api update ([a868506](https://github.com/rye-com/checkout-intents-sdk/commit/a8685069c97d83c5d57eba825e9e1a9260b868d9))
+* **api:** api update ([812d2a6](https://github.com/rye-com/checkout-intents-sdk/commit/812d2a66a0828504c0a4a76f680bcb185b09865d))
+
+
+### Bug Fixes
+
+* **docs:** supply valid buyer details ([e7b7598](https://github.com/rye-com/checkout-intents-sdk/commit/e7b75983b3f79479492664be74bbcaeefb3bfe33))
+
+
+### Chores
+
+* **api:** remove duplicate helper functions ([d5a1994](https://github.com/rye-com/checkout-intents-sdk/commit/d5a1994a2b9ffd269f3061d0b4097fb35e362ffc))
+
 ## 0.4.0 (2025-11-13)
 
 Full Changelog: [v0.3.0...v0.4.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.3.0...v0.4.0)
