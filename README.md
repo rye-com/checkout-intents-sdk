@@ -30,11 +30,11 @@ const checkoutIntent = await client.checkoutIntents.create({
   buyer: {
     address1: '123 Main St',
     city: 'New York',
-    country: 'US',
+    country: 'United States',
     email: 'john.doe@example.com',
     firstName: 'John',
     lastName: 'Doe',
-    phone: '5555555555',
+    phone: '+1234567890',
     postalCode: '10001',
     province: 'NY',
   },
@@ -195,11 +195,11 @@ const params: CheckoutIntents.CheckoutIntentCreateParams = {
   buyer: {
     address1: '123 Main St',
     city: 'New York',
-    country: 'US',
+    country: 'United States',
     email: 'john.doe@example.com',
     firstName: 'John',
     lastName: 'Doe',
-    phone: '5555555555',
+    phone: '+1234567890',
     postalCode: '10001',
     province: 'NY',
   },
@@ -224,11 +224,11 @@ const checkoutIntent = await client.checkoutIntents
     buyer: {
       address1: '123 Main St',
       city: 'New York',
-      country: 'US',
+      country: 'United States',
       email: 'john.doe@example.com',
       firstName: 'John',
       lastName: 'Doe',
-      phone: '5555555555',
+      phone: '+1234567890',
       postalCode: '10001',
       province: 'NY',
     },
@@ -276,7 +276,7 @@ const client = new CheckoutIntents({
 });
 
 // Or, configure per-request:
-await client.checkoutIntents.create({ buyer: { address1: '123 Main St', city: 'New York', country: 'US', email: 'john.doe@example.com', firstName: 'John', lastName: 'Doe', phone: '5555555555', postalCode: '10001', province: 'NY' }, productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker', quantity: 1 }, {
+await client.checkoutIntents.create({ buyer: { address1: '123 Main St', city: 'New York', country: 'United States', email: 'john.doe@example.com', firstName: 'John', lastName: 'Doe', phone: '+1234567890', postalCode: '10001', province: 'NY' }, productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker', quantity: 1 }, {
   maxRetries: 5,
 });
 ```
@@ -293,7 +293,7 @@ const client = new CheckoutIntents({
 });
 
 // Override per-request:
-await client.checkoutIntents.create({ buyer: { address1: '123 Main St', city: 'New York', country: 'US', email: 'john.doe@example.com', firstName: 'John', lastName: 'Doe', phone: '5555555555', postalCode: '10001', province: 'NY' }, productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker', quantity: 1 }, {
+await client.checkoutIntents.create({ buyer: { address1: '123 Main St', city: 'New York', country: 'United States', email: 'john.doe@example.com', firstName: 'John', lastName: 'Doe', phone: '+1234567890', postalCode: '10001', province: 'NY' }, productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker', quantity: 1 }, {
   timeout: 5 * 1000,
 });
 ```
@@ -301,6 +301,37 @@ await client.checkoutIntents.create({ buyer: { address1: '123 Main St', city: 'N
 On timeout, an `APIConnectionTimeoutError` is thrown.
 
 Note that requests which time out will be [retried twice by default](#retries).
+
+## Auto-pagination
+
+List methods in the CheckoutIntents API are paginated.
+You can use the `for await … of` syntax to iterate through items across all pages:
+
+```ts
+async function fetchAllCheckoutIntents(params) {
+  const allCheckoutIntents = [];
+  // Automatically fetches more pages as needed.
+  for await (const checkoutIntent of client.checkoutIntents.list({ limit: 20 })) {
+    allCheckoutIntents.push(checkoutIntent);
+  }
+  return allCheckoutIntents;
+}
+```
+
+Alternatively, you can request a single page at a time:
+
+```ts
+let page = await client.checkoutIntents.list({ limit: 20 });
+for (const checkoutIntent of page.data) {
+  console.log(checkoutIntent);
+}
+
+// Convenience methods are provided for manually paginating:
+while (page.hasNextPage()) {
+  page = await page.getNextPage();
+  // ...
+}
+```
 
 ## Advanced Usage
 
@@ -321,11 +352,11 @@ const response = await client.checkoutIntents
     buyer: {
       address1: '123 Main St',
       city: 'New York',
-      country: 'US',
+      country: 'United States',
       email: 'john.doe@example.com',
       firstName: 'John',
       lastName: 'Doe',
-      phone: '5555555555',
+      phone: '+1234567890',
       postalCode: '10001',
       province: 'NY',
     },
@@ -341,11 +372,11 @@ const { data: checkoutIntent, response: raw } = await client.checkoutIntents
     buyer: {
       address1: '123 Main St',
       city: 'New York',
-      country: 'US',
+      country: 'United States',
       email: 'john.doe@example.com',
       firstName: 'John',
       lastName: 'Doe',
-      phone: '5555555555',
+      phone: '+1234567890',
       postalCode: '10001',
       province: 'NY',
     },
