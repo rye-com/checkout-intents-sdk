@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.5.1 (2025-12-06)
+
+Full Changelog: [v0.5.0...v0.5.1](https://github.com/rye-com/checkout-intents-sdk/compare/v0.5.0...v0.5.1)
+
+### Bug Fixes
+
+* **mcp:** correct code tool API endpoint ([a4f494f](https://github.com/rye-com/checkout-intents-sdk/commit/a4f494f8e70c6dc716644f135a2ec826a505fb50))
+* **mcp:** return correct lines on typescript errors ([28fe7a4](https://github.com/rye-com/checkout-intents-sdk/commit/28fe7a44793bae5bc2c1cf44a3f28199edd599db))
+
+
+### Chores
+
+* **client:** fix logger property type ([19bfa74](https://github.com/rye-com/checkout-intents-sdk/commit/19bfa742e76e04d9c3952bfb0521772c65024742))
+* **internal:** codegen related update ([7f2b812](https://github.com/rye-com/checkout-intents-sdk/commit/7f2b81239366dd2953069d0d4486292beeaec178))
+* **internal:** codegen related update ([729f68d](https://github.com/rye-com/checkout-intents-sdk/commit/729f68d7510e7411074b6209504bb1c57034299f))
+* **internal:** upgrade eslint ([5508bda](https://github.com/rye-com/checkout-intents-sdk/commit/5508bda2e5dce1c4f34b84aa49106d279485e577))
+
 ## 0.5.0 (2025-11-18)
 
 Full Changelog: [v0.4.0...v0.5.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.4.0...v0.5.0)
