@@ -52,6 +52,7 @@ describe('resource checkoutIntents', () => {
       },
       productUrl: 'productUrl',
       quantity: 1,
+      promoCodes: ['string'],
       variantSelections: [{ label: 'Size, Color, etc.', value: 'Small, Red, XS, L, etc.' }],
     });
   });
