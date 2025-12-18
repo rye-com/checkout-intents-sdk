@@ -381,6 +381,8 @@ export interface BaseCheckoutIntent {
 
   quantity: number;
 
+  promoCodes?: Array<string>;
+
   variantSelections?: Array<VariantSelection>;
 }
 
@@ -456,6 +458,9 @@ export namespace CheckoutIntent {
 
   export namespace FailedCheckoutIntent {
     export interface FailureReason {
+      /**
+       * Type derived from runtime array - always in sync
+       */
       code:
         | 'checkout_intent_expired'
         | 'payment_failed'
@@ -467,7 +472,15 @@ export namespace CheckoutIntent {
         | 'missing_shipping_method'
         | 'unsupported_currency'
         | 'invalid_input'
-        | 'unsupported_store_no_guest_checkout';
+        | 'incorrect_cost_breakdown'
+        | 'unsupported_store_no_guest_checkout'
+        | 'workflow_invocation_failed'
+        | 'variant_selections_invalid'
+        | 'variant_selections_required'
+        | 'form_validation_error'
+        | 'captcha_blocked'
+        | 'bot_protection_blocked'
+        | 'unknown';
 
       message: string;
     }
@@ -496,6 +509,8 @@ export namespace Offer {
 
     shipping?: CheckoutIntentsAPI.Money;
 
+    surcharge?: CheckoutIntentsAPI.Money;
+
     tax?: CheckoutIntentsAPI.Money;
   }
 
@@ -510,6 +525,8 @@ export namespace Offer {
       id: string;
 
       cost: CheckoutIntentsAPI.Money;
+
+      discount?: CheckoutIntentsAPI.Money;
     }
   }
 }
@@ -556,6 +573,8 @@ export interface CheckoutIntentCreateParams {
   productUrl: string;
 
   quantity: number;
+
+  promoCodes?: Array<string>;
 
   variantSelections?: Array<VariantSelection>;
 }

@@ -26,7 +26,7 @@ export interface BrandRetrieveResponse {
   /**
    * Indicates what ecommerce platform the brand uses.
    */
-  marketplace: 'AMAZON' | 'SHOPIFY' | 'UNKNOWN';
+  marketplace: 'AMAZON' | 'SHOPIFY' | 'BESTBUY' | 'UNKNOWN';
 
   /**
    * If `false`, then products from this brand cannot be purchased through the Sell
