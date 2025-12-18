@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.0 (2025-12-18)
+
+Full Changelog: [v0.5.1...v0.6.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.5.1...v0.6.0)
+
+### Features
+
+* Add durable purchase workflow and supporting infrastructure ([a798e95](https://github.com/rye-com/checkout-intents-sdk/commit/a798e9546200291aa6c87ce841a3ee0d06a9f621))
+
 ## 0.5.1 (2025-12-06)
 
 Full Changelog: [v0.5.0...v0.5.1](https://github.com/rye-com/checkout-intents-sdk/compare/v0.5.0...v0.5.1)
