@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.1 (2025-12-19)
+
+Full Changelog: [v0.6.0...v0.6.1](https://github.com/rye-com/checkout-intents-sdk/compare/v0.6.0...v0.6.1)
+
+### Chores
+
+* **ci:** add required oidc permissions ([410d636](https://github.com/rye-com/checkout-intents-sdk/commit/410d636b0ba5e589cae41a803ebf3ee4e6ddf968))
+
 ## 0.6.0 (2025-12-18)
 
 Full Changelog: [v0.5.1...v0.6.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.5.1...v0.6.0)
