@@ -497,6 +497,8 @@ export interface Offer {
   cost: Offer.Cost;
 
   shipping: Offer.Shipping;
+
+  appliedPromoCodes?: Array<string>;
 }
 
 export namespace Offer {
