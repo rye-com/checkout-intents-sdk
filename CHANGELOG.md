@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.7.0 (2025-12-19)
+
+Full Changelog: [v0.6.1...v0.7.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.6.1...v0.7.0)
+
+### Features
+
+* **api:** add applied promo codes to offer ([3e29b07](https://github.com/rye-com/checkout-intents-sdk/commit/3e29b0707169acb8991a5202c0ec82e25c295a7f))
+
+
+### Bug Fixes
+
+* **ci:** accomodate for oidc auth ([d195ae5](https://github.com/rye-com/checkout-intents-sdk/commit/d195ae5fd4d4daffb5dee96bcd71eb6f1c12f61f))
+
 ## 0.6.1 (2025-12-19)
 
 Full Changelog: [v0.6.0...v0.6.1](https://github.com/rye-com/checkout-intents-sdk/compare/v0.6.0...v0.6.1)
