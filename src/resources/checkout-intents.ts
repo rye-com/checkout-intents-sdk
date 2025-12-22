@@ -639,6 +639,8 @@ export interface CheckoutIntentPurchaseParams {
 
   quantity: number;
 
+  promoCodes?: Array<string>;
+
   variantSelections?: Array<VariantSelection>;
 }
 
