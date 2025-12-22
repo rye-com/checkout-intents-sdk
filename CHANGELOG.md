@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.8.0 (2025-12-22)
+
+Full Changelog: [v0.7.0...v0.8.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.7.0...v0.8.0)
+
+### Features
+
+* Include `/purchase` endpoint in our SDKs + docs ([703e29c](https://github.com/rye-com/checkout-intents-sdk/commit/703e29ca8d573161ac5d1ade0990990e156aa2bb))
+
 ## 0.7.0 (2025-12-19)
 
 Full Changelog: [v0.6.1...v0.7.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.6.1...v0.7.0)
