@@ -121,6 +121,41 @@ export class CheckoutIntentsResource extends APIResource {
   ): APIPromise<CheckoutIntent> {
     return this._client.post(path`/api/v1/checkout-intents/${id}/confirm`, { body, ...options });
   }
+
+  /**
+   * Create a checkout intent and immediately trigger the purchase workflow.
+   *
+   * This is a "fire-and-forget" endpoint that combines create + confirm in one step.
+   * The workflow handles offer retrieval, payment authorization, and order placement
+   * asynchronously. Poll the GET endpoint to check status.
+   *
+   * @example
+   * ```ts
+   * const checkoutIntent =
+   *   await client.checkoutIntents.purchase({
+   *     buyer: {
+   *       address1: '123 Main St',
+   *       city: 'New York',
+   *       country: 'US',
+   *       email: 'john.doe@example.com',
+   *       firstName: 'John',
+   *       lastName: 'Doe',
+   *       phone: '1234567890',
+   *       postalCode: '10001',
+   *       province: 'NY',
+   *     },
+   *     paymentMethod: {
+   *       stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH',
+   *       type: 'stripe_token',
+   *     },
+   *     productUrl: 'productUrl',
+   *     quantity: 1,
+   *   });
+   * ```
+   */
+  purchase(body: CheckoutIntentPurchaseParams, options?: RequestOptions): APIPromise<CheckoutIntent> {
+    return this._client.post('/api/v1/checkout-intents/purchase', { body, ...options });
+  }
 }
 
 export type CheckoutIntentsCursorPagination = CursorPagination<CheckoutIntent>;
@@ -350,6 +385,18 @@ export interface CheckoutIntentConfirmParams {
   paymentMethod: PaymentMethod;
 }
 
+export interface CheckoutIntentPurchaseParams {
+  buyer: Buyer;
+
+  paymentMethod: PaymentMethod;
+
+  productUrl: string;
+
+  quantity: number;
+
+  variantSelections?: Array<VariantSelection>;
+}
+
 export declare namespace CheckoutIntentsResource {
   export {
     type BaseCheckoutIntent as BaseCheckoutIntent,
@@ -364,5 +411,6 @@ export declare namespace CheckoutIntentsResource {
     type CheckoutIntentListParams as CheckoutIntentListParams,
     type CheckoutIntentAddPaymentParams as CheckoutIntentAddPaymentParams,
     type CheckoutIntentConfirmParams as CheckoutIntentConfirmParams,
+    type CheckoutIntentPurchaseParams as CheckoutIntentPurchaseParams,
   };
 }
