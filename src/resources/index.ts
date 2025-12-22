@@ -14,5 +14,6 @@ export {
   type CheckoutIntentListParams,
   type CheckoutIntentAddPaymentParams,
   type CheckoutIntentConfirmParams,
+  type CheckoutIntentPurchaseParams,
   type CheckoutIntentsCursorPagination,
 } from './checkout-intents';

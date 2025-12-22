@@ -28,6 +28,7 @@ import {
   CheckoutIntentConfirmParams,
   CheckoutIntentCreateParams,
   CheckoutIntentListParams,
+  CheckoutIntentPurchaseParams,
   CheckoutIntentsCursorPagination,
   CheckoutIntentsResource,
   Money,
@@ -811,6 +812,7 @@ export declare namespace CheckoutIntents {
     type CheckoutIntentListParams as CheckoutIntentListParams,
     type CheckoutIntentAddPaymentParams as CheckoutIntentAddPaymentParams,
     type CheckoutIntentConfirmParams as CheckoutIntentConfirmParams,
+    type CheckoutIntentPurchaseParams as CheckoutIntentPurchaseParams,
   };
 
   export { Brands as Brands, type BrandRetrieveResponse as BrandRetrieveResponse };
