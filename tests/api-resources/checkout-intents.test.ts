@@ -178,6 +178,7 @@ describe('resource checkoutIntents', () => {
       paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
       productUrl: 'productUrl',
       quantity: 1,
+      promoCodes: ['string'],
       variantSelections: [{ label: 'Size, Color, etc.', value: 'Small, Red, XS, L, etc.' }],
     });
   });
