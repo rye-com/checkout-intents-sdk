@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.9.0 (2025-12-22)
+
+Full Changelog: [v0.8.0...v0.9.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.8.0...v0.9.0)
+
+### Features
+
+* **api:** support promo codes in purchase endpoint ([0e0be3d](https://github.com/rye-com/checkout-intents-sdk/commit/0e0be3da3317a1e0ba464dfd20dcb4eb4b69671d))
+
 ## 0.8.0 (2025-12-22)
 
 Full Changelog: [v0.7.0...v0.8.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.7.0...v0.8.0)
