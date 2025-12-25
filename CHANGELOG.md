@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.10.0 (2025-12-25)
+
+Full Changelog: [v0.9.0...v0.10.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.9.0...v0.10.0)
+
+### Features
+
+* **api:** add support for purchase constraints ([6e25de0](https://github.com/rye-com/checkout-intents-sdk/commit/6e25de0264f6090331b0e2feb83546d074c3f769))
+* **api:** manual updates ([88426e0](https://github.com/rye-com/checkout-intents-sdk/commit/88426e0aeab2d276c5247904968c95c9286f585b))
+* **api:** swap featured request ([ddab16e](https://github.com/rye-com/checkout-intents-sdk/commit/ddab16e0f62495246316480356d52131b77516d8))
+
 ## 0.9.0 (2025-12-22)
 
 Full Changelog: [v0.8.0...v0.9.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.8.0...v0.9.0)
