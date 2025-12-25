@@ -171,9 +171,19 @@ export interface BaseCheckoutIntent {
 
   quantity: number;
 
+  constraints?: BaseCheckoutIntent.Constraints;
+
   promoCodes?: Array<string>;
 
   variantSelections?: Array<VariantSelection>;
+}
+
+export namespace BaseCheckoutIntent {
+  export interface Constraints {
+    maxShippingPrice?: number;
+
+    maxTotalPrice?: number;
+  }
 }
 
 export interface Buyer {
@@ -270,6 +280,8 @@ export namespace CheckoutIntent {
         | 'form_validation_error'
         | 'captcha_blocked'
         | 'bot_protection_blocked'
+        | 'constraint_total_price_exceeded'
+        | 'constraint_shipping_cost_exceeded'
         | 'unknown';
 
       message: string;
@@ -366,9 +378,19 @@ export interface CheckoutIntentCreateParams {
 
   quantity: number;
 
+  constraints?: CheckoutIntentCreateParams.Constraints;
+
   promoCodes?: Array<string>;
 
   variantSelections?: Array<VariantSelection>;
+}
+
+export namespace CheckoutIntentCreateParams {
+  export interface Constraints {
+    maxShippingPrice?: number;
+
+    maxTotalPrice?: number;
+  }
 }
 
 export interface CheckoutIntentListParams extends CursorPaginationParams {
@@ -394,9 +416,19 @@ export interface CheckoutIntentPurchaseParams {
 
   quantity: number;
 
+  constraints?: CheckoutIntentPurchaseParams.Constraints;
+
   promoCodes?: Array<string>;
 
   variantSelections?: Array<VariantSelection>;
+}
+
+export namespace CheckoutIntentPurchaseParams {
+  export interface Constraints {
+    maxShippingPrice?: number;
+
+    maxTotalPrice?: number;
+  }
 }
 
 export declare namespace CheckoutIntentsResource {

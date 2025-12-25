@@ -51,6 +51,7 @@ describe('resource checkoutIntents', () => {
       },
       productUrl: 'productUrl',
       quantity: 1,
+      constraints: { maxShippingPrice: 500, maxTotalPrice: 100000 },
       promoCodes: ['string'],
       variantSelections: [{ label: 'Size, Color, etc.', value: 'Small, Red, XS, L, etc.' }],
     });
@@ -178,6 +179,7 @@ describe('resource checkoutIntents', () => {
       paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
       productUrl: 'productUrl',
       quantity: 1,
+      constraints: { maxShippingPrice: 500, maxTotalPrice: 100000 },
       promoCodes: ['string'],
       variantSelections: [{ label: 'Size, Color, etc.', value: 'Small, Red, XS, L, etc.' }],
     });
