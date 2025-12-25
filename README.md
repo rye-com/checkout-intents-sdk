@@ -27,7 +27,7 @@ const client = new CheckoutIntents({
   environment: 'production', // defaults to 'staging'
 });
 
-const checkoutIntent = await client.checkoutIntents.create({
+const checkoutIntent = await client.checkoutIntents.purchase({
   buyer: {
     address1: '123 Main St',
     city: 'New York',
@@ -39,6 +39,7 @@ const checkoutIntent = await client.checkoutIntents.create({
     postalCode: '10001',
     province: 'NY',
   },
+  paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
   productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker',
   quantity: 1,
 });
@@ -57,7 +58,7 @@ const client = new CheckoutIntents({
   environment: 'production', // defaults to 'staging'
 });
 
-const params: CheckoutIntents.CheckoutIntentCreateParams = {
+const params: CheckoutIntents.CheckoutIntentPurchaseParams = {
   buyer: {
     address1: '123 Main St',
     city: 'New York',
@@ -69,10 +70,11 @@ const params: CheckoutIntents.CheckoutIntentCreateParams = {
     postalCode: '10001',
     province: 'NY',
   },
+  paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
   productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker',
   quantity: 1,
 };
-const checkoutIntent: CheckoutIntents.CheckoutIntent = await client.checkoutIntents.create(params);
+const checkoutIntent: CheckoutIntents.CheckoutIntent = await client.checkoutIntents.purchase(params);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -86,7 +88,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 const checkoutIntent = await client.checkoutIntents
-  .create({
+  .purchase({
     buyer: {
       address1: '123 Main St',
       city: 'New York',
@@ -98,6 +100,7 @@ const checkoutIntent = await client.checkoutIntents
       postalCode: '10001',
       province: 'NY',
     },
+    paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
     productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker',
     quantity: 1,
   })
@@ -141,7 +144,7 @@ const client = new CheckoutIntents({
 });
 
 // Or, configure per-request:
-await client.checkoutIntents.create({ buyer: { address1: '123 Main St', city: 'New York', country: 'US', email: 'john.doe@example.com', firstName: 'John', lastName: 'Doe', phone: '1234567890', postalCode: '10001', province: 'NY' }, productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker', quantity: 1 }, {
+await client.checkoutIntents.purchase({ buyer: { address1: '123 Main St', city: 'New York', country: 'US', email: 'john.doe@example.com', firstName: 'John', lastName: 'Doe', phone: '1234567890', postalCode: '10001', province: 'NY' }, paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' }, productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker', quantity: 1 }, {
   maxRetries: 5,
 });
 ```
@@ -158,7 +161,7 @@ const client = new CheckoutIntents({
 });
 
 // Override per-request:
-await client.checkoutIntents.create({ buyer: { address1: '123 Main St', city: 'New York', country: 'US', email: 'john.doe@example.com', firstName: 'John', lastName: 'Doe', phone: '1234567890', postalCode: '10001', province: 'NY' }, productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker', quantity: 1 }, {
+await client.checkoutIntents.purchase({ buyer: { address1: '123 Main St', city: 'New York', country: 'US', email: 'john.doe@example.com', firstName: 'John', lastName: 'Doe', phone: '1234567890', postalCode: '10001', province: 'NY' }, paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' }, productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker', quantity: 1 }, {
   timeout: 5 * 1000,
 });
 ```
@@ -213,7 +216,7 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 const client = new CheckoutIntents();
 
 const response = await client.checkoutIntents
-  .create({
+  .purchase({
     buyer: {
       address1: '123 Main St',
       city: 'New York',
@@ -225,6 +228,7 @@ const response = await client.checkoutIntents
       postalCode: '10001',
       province: 'NY',
     },
+    paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
     productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker',
     quantity: 1,
   })
@@ -233,7 +237,7 @@ console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
 const { data: checkoutIntent, response: raw } = await client.checkoutIntents
-  .create({
+  .purchase({
     buyer: {
       address1: '123 Main St',
       city: 'New York',
@@ -245,6 +249,7 @@ const { data: checkoutIntent, response: raw } = await client.checkoutIntents
       postalCode: '10001',
       province: 'NY',
     },
+    paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
     productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker',
     quantity: 1,
   })
@@ -330,7 +335,7 @@ parameter. This library doesn't validate at runtime that the request matches the
 send will be sent as-is.
 
 ```ts
-client.checkoutIntents.create({
+client.checkoutIntents.purchase({
   // ...
   // @ts-expect-error baz is not yet public
   baz: 'undocumented option',
