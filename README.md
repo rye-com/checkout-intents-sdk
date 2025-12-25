@@ -38,7 +38,7 @@ const checkoutIntent = await client.checkoutIntents.purchase({
     postalCode: '10001',
     province: 'NY',
   },
-  paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
+  paymentMethod: { stripeToken: 'tok_visa', type: 'stripe_token' },
   productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker',
   quantity: 1,
 });
@@ -204,7 +204,7 @@ const params: CheckoutIntents.CheckoutIntentPurchaseParams = {
     postalCode: '10001',
     province: 'NY',
   },
-  paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
+  paymentMethod: { stripeToken: 'tok_visa', type: 'stripe_token' },
   productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker',
   quantity: 1,
 };
@@ -234,7 +234,7 @@ const checkoutIntent = await client.checkoutIntents
       postalCode: '10001',
       province: 'NY',
     },
-    paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
+    paymentMethod: { stripeToken: 'tok_visa', type: 'stripe_token' },
     productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker',
     quantity: 1,
   })
@@ -279,7 +279,7 @@ const client = new CheckoutIntents({
 });
 
 // Or, configure per-request:
-await client.checkoutIntents.purchase({ buyer: { address1: '123 Main St', city: 'New York', country: 'US', email: 'john.doe@example.com', firstName: 'John', lastName: 'Doe', phone: '1234567890', postalCode: '10001', province: 'NY' }, paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' }, productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker', quantity: 1 }, {
+await client.checkoutIntents.purchase({ buyer: { address1: '123 Main St', city: 'New York', country: 'US', email: 'john.doe@example.com', firstName: 'John', lastName: 'Doe', phone: '1234567890', postalCode: '10001', province: 'NY' }, paymentMethod: { stripeToken: 'tok_visa', type: 'stripe_token' }, productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker', quantity: 1 }, {
   maxRetries: 5,
 });
 ```
@@ -296,7 +296,7 @@ const client = new CheckoutIntents({
 });
 
 // Override per-request:
-await client.checkoutIntents.purchase({ buyer: { address1: '123 Main St', city: 'New York', country: 'US', email: 'john.doe@example.com', firstName: 'John', lastName: 'Doe', phone: '1234567890', postalCode: '10001', province: 'NY' }, paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' }, productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker', quantity: 1 }, {
+await client.checkoutIntents.purchase({ buyer: { address1: '123 Main St', city: 'New York', country: 'US', email: 'john.doe@example.com', firstName: 'John', lastName: 'Doe', phone: '1234567890', postalCode: '10001', province: 'NY' }, paymentMethod: { stripeToken: 'tok_visa', type: 'stripe_token' }, productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker', quantity: 1 }, {
   timeout: 5 * 1000,
 });
 ```
@@ -363,7 +363,7 @@ const response = await client.checkoutIntents
       postalCode: '10001',
       province: 'NY',
     },
-    paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
+    paymentMethod: { stripeToken: 'tok_visa', type: 'stripe_token' },
     productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker',
     quantity: 1,
   })
@@ -384,7 +384,7 @@ const { data: checkoutIntent, response: raw } = await client.checkoutIntents
       postalCode: '10001',
       province: 'NY',
     },
-    paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
+    paymentMethod: { stripeToken: 'tok_visa', type: 'stripe_token' },
     productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker',
     quantity: 1,
   })
