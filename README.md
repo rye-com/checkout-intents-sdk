@@ -87,49 +87,6 @@ const completed = await client.checkoutIntents.confirmAndPoll(intent.id, {
 console.log('Status:', completed.state);
 ```
 
-### Polling Helpers
-
-This SDK includes helper methods for the asynchronous checkout flow. The recommended pattern follows Rye's two-phase checkout:
-
-<!-- prettier-ignore -->
-```js
-// Phase 1: Create and wait for offer
-const intent = await client.checkoutIntents.createAndPoll({
-  buyer: {
-    address1: '123 Main St',
-    city: 'New York',
-    country: 'US',
-    email: 'john.doe@example.com',
-    firstName: 'John',
-    lastName: 'Doe',
-    phone: '1234567890',
-    postalCode: '10001',
-    province: 'NY',
-  },
-  productUrl: 'https://example.com/product',
-  quantity: 1,
-});
-
-// Handle failure during offer retrieval
-if (intent.state === 'failed') {
-  console.log('Failed:', intent.failureReason);
-  return;
-}
-
-// Review pricing with user
-console.log('Total:', intent.offer.cost.total);
-
-// Phase 2: Confirm and wait for completion
-const completed = await client.checkoutIntents.confirmAndPoll(intent.id, {
-  paymentMethod: {
-    type: 'stripe_token',
-    stripeToken: 'tok_visa',
-  },
-});
-
-console.log('Status:', completed.state);
-```
-
 For more examples, see the [`examples/`](./examples) directory:
 
 - [`complete-checkout-intent.ts`](./examples/complete-checkout-intent.ts) - Recommended two-phase flow
