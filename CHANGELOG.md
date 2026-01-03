@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.11.0 (2026-01-03)
+
+Full Changelog: [v0.10.0...v0.11.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.10.0...v0.11.0)
+
+### Features
+
+* RYE-6466: Enrich tracked analytics context for the checkout intents api ([5751b96](https://github.com/rye-com/checkout-intents-sdk/commit/5751b96a721391ef1eeed9e12851046542a0f778))
+
+
+### Chores
+
+* **docs:** omit duplicate polling helpers section ([e717857](https://github.com/rye-com/checkout-intents-sdk/commit/e71785726d9a9c5d14ee04a23903c9a499d747f6))
+
 ## 0.10.0 (2025-12-25)
 
 Full Changelog: [v0.9.0...v0.10.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.9.0...v0.10.0)
