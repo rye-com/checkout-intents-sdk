@@ -52,7 +52,7 @@ describe('resource checkoutIntents', () => {
       productUrl: 'productUrl',
       quantity: 1,
       constraints: { maxShippingPrice: 500, maxTotalPrice: 100000 },
-      promoCodes: ['string'],
+      promoCodes: ['sqF12lZ1VlBb'],
       variantSelections: [{ label: 'Size, Color, etc.', value: 'Small, Red, XS, L, etc.' }],
     });
   });
@@ -180,7 +180,7 @@ describe('resource checkoutIntents', () => {
       productUrl: 'productUrl',
       quantity: 1,
       constraints: { maxShippingPrice: 500, maxTotalPrice: 100000 },
-      promoCodes: ['string'],
+      promoCodes: ['sqF12lZ1VlBb'],
       variantSelections: [{ label: 'Size, Color, etc.', value: 'Small, Red, XS, L, etc.' }],
     });
   });

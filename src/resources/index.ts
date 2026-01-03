@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { Brands, type BrandRetrieveResponse } from './brands';
+export { Betas } from './betas/betas';
 export {
   CheckoutIntentsResource,
   type BaseCheckoutIntent,
