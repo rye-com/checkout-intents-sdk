@@ -19,6 +19,18 @@ Methods:
 - <code title="post /api/v1/checkout-intents/{id}/confirm">client.checkoutIntents.<a href="./src/resources/checkout-intents.ts">confirm</a>(id, { ...params }) -> CheckoutIntent</code>
 - <code title="post /api/v1/checkout-intents/purchase">client.checkoutIntents.<a href="./src/resources/checkout-intents.ts">purchase</a>({ ...params }) -> CheckoutIntent</code>
 
+# Betas
+
+Types:
+
+- <code><a href="./src/resources/betas/betas.ts">CheckoutSession</a></code>
+
+## CheckoutSessions
+
+Methods:
+
+- <code title="post /api/v1/betas/checkout-sessions">client.betas.checkoutSessions.<a href="./src/resources/betas/checkout-sessions.ts">create</a>({ ...params }) -> CheckoutSession</code>
+
 # Brands
 
 Types:
