@@ -36,6 +36,7 @@ import {
   PaymentMethod,
   VariantSelection,
 } from './resources/checkout-intents';
+import { Betas, CheckoutSession } from './resources/betas/betas';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
@@ -783,10 +784,12 @@ export class CheckoutIntents {
   static toFile = Uploads.toFile;
 
   checkoutIntents: API.CheckoutIntentsResource = new API.CheckoutIntentsResource(this);
+  betas: API.Betas = new API.Betas(this);
   brands: API.Brands = new API.Brands(this);
 }
 
 CheckoutIntents.CheckoutIntentsResource = CheckoutIntentsResource;
+CheckoutIntents.Betas = Betas;
 CheckoutIntents.Brands = Brands;
 
 export declare namespace CheckoutIntents {
@@ -814,6 +817,8 @@ export declare namespace CheckoutIntents {
     type CheckoutIntentConfirmParams as CheckoutIntentConfirmParams,
     type CheckoutIntentPurchaseParams as CheckoutIntentPurchaseParams,
   };
+
+  export { Betas as Betas, type CheckoutSession as CheckoutSession };
 
   export { Brands as Brands, type BrandRetrieveResponse as BrandRetrieveResponse };
 }

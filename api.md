@@ -23,6 +23,18 @@ Methods:
 - <code>client.checkoutIntents.<a href="./src/resources/checkout-intents.ts">createAndPoll</a>({ ...params }, options?) -> Promise&lt;CheckoutIntent&gt;</code>
 - <code>client.checkoutIntents.<a href="./src/resources/checkout-intents.ts">confirmAndPoll</a>(id, { ...params }, options?) -> Promise&lt;CheckoutIntent&gt;</code>
 
+# Betas
+
+Types:
+
+- <code><a href="./src/resources/betas/betas.ts">CheckoutSession</a></code>
+
+## CheckoutSessions
+
+Methods:
+
+- <code title="post /api/v1/betas/checkout-sessions">client.betas.checkoutSessions.<a href="./src/resources/betas/checkout-sessions.ts">create</a>({ ...params }) -> CheckoutSession</code>
+
 # Brands
 
 Types:
