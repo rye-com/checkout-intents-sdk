@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.12.0 (2026-01-06)
+
+Full Changelog: [v0.11.0...v0.12.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.11.0...v0.12.0)
+
+### Features
+
+* Tidy API docs ([0b79b47](https://github.com/rye-com/checkout-intents-sdk/commit/0b79b4784bfd46d0f48b7776e4f0cacb76eb13fd))
+
 ## 0.11.0 (2026-01-05)
 
 Full Changelog: [v0.10.0...v0.11.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.10.0...v0.11.0)
