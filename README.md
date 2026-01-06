@@ -26,7 +26,7 @@ const client = new CheckoutIntents({
   apiKey: process.env['CHECKOUT_INTENTS_API_KEY'], // This is the default and can be omitted
 });
 
-const checkoutIntent = await client.checkoutIntents.create({
+const checkoutIntent = await client.checkoutIntents.purchase({
   buyer: {
     address1: '123 Main St',
     city: 'New York',
@@ -38,6 +38,7 @@ const checkoutIntent = await client.checkoutIntents.create({
     postalCode: '10001',
     province: 'NY',
   },
+  paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
   productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker',
   quantity: 1,
 });
@@ -422,7 +423,7 @@ parameter. This library doesn't validate at runtime that the request matches the
 send will be sent as-is.
 
 ```ts
-client.checkoutIntents.create({
+client.checkoutIntents.purchase({
   // ...
   // @ts-expect-error baz is not yet public
   baz: 'undocumented option',
