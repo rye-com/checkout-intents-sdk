@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.12.1 (2026-01-07)
+
+Full Changelog: [v0.12.0...v0.12.1](https://github.com/rye-com/checkout-intents-sdk/compare/v0.12.0...v0.12.1)
+
+### Chores
+
+* break long lines in snippets into multiline ([10cb845](https://github.com/rye-com/checkout-intents-sdk/commit/10cb845eac5b5e2bd8f94317dc3f84f5fb0eb2ba))
+* update SDK settings ([7044c79](https://github.com/rye-com/checkout-intents-sdk/commit/7044c79611f71c290615d140129ff54635acc6d5))
+
 ## 0.12.0 (2026-01-06)
 
 Full Changelog: [v0.11.0...v0.12.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.11.0...v0.12.0)
