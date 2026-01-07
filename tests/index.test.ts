@@ -87,7 +87,11 @@ describe('instantiate client', () => {
         error: jest.fn(),
       };
 
-      const client = new CheckoutIntents({ logger: logger, logLevel: 'debug', apiKey: 'My API Key' });
+      const client = new CheckoutIntents({
+        logger: logger,
+        logLevel: 'debug',
+        apiKey: 'My API Key',
+      });
 
       await forceAPIResponseForClient(client);
       expect(debugMock).toHaveBeenCalled();
@@ -107,7 +111,11 @@ describe('instantiate client', () => {
         error: jest.fn(),
       };
 
-      const client = new CheckoutIntents({ logger: logger, logLevel: 'info', apiKey: 'My API Key' });
+      const client = new CheckoutIntents({
+        logger: logger,
+        logLevel: 'info',
+        apiKey: 'My API Key',
+      });
 
       await forceAPIResponseForClient(client);
       expect(debugMock).not.toHaveBeenCalled();
@@ -157,7 +165,11 @@ describe('instantiate client', () => {
       };
 
       process.env['CHECKOUT_INTENTS_LOG'] = 'debug';
-      const client = new CheckoutIntents({ logger: logger, logLevel: 'off', apiKey: 'My API Key' });
+      const client = new CheckoutIntents({
+        logger: logger,
+        logLevel: 'off',
+        apiKey: 'My API Key',
+      });
 
       await forceAPIResponseForClient(client);
       expect(debugMock).not.toHaveBeenCalled();
@@ -173,7 +185,11 @@ describe('instantiate client', () => {
       };
 
       process.env['CHECKOUT_INTENTS_LOG'] = 'not a log level';
-      const client = new CheckoutIntents({ logger: logger, logLevel: 'debug', apiKey: 'My API Key' });
+      const client = new CheckoutIntents({
+        logger: logger,
+        logLevel: 'debug',
+        apiKey: 'My API Key',
+      });
       expect(client.logLevel).toBe('debug');
       expect(warnMock).not.toHaveBeenCalled();
     });
@@ -330,7 +346,11 @@ describe('instantiate client', () => {
         `"Ambiguous URL; The \`baseURL\` option (or CHECKOUT_INTENTS_BASE_URL env var) and the \`environment\` option are given. If you want to use the environment you must pass baseURL: null"`,
       );
 
-      const client = new CheckoutIntents({ apiKey: 'My API Key', baseURL: null, environment: 'staging' });
+      const client = new CheckoutIntents({
+        apiKey: 'My API Key',
+        baseURL: null,
+        environment: 'staging',
+      });
       expect(client.baseURL).toEqual('https://staging.api.rye.com/');
     });
 
@@ -562,7 +582,11 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new CheckoutIntents({ apiKey: 'My API Key', timeout: 10, fetch: testFetch });
+    const client = new CheckoutIntents({
+      apiKey: 'My API Key',
+      timeout: 10,
+      fetch: testFetch,
+    });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
@@ -592,7 +616,11 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new CheckoutIntents({ apiKey: 'My API Key', fetch: testFetch, maxRetries: 4 });
+    const client = new CheckoutIntents({
+      apiKey: 'My API Key',
+      fetch: testFetch,
+      maxRetries: 4,
+    });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
 
@@ -616,7 +644,11 @@ describe('retries', () => {
       capturedRequest = init;
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
-    const client = new CheckoutIntents({ apiKey: 'My API Key', fetch: testFetch, maxRetries: 4 });
+    const client = new CheckoutIntents({
+      apiKey: 'My API Key',
+      fetch: testFetch,
+      maxRetries: 4,
+    });
 
     expect(
       await client.request({
@@ -678,7 +710,11 @@ describe('retries', () => {
       capturedRequest = init;
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
-    const client = new CheckoutIntents({ apiKey: 'My API Key', fetch: testFetch, maxRetries: 4 });
+    const client = new CheckoutIntents({
+      apiKey: 'My API Key',
+      fetch: testFetch,
+      maxRetries: 4,
+    });
 
     expect(
       await client.request({

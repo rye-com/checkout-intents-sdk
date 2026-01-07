@@ -142,7 +142,21 @@ const client = new CheckoutIntents({
 });
 
 // Or, configure per-request:
-await client.checkoutIntents.create({ buyer: { address1: '123 Main St', city: 'New York', country: 'US', email: 'john.doe@example.com', firstName: 'John', lastName: 'Doe', phone: '1234567890', postalCode: '10001', province: 'NY' }, productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker', quantity: 1 }, {
+await client.checkoutIntents.create({
+  buyer: {
+  address1: '123 Main St',
+  city: 'New York',
+  country: 'US',
+  email: 'john.doe@example.com',
+  firstName: 'John',
+  lastName: 'Doe',
+  phone: '1234567890',
+  postalCode: '10001',
+  province: 'NY',
+},
+  productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker',
+  quantity: 1,
+}, {
   maxRetries: 5,
 });
 ```
@@ -159,7 +173,21 @@ const client = new CheckoutIntents({
 });
 
 // Override per-request:
-await client.checkoutIntents.create({ buyer: { address1: '123 Main St', city: 'New York', country: 'US', email: 'john.doe@example.com', firstName: 'John', lastName: 'Doe', phone: '1234567890', postalCode: '10001', province: 'NY' }, productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker', quantity: 1 }, {
+await client.checkoutIntents.create({
+  buyer: {
+  address1: '123 Main St',
+  city: 'New York',
+  country: 'US',
+  email: 'john.doe@example.com',
+  firstName: 'John',
+  lastName: 'Doe',
+  phone: '1234567890',
+  postalCode: '10001',
+  province: 'NY',
+},
+  productUrl: 'https://rye-protocol.myshopify.com/products/rye-sticker',
+  quantity: 1,
+}, {
   timeout: 5 * 1000,
 });
 ```

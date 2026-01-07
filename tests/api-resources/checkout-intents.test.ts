@@ -86,7 +86,13 @@ describe('resource checkoutIntents', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.checkoutIntents.list(
-        { id: ['string'], after: 'after', before: 'before', limit: 0, state: ['retrieving_offer'] },
+        {
+          id: ['string'],
+          after: 'after',
+          before: 'before',
+          limit: 0,
+          state: ['retrieving_offer'],
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(CheckoutIntents.NotFoundError);
