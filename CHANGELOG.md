@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.12.2 (2026-01-15)
+
+Full Changelog: [v0.12.1...v0.12.2](https://github.com/rye-com/checkout-intents-sdk/compare/v0.12.1...v0.12.2)
+
+### Chores
+
+* **internal:** upgrade babel, qs, js-yaml ([f921dbb](https://github.com/rye-com/checkout-intents-sdk/commit/f921dbb88fad13ccaab24b7ee159db38108eae2e))
+
 ## 0.12.1 (2026-01-07)
 
 Full Changelog: [v0.12.0...v0.12.1](https://github.com/rye-com/checkout-intents-sdk/compare/v0.12.0...v0.12.1)
