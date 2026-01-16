@@ -477,6 +477,33 @@ describe('instantiate client', () => {
   });
 });
 
+describe('idempotency', () => {
+  test('key can be set per-request', async () => {
+    const client = new CheckoutIntents({
+      baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+      apiKey: 'My API Key',
+    });
+    await client.checkoutIntents.create(
+      {
+        buyer: {
+          address1: '123 Main St',
+          city: 'New York',
+          country: 'US',
+          email: 'john.doe@example.com',
+          firstName: 'John',
+          lastName: 'Doe',
+          phone: '1234567890',
+          postalCode: '10001',
+          province: 'NY',
+        },
+        productUrl: 'productUrl',
+        quantity: 1,
+      },
+      { idempotencyKey: 'my-idempotency-key' },
+    );
+  });
+});
+
 describe('request building', () => {
   const client = new CheckoutIntents({ apiKey: 'My API Key' });
 
