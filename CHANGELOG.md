@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.13.0 (2026-01-17)
+
+Full Changelog: [v0.12.2...v0.13.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.12.2...v0.13.0)
+
+### Features
+
+* add support for idempotency for v2 api ([2c97a0c](https://github.com/rye-com/checkout-intents-sdk/commit/2c97a0cef98cd8ecbc98063d52f191a6cda2fe3e))
+
+
+### Chores
+
+* **internal:** update `actions/checkout` version ([b89ba8c](https://github.com/rye-com/checkout-intents-sdk/commit/b89ba8c45d5fc35ff012011f527b6fb6a347cdcc))
+
 ## 0.12.2 (2026-01-15)
 
 Full Changelog: [v0.12.1...v0.12.2](https://github.com/rye-com/checkout-intents-sdk/compare/v0.12.1...v0.12.2)
