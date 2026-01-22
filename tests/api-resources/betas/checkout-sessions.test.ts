@@ -37,7 +37,11 @@ describe('resource checkoutSessions', () => {
         postalCode: '10001',
         province: 'NY',
       },
-      constraints: { maxShippingPrice: 500, maxTotalPrice: 100000 },
+      constraints: {
+        maxShippingPrice: 500,
+        maxTotalPrice: 100000,
+        offerRetrievalEffort: 'max',
+      },
       promoCodes: ['string'],
       variantSelections: [{ label: 'Size, Color, etc.', value: 'Small, Red, XS, L, etc.' }],
     });
