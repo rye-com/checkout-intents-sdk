@@ -76,6 +76,17 @@ export namespace CheckoutSessionCreateParams {
     maxShippingPrice?: number;
 
     maxTotalPrice?: number;
+
+    /**
+     * Controls how much effort the system should spend retrieving an offer.
+     *
+     * - 'max': Full effort including AI agent fallback (slower, higher success rate)
+     * - 'low': Fast API-only retrieval, fails if API unavailable (faster, lower
+     *   success rate)
+     *
+     * Default: 'max'
+     */
+    offerRetrievalEffort?: 'max' | 'low';
   }
 }
 
