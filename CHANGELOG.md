@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.14.0 (2026-01-22)
+
+Full Changelog: [v0.13.0...v0.14.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.13.0...v0.14.0)
+
+### Features
+
+* **api:** introduce offerRetrievalEffort constraint ([e49caff](https://github.com/rye-com/checkout-intents-sdk/commit/e49caff49f21e58b4fe787e3e243cf2cc49ba156))
+
 ## 0.13.0 (2026-01-17)
 
 Full Changelog: [v0.12.2...v0.13.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.12.2...v0.13.0)
