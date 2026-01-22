@@ -183,6 +183,17 @@ export namespace BaseCheckoutIntent {
     maxShippingPrice?: number;
 
     maxTotalPrice?: number;
+
+    /**
+     * Controls how much effort the system should spend retrieving an offer.
+     *
+     * - 'max': Full effort including AI agent fallback (slower, higher success rate)
+     * - 'low': Fast API-only retrieval, fails if API unavailable (faster, lower
+     *   success rate)
+     *
+     * Default: 'max'
+     */
+    offerRetrievalEffort?: 'max' | 'low';
   }
 }
 
@@ -390,6 +401,17 @@ export namespace CheckoutIntentCreateParams {
     maxShippingPrice?: number;
 
     maxTotalPrice?: number;
+
+    /**
+     * Controls how much effort the system should spend retrieving an offer.
+     *
+     * - 'max': Full effort including AI agent fallback (slower, higher success rate)
+     * - 'low': Fast API-only retrieval, fails if API unavailable (faster, lower
+     *   success rate)
+     *
+     * Default: 'max'
+     */
+    offerRetrievalEffort?: 'max' | 'low';
   }
 }
 
@@ -428,6 +450,17 @@ export namespace CheckoutIntentPurchaseParams {
     maxShippingPrice?: number;
 
     maxTotalPrice?: number;
+
+    /**
+     * Controls how much effort the system should spend retrieving an offer.
+     *
+     * - 'max': Full effort including AI agent fallback (slower, higher success rate)
+     * - 'low': Fast API-only retrieval, fails if API unavailable (faster, lower
+     *   success rate)
+     *
+     * Default: 'max'
+     */
+    offerRetrievalEffort?: 'max' | 'low';
   }
 }
 
