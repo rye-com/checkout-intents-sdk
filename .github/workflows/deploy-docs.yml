@@ -1,0 +1,21 @@
+# This workflow triggers a Mintlify docs deployment after a successful NPM publish.
+name: Deploy Docs
+
+on:
+  workflow_run:
+    workflows: ["Publish NPM"]
+    types: [completed]
+
+jobs:
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    steps:
+      - name: Trigger Mintlify deploy
+        run: |
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.MINTLIFY_ADMIN_API_KEY }}" \
+            -f \
+            "https://api.mintlify.com/v1/project/update/654fc0f2b99260c1f6526775"
