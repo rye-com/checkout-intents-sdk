@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.14.1 (2026-01-24)
+
+Full Changelog: [v0.14.0...v0.14.1](https://github.com/rye-com/checkout-intents-sdk/compare/v0.14.0...v0.14.1)
+
+### Chores
+
+* **ci:** upgrade `actions/github-script` ([7213469](https://github.com/rye-com/checkout-intents-sdk/commit/72134691b954351dd4e0e480d83567a71097d8c7))
+
 ## 0.14.0 (2026-01-22)
 
 Full Changelog: [v0.13.0...v0.14.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.13.0...v0.14.0)
