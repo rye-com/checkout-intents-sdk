@@ -40,3 +40,15 @@ Types:
 Methods:
 
 - <code title="get /api/v1/brands/domain/{domain}">client.brands.<a href="./src/resources/brands.ts">retrieve</a>(domain) -> BrandRetrieveResponse</code>
+
+# Products
+
+Types:
+
+- <code><a href="./src/resources/products.ts">Product</a></code>
+- <code><a href="./src/resources/products.ts">ProductAvailability</a></code>
+- <code><a href="./src/resources/products.ts">ProductImage</a></code>
+
+Methods:
+
+- <code title="get /api/v1/products/lookup">client.products.<a href="./src/resources/products.ts">lookup</a>({ ...params }) -> Product</code>
