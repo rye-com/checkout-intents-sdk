@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.15.1 (2026-01-30)
+
+Full Changelog: [v0.15.0...v0.15.1](https://github.com/rye-com/checkout-intents-sdk/compare/v0.15.0...v0.15.1)
+
+### Chores
+
+* **docs:** rename "retrieve product" to "lookup product" ([dbf22d3](https://github.com/rye-com/checkout-intents-sdk/commit/dbf22d3b56392fd5c75874076e9d03ef7437414b))
+
 ## 0.15.0 (2026-01-30)
 
 Full Changelog: [v0.14.1...v0.15.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.14.1...v0.15.0)
