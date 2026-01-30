@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.15.0 (2026-01-30)
+
+Full Changelog: [v0.14.1...v0.15.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.14.1...v0.15.0)
+
+### Features
+
+* **api:** introduce lookup product data endpoint ([43cc369](https://github.com/rye-com/checkout-intents-sdk/commit/43cc36989485b9f3692e401738815e9b092beac3))
+
 ## 0.14.1 (2026-01-24)
 
 Full Changelog: [v0.14.0...v0.14.1](https://github.com/rye-com/checkout-intents-sdk/compare/v0.14.0...v0.14.1)
