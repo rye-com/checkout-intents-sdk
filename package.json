@@ -1,6 +1,6 @@
 {
   "name": "checkout-intents",
-  "version": "0.15.0",
+  "version": "0.15.1",
   "description": "The official TypeScript library for the Checkout Intents API",
   "author": "Checkout Intents <dev@rye.com>",
   "types": "dist/index.d.ts",
