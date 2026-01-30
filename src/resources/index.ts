@@ -18,3 +18,10 @@ export {
   type CheckoutIntentPurchaseParams,
   type CheckoutIntentsCursorPagination,
 } from './checkout-intents';
+export {
+  Products,
+  type Product,
+  type ProductAvailability,
+  type ProductImage,
+  type ProductLookupParams,
+} from './products';
