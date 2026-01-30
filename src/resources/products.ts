@@ -7,7 +7,7 @@ import { RequestOptions } from '../internal/request-options';
 
 export class Products extends APIResource {
   /**
-   * Retrieve a product's information by URL.
+   * Lookup a product's information by URL.
    */
   lookup(query: ProductLookupParams, options?: RequestOptions): APIPromise<Product> {
     return this._client.get('/api/v1/products/lookup', { query, ...options });
