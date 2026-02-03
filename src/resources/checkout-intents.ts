@@ -594,7 +594,8 @@ export namespace Offer {
 export type PaymentMethod =
   | PaymentMethod.StripeTokenPaymentMethod
   | PaymentMethod.BasisTheoryPaymentMethod
-  | PaymentMethod.NekudaPaymentMethod;
+  | PaymentMethod.NekudaPaymentMethod
+  | PaymentMethod.DrawdownPaymentMethod;
 
 export namespace PaymentMethod {
   export interface StripeTokenPaymentMethod {
@@ -618,6 +619,10 @@ export namespace PaymentMethod {
      * Construct a type with a set of properties K of type T
      */
     nekudaMandateData?: { [key: string]: string | number };
+  }
+
+  export interface DrawdownPaymentMethod {
+    type: 'drawdown';
   }
 }
 
