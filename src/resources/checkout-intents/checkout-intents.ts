@@ -177,8 +177,6 @@ export interface BaseCheckoutIntent {
 
   constraints?: BaseCheckoutIntent.Constraints;
 
-  discoverPromoCodes?: boolean;
-
   promoCodes?: Array<string>;
 
   variantSelections?: Array<VariantSelection>;
@@ -299,7 +297,6 @@ export namespace CheckoutIntent {
         | 'bot_protection_blocked'
         | 'constraint_total_price_exceeded'
         | 'constraint_shipping_cost_exceeded'
-        | 'promo_code_discovery_not_enabled'
         | 'unknown';
 
       message: string;
@@ -403,8 +400,6 @@ export interface CheckoutIntentCreateParams {
 
   constraints?: CheckoutIntentCreateParams.Constraints;
 
-  discoverPromoCodes?: boolean;
-
   promoCodes?: Array<string>;
 
   variantSelections?: Array<VariantSelection>;
@@ -453,8 +448,6 @@ export interface CheckoutIntentPurchaseParams {
   quantity: number;
 
   constraints?: CheckoutIntentPurchaseParams.Constraints;
-
-  discoverPromoCodes?: boolean;
 
   promoCodes?: Array<string>;
 

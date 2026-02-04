@@ -56,7 +56,6 @@ describe('resource checkoutIntents', () => {
         maxTotalPrice: 100000,
         offerRetrievalEffort: 'max',
       },
-      discoverPromoCodes: true,
       promoCodes: ['sqF12lZ1VlBb'],
       variantSelections: [{ label: 'Size, Color, etc.', value: 'Small, Red, XS, L, etc.' }],
     });
@@ -195,7 +194,6 @@ describe('resource checkoutIntents', () => {
         maxTotalPrice: 100000,
         offerRetrievalEffort: 'max',
       },
-      discoverPromoCodes: true,
       promoCodes: ['sqF12lZ1VlBb'],
       variantSelections: [{ label: 'Size, Color, etc.', value: 'Small, Red, XS, L, etc.' }],
     });
