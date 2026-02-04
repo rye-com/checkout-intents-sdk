@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.16.0 (2026-02-04)
+
+Full Changelog: [v0.15.1...v0.16.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.15.1...v0.16.0)
+
+### Features
+
+* Add stainless updates ([c9adfcf](https://github.com/rye-com/checkout-intents-sdk/commit/c9adfcf93bb9016cd0418d7348b3b710f122f768))
+* Billing: Integrate drawdown payments in order flow ([537aecf](https://github.com/rye-com/checkout-intents-sdk/commit/537aecf8e0bdf1a61d3239093c2866cea6a390d2))
+* integrate promo codes discovery to checkout intent flow ([7d68cac](https://github.com/rye-com/checkout-intents-sdk/commit/7d68cac8f9d55f077c9bb586a6cec3d4749ce96e))
+
+
+### Bug Fixes
+
+* **client:** avoid memory leak with abort signals ([a077093](https://github.com/rye-com/checkout-intents-sdk/commit/a07709307caf1f860a1bab4ca3bbf2942c65d9aa))
+
+
+### Chores
+
+* **client:** do not parse responses with empty content-length ([56a728e](https://github.com/rye-com/checkout-intents-sdk/commit/56a728e4d84f50a4235a12c9addacf55291f1caa))
+* **internal:** tidy ([4c64339](https://github.com/rye-com/checkout-intents-sdk/commit/4c64339466e5616351d02b1cbfcbafeee2616157))
+
 ## 0.15.1 (2026-01-30)
 
 Full Changelog: [v0.15.0...v0.15.1](https://github.com/rye-com/checkout-intents-sdk/compare/v0.15.0...v0.15.1)
