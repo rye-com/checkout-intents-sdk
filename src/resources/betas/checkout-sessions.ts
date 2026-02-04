@@ -40,8 +40,6 @@ export interface CheckoutSessionCreateParams {
 
   constraints?: CheckoutSessionCreateParams.Constraints;
 
-  discoverPromoCodes?: boolean;
-
   promoCodes?: Array<string>;
 
   variantSelections?: Array<CheckoutIntentsAPI.VariantSelection>;
