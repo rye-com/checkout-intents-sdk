@@ -1,7 +1,5 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { Betas, type CheckoutSession } from './betas/betas';
-export { Brands, type BrandRetrieveResponse } from './brands';
 export {
   CheckoutIntentsResource,
   type BaseCheckoutIntent,
@@ -17,17 +15,5 @@ export {
   type CheckoutIntentConfirmParams,
   type CheckoutIntentPurchaseParams,
   type CheckoutIntentsCursorPagination,
-} from './checkout-intents/checkout-intents';
-export {
-  Products,
-  type Product,
-  type ProductAvailability,
-  type ProductImage,
-  type ProductLookupParams,
-} from './products';
-export {
-  Shipments,
-  type Shipment,
-  type ShipmentListParams,
-  type ShipmentsCursorPagination,
-} from './shipments';
+} from './checkout-intents';
+export { Shipments, type ShipmentListParams } from './shipments';
