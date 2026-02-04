@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.17.0 (2026-02-04)
+
+Full Changelog: [v0.16.0...v0.17.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.16.0...v0.17.0)
+
+### Features
+
+* Phase 3: Strategy Interface + Normalizer ([6e3115c](https://github.com/rye-com/checkout-intents-sdk/commit/6e3115c3d644a526e23aa91bd359ab003990b3ff))
+
 ## 0.16.0 (2026-02-04)
 
 Full Changelog: [v0.15.1...v0.16.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.15.1...v0.16.0)
