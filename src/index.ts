@@ -20,5 +20,6 @@ export {
   InternalServerError,
   PermissionDeniedError,
   UnprocessableEntityError,
-  PollTimeoutError,
 } from './core/error';
+export { PollTimeoutError } from './lib/errors';
+export type { PollOptions } from './lib/polling';
