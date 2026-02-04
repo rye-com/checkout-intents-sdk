@@ -4,29 +4,11 @@ import { APIResource } from '../../core/resource';
 import * as CheckoutIntentsAPI from './checkout-intents';
 import * as ShipmentsAPI from './shipments';
 import { ShipmentListParams, Shipments } from './shipments';
-import { PollTimeoutError } from '../../core/error';
 import { APIPromise } from '../../core/api-promise';
 import { CursorPagination, type CursorPaginationParams, PagePromise } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
-import { sleep } from '../../internal/utils/sleep';
-import { buildHeaders } from '../../internal/headers';
-import { loggerFor } from '../../internal/utils/log';
-
-/**
- * Options for polling operations.
- */
-export interface PollOptions {
-  /**
-   * The interval in milliseconds between polling attempts.
-   */
-  pollIntervalMs?: number;
-
-  /**
-   * The maximum number of polling attempts before timing out.
-   */
-  maxAttempts?: number;
-}
+import { pollUntil, type PollOptions } from '../../lib/polling';
 
 export class CheckoutIntentsResource extends APIResource {
   shipments: ShipmentsAPI.Shipments = new ShipmentsAPI.Shipments(this._client);
@@ -146,232 +128,6 @@ export class CheckoutIntentsResource extends APIResource {
   }
 
   /**
-   * A helper to poll a checkout intent until a specific condition is met.
-   *
-   * @example
-   * ```ts
-   * // Poll until completed or failed
-   * const checkoutIntent = await client.checkoutIntents.pollUntil(
-   *   'id',
-   *   (intent) => intent.state === 'completed' || intent.state === 'failed'
-   * );
-   * ```
-   */
-  private async pollUntil<T extends CheckoutIntent = CheckoutIntent>(
-    id: string,
-    condition: (intent: CheckoutIntent) => intent is T,
-    options?: RequestOptions & PollOptions,
-  ): Promise<T> {
-    let maxAttempts = options?.maxAttempts ?? 120; // Default: 120 attempts
-    const pollIntervalMs = options?.pollIntervalMs ?? 5000; // Default: 5 seconds
-
-    if (maxAttempts < 1) {
-      loggerFor(this._client).warn(
-        `[Checkout Intents SDK] Invalid maxAttempts value: ${maxAttempts}. maxAttempts must be >= 1. Defaulting to 1 to ensure at least one polling attempt.`,
-      );
-
-      maxAttempts = 1;
-    }
-
-    const headers = buildHeaders([
-      options?.headers,
-      {
-        'X-Stainless-Poll-Helper': 'true',
-        'X-Stainless-Custom-Poll-Interval': pollIntervalMs.toString(),
-      },
-    ]);
-
-    let intent: CheckoutIntentsAPI.CheckoutIntent;
-    let attempts = 0;
-
-    while (attempts < maxAttempts) {
-      const { data, response } = await this.retrieve(id, {
-        ...options,
-        headers: { ...options?.headers, ...headers.values },
-      }).withResponse();
-
-      intent = data;
-
-      // Check if condition is met
-      if (condition(intent)) {
-        return intent;
-      }
-
-      attempts++;
-
-      // If we've reached max attempts, throw an error
-      if (attempts >= maxAttempts) {
-        throw new PollTimeoutError({
-          intentId: intent.id,
-          attempts,
-          maxAttempts,
-          pollIntervalMs,
-          message: `Polling timeout: condition not met after ${maxAttempts} attempts (${
-            (maxAttempts * pollIntervalMs) / 1000
-          }s)`,
-        });
-      }
-
-      // Check if server suggests a polling interval
-      let sleepInterval = pollIntervalMs;
-      const headerInterval = response.headers.get('retry-after-ms');
-      if (headerInterval) {
-        const headerIntervalMs = parseInt(headerInterval);
-        if (!isNaN(headerIntervalMs)) {
-          sleepInterval = headerIntervalMs;
-        }
-      }
-
-      await sleep(sleepInterval);
-    }
-
-    // This should never be reached due to the throw above, but TypeScript needs it
-    throw new PollTimeoutError({
-      intentId: intent!.id,
-      attempts,
-      maxAttempts,
-      pollIntervalMs,
-      message: `Polling timeout: condition not met after ${maxAttempts} attempts`,
-    });
-  }
-
-  /**
-   * A helper to poll a checkout intent until it reaches a completed state
-   * (completed or failed).
-   *
-   * @example
-   * ```ts
-   * const checkoutIntent = await client.checkoutIntents.pollUntilCompleted('id');
-   * if (checkoutIntent.state === 'completed') {
-   *   console.log('Order placed successfully!');
-   * } else if (checkoutIntent.state === 'failed') {
-   *   console.log('Order failed:', checkoutIntent.failureReason);
-   * }
-   * ```
-   */
-  async pollUntilCompleted(
-    id: string,
-    options?: RequestOptions & PollOptions,
-  ): Promise<CheckoutIntent.CompletedCheckoutIntent | CheckoutIntent.FailedCheckoutIntent> {
-    return this.pollUntil(
-      id,
-      (intent): intent is CheckoutIntent.CompletedCheckoutIntent | CheckoutIntent.FailedCheckoutIntent =>
-        intent.state === 'completed' || intent.state === 'failed',
-      options,
-    );
-  }
-
-  /**
-   * A helper to poll a checkout intent until it's ready for confirmation
-   * (awaiting_confirmation state) or has failed. This is typically used after
-   * creating a checkout intent to wait for the offer to be retrieved from the merchant.
-   *
-   * The intent can reach awaiting_confirmation (success - ready to confirm) or failed
-   * (offer retrieval failed). Always check the state after polling.
-   *
-   * @example
-   * ```ts
-   * const intent = await client.checkoutIntents.pollUntilAwaitingConfirmation('id');
-   *
-   * if (intent.state === 'awaiting_confirmation') {
-   *   // Review the offer before confirming
-   *   console.log('Total:', intent.offer.cost.total);
-   * } else if (intent.state === 'failed') {
-   *   // Handle failure (e.g., offer retrieval failed, product out of stock)
-   *   console.log('Failed:', intent.failureReason);
-   * }
-   * ```
-   */
-  async pollUntilAwaitingConfirmation(
-    id: string,
-    options?: RequestOptions & PollOptions,
-  ): Promise<CheckoutIntent.AwaitingConfirmationCheckoutIntent | CheckoutIntent.FailedCheckoutIntent> {
-    return this.pollUntil(
-      id,
-      (
-        intent,
-      ): intent is CheckoutIntent.AwaitingConfirmationCheckoutIntent | CheckoutIntent.FailedCheckoutIntent =>
-        intent.state === 'awaiting_confirmation' || intent.state === 'failed',
-      options,
-    );
-  }
-
-  /**
-   * A helper to create a checkout intent and poll until it's ready for confirmation.
-   * This follows the Rye documented flow: create → poll until awaiting_confirmation.
-   *
-   * After this method completes, you should review the offer (pricing, shipping, taxes)
-   * with the user before calling confirm().
-   *
-   * @example
-   * ```ts
-   * // Phase 1: Create and wait for offer
-   * const intent = await client.checkoutIntents.createAndPoll({
-   *   buyer: {
-   *     address1: '123 Main St',
-   *     city: 'New York',
-   *     country: 'US',
-   *     email: 'john.doe@example.com',
-   *     firstName: 'John',
-   *     lastName: 'Doe',
-   *     phone: '1234567890',
-   *     postalCode: '10001',
-   *     province: 'NY',
-   *   },
-   *   productUrl: 'https://example.com/product',
-   *   quantity: 1,
-   * });
-   *
-   * // Review the offer with the user
-   * console.log('Total:', intent.offer.cost.total);
-   *
-   * // Phase 2: Confirm with payment
-   * const completed = await client.checkoutIntents.confirmAndPoll(intent.id, {
-   *   paymentMethod: { type: 'stripe_token', stripeToken: 'tok_visa' }
-   * });
-   * ```
-   */
-  async createAndPoll(
-    body: CheckoutIntentCreateParams,
-    options?: RequestOptions & PollOptions,
-  ): Promise<CheckoutIntent.AwaitingConfirmationCheckoutIntent | CheckoutIntent.FailedCheckoutIntent> {
-    const intent = await this.create(body, options);
-    return this.pollUntilAwaitingConfirmation(intent.id, options);
-  }
-
-  /**
-   * A helper to confirm a checkout intent and poll until it reaches a completed state
-   * (completed or failed).
-   *
-   * @example
-   * ```ts
-   * const checkoutIntent = await client.checkoutIntents.confirmAndPoll(
-   *   'id',
-   *   {
-   *     paymentMethod: {
-   *       stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH',
-   *       type: 'stripe_token',
-   *     },
-   *   }
-   * );
-   *
-   * if (checkoutIntent.state === 'completed') {
-   *   console.log('Order placed successfully!');
-   * } else if (checkoutIntent.state === 'failed') {
-   *   console.log('Order failed:', checkoutIntent.failureReason);
-   * }
-   * ```
-   */
-  async confirmAndPoll(
-    id: string,
-    body: CheckoutIntentConfirmParams,
-    options?: RequestOptions & PollOptions,
-  ): Promise<CheckoutIntent.CompletedCheckoutIntent | CheckoutIntent.FailedCheckoutIntent> {
-    const intent = await this.confirm(id, body, options);
-    return this.pollUntilCompleted(intent.id, options);
-  }
-
-  /**
    * Create a checkout intent and immediately trigger the purchase workflow.
    *
    * This is a "fire-and-forget" endpoint that combines create + confirm in one step.
@@ -404,6 +160,101 @@ export class CheckoutIntentsResource extends APIResource {
    */
   purchase(body: CheckoutIntentPurchaseParams, options?: RequestOptions): APIPromise<CheckoutIntent> {
     return this._client.post('/api/v1/checkout-intents/purchase', { body, ...options });
+  }
+
+  /**
+   * A helper to poll a checkout intent until it reaches a completed state
+   * (completed or failed).
+   *
+   * @example
+   * ```ts
+   * const checkoutIntent = await client.checkoutIntents.pollUntilCompleted('id');
+   * if (checkoutIntent.state === 'completed') {
+   *   console.log('Order placed successfully!');
+   * } else if (checkoutIntent.state === 'failed') {
+   *   console.log('Order failed:', checkoutIntent.failureReason);
+   * }
+   * ```
+   */
+  pollUntilCompleted(
+    id: string,
+    options?: RequestOptions & PollOptions,
+  ): Promise<CheckoutIntent.CompletedCheckoutIntent | CheckoutIntent.FailedCheckoutIntent> {
+    return pollUntil(
+      this,
+      id,
+      (intent): intent is CheckoutIntent.CompletedCheckoutIntent | CheckoutIntent.FailedCheckoutIntent =>
+        intent.state === 'completed' || intent.state === 'failed',
+      options,
+    );
+  }
+
+  /**
+   * A helper to poll a checkout intent until it's ready for confirmation
+   * (awaiting_confirmation state) or has failed.
+   *
+   * @example
+   * ```ts
+   * const intent = await client.checkoutIntents.pollUntilAwaitingConfirmation('id');
+   * if (intent.state === 'awaiting_confirmation') {
+   *   console.log('Total:', intent.offer.cost.total);
+   * } else if (intent.state === 'failed') {
+   *   console.log('Failed:', intent.failureReason);
+   * }
+   * ```
+   */
+  pollUntilAwaitingConfirmation(
+    id: string,
+    options?: RequestOptions & PollOptions,
+  ): Promise<CheckoutIntent.AwaitingConfirmationCheckoutIntent | CheckoutIntent.FailedCheckoutIntent> {
+    return pollUntil(
+      this,
+      id,
+      (
+        intent,
+      ): intent is CheckoutIntent.AwaitingConfirmationCheckoutIntent | CheckoutIntent.FailedCheckoutIntent =>
+        intent.state === 'awaiting_confirmation' || intent.state === 'failed',
+      options,
+    );
+  }
+
+  /**
+   * A helper to create a checkout intent and poll until it's ready for confirmation.
+   *
+   * @example
+   * ```ts
+   * const intent = await client.checkoutIntents.createAndPoll({
+   *   buyer: { ... },
+   *   productUrl: 'https://example.com/product',
+   *   quantity: 1,
+   * });
+   * ```
+   */
+  async createAndPoll(
+    body: CheckoutIntentCreateParams,
+    options?: RequestOptions & PollOptions,
+  ): Promise<CheckoutIntent.AwaitingConfirmationCheckoutIntent | CheckoutIntent.FailedCheckoutIntent> {
+    const intent = await this.create(body, options);
+    return this.pollUntilAwaitingConfirmation(intent.id, options);
+  }
+
+  /**
+   * A helper to confirm a checkout intent and poll until it reaches a completed state.
+   *
+   * @example
+   * ```ts
+   * const checkoutIntent = await client.checkoutIntents.confirmAndPoll('id', {
+   *   paymentMethod: { type: 'stripe_token', stripeToken: 'tok_...' },
+   * });
+   * ```
+   */
+  async confirmAndPoll(
+    id: string,
+    body: CheckoutIntentConfirmParams,
+    options?: RequestOptions & PollOptions,
+  ): Promise<CheckoutIntent.CompletedCheckoutIntent | CheckoutIntent.FailedCheckoutIntent> {
+    await this.confirm(id, body, options);
+    return this.pollUntilCompleted(id, options);
   }
 }
 
