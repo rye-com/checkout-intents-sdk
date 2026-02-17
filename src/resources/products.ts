@@ -34,6 +34,8 @@ export interface Product {
 
   images: Array<ProductImage>;
 
+  isPurchasable: boolean;
+
   name: string;
 
   price: CheckoutIntentsAPI.Money;
