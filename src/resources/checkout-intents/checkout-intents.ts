@@ -432,7 +432,7 @@ export namespace CheckoutIntentCreateParams {
 export interface CheckoutIntentListParams extends CursorPaginationParams {
   id?: Array<string>;
 
-  state?: Array<'completed' | 'failed' | 'retrieving_offer' | 'awaiting_confirmation' | 'placing_order'>;
+  state?: Array<'retrieving_offer' | 'awaiting_confirmation' | 'placing_order' | 'completed' | 'failed'>;
 }
 
 export interface CheckoutIntentAddPaymentParams {

@@ -96,7 +96,7 @@ describe('resource checkoutIntents', () => {
           after: 'after',
           before: 'before',
           limit: 0,
-          state: ['completed'],
+          state: ['retrieving_offer'],
         },
         { path: '/_stainless_unknown_path' },
       ),
