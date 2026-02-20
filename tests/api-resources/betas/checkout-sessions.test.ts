@@ -8,7 +8,7 @@ const client = new CheckoutIntents({
 });
 
 describe('resource checkoutSessions', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.betas.checkoutSessions.create({ productUrl: 'productUrl', quantity: 1 });
     const rawResponse = await responsePromise.asResponse();
@@ -20,7 +20,7 @@ describe('resource checkoutSessions', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.betas.checkoutSessions.create({
       productUrl: 'productUrl',
