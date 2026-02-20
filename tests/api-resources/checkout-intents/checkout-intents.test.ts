@@ -9,7 +9,7 @@ const client = new CheckoutIntents({
 });
 
 describe('resource checkoutIntents', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.checkoutIntents.create({
       buyer: {
@@ -35,7 +35,7 @@ describe('resource checkoutIntents', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.checkoutIntents.create({
       buyer: {
@@ -63,7 +63,7 @@ describe('resource checkoutIntents', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.checkoutIntents.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
@@ -75,7 +75,7 @@ describe('resource checkoutIntents', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.checkoutIntents.list();
     const rawResponse = await responsePromise.asResponse();
@@ -87,7 +87,7 @@ describe('resource checkoutIntents', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -104,7 +104,7 @@ describe('resource checkoutIntents', () => {
     ).rejects.toThrow(CheckoutIntents.NotFoundError);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('addPayment: only required params', async () => {
     const responsePromise = client.checkoutIntents.addPayment('id', {
       paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
@@ -118,14 +118,14 @@ describe('resource checkoutIntents', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('addPayment: required and optional params', async () => {
     const response = await client.checkoutIntents.addPayment('id', {
       paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('confirm: only required params', async () => {
     const responsePromise = client.checkoutIntents.confirm('id', {
       paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
@@ -139,14 +139,14 @@ describe('resource checkoutIntents', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('confirm: required and optional params', async () => {
     const response = await client.checkoutIntents.confirm('id', {
       paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('purchase: only required params', async () => {
     const responsePromise = client.checkoutIntents.purchase({
       buyer: {
@@ -173,7 +173,7 @@ describe('resource checkoutIntents', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('purchase: required and optional params', async () => {
     const response = await client.checkoutIntents.purchase({
       buyer: {

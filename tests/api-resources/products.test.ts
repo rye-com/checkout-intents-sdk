@@ -8,7 +8,7 @@ const client = new CheckoutIntents({
 });
 
 describe('resource products', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('lookup: only required params', async () => {
     const responsePromise = client.products.lookup({ url: 'url' });
     const rawResponse = await responsePromise.asResponse();
@@ -20,7 +20,7 @@ describe('resource products', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('lookup: required and optional params', async () => {
     const response = await client.products.lookup({ url: 'url' });
   });
