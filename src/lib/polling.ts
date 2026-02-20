@@ -2,7 +2,7 @@
  * Polling helpers for Checkout Intents.
  */
 
-import { CheckoutIntentsResource, CheckoutIntent } from '../resources/checkout-intents/checkout-intents';
+import { CheckoutIntentsResource, CheckoutIntent } from '../resources/checkout-intents';
 import { RequestOptions } from '../internal/request-options';
 import { buildHeaders } from '../internal/headers';
 import { sleep } from '../internal/utils/sleep';
