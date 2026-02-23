@@ -43,7 +43,6 @@ describe('resource checkoutSessions', () => {
         offerRetrievalEffort: 'max',
       },
       discoverPromoCodes: true,
-      layout: 'default',
       promoCodes: ['string'],
       variantSelections: [{ label: 'Size, Color, etc.', value: 'Small, Red, XS, L, etc.' }],
     });
