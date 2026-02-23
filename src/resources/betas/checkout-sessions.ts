@@ -42,6 +42,12 @@ export interface CheckoutSessionCreateParams {
 
   discoverPromoCodes?: boolean;
 
+  /**
+   * Optional layout for the checkout UI (e.g. "wizard"). Defaults to the standard
+   * layout.
+   */
+  layout?: 'default' | 'wizard';
+
   promoCodes?: Array<string>;
 
   variantSelections?: Array<CheckoutIntentsAPI.VariantSelection>;
