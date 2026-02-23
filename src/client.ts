@@ -21,15 +21,6 @@ import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
 import { BrandRetrieveResponse, Brands } from './resources/brands';
 import {
-  Product,
-  ProductAvailability,
-  ProductImage,
-  ProductLookupParams,
-  Products,
-} from './resources/products';
-import { Shipment, ShipmentListParams, Shipments, ShipmentsCursorPagination } from './resources/shipments';
-import { Betas, CheckoutSession } from './resources/betas/betas';
-import {
   BaseCheckoutIntent,
   Buyer,
   CheckoutIntent,
@@ -44,7 +35,15 @@ import {
   Offer,
   PaymentMethod,
   VariantSelection,
-} from './resources/checkout-intents/checkout-intents';
+} from './resources/checkout-intents';
+import {
+  Product,
+  ProductAvailability,
+  ProductImage,
+  ProductLookupParams,
+  Products,
+} from './resources/products';
+import { Betas, CheckoutSession } from './resources/betas/betas';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
@@ -791,14 +790,12 @@ export class CheckoutIntents {
   static toFile = Uploads.toFile;
 
   checkoutIntents: API.CheckoutIntentsResource = new API.CheckoutIntentsResource(this);
-  shipments: API.Shipments = new API.Shipments(this);
   betas: API.Betas = new API.Betas(this);
   brands: API.Brands = new API.Brands(this);
   products: API.Products = new API.Products(this);
 }
 
 CheckoutIntents.CheckoutIntentsResource = CheckoutIntentsResource;
-CheckoutIntents.Shipments = Shipments;
 CheckoutIntents.Betas = Betas;
 CheckoutIntents.Brands = Brands;
 CheckoutIntents.Products = Products;
@@ -827,13 +824,6 @@ export declare namespace CheckoutIntents {
     type CheckoutIntentAddPaymentParams as CheckoutIntentAddPaymentParams,
     type CheckoutIntentConfirmParams as CheckoutIntentConfirmParams,
     type CheckoutIntentPurchaseParams as CheckoutIntentPurchaseParams,
-  };
-
-  export {
-    Shipments as Shipments,
-    type Shipment as Shipment,
-    type ShipmentsCursorPagination as ShipmentsCursorPagination,
-    type ShipmentListParams as ShipmentListParams,
   };
 
   export { Betas as Betas, type CheckoutSession as CheckoutSession };
