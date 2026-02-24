@@ -42,6 +42,7 @@ describe('resource checkoutSessions', () => {
         maxTotalPrice: 100000,
         offerRetrievalEffort: 'max',
       },
+      discoverPromoCodes: true,
       promoCodes: ['string'],
       variantSelections: [{ label: 'Size, Color, etc.', value: 'Small, Red, XS, L, etc.' }],
     });
