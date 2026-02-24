@@ -346,6 +346,8 @@ export namespace CheckoutIntent {
   }
 
   export interface CompletedCheckoutIntent extends CheckoutIntentsAPI.BaseCheckoutIntent {
+    estimatedDeliveryDate: string | null;
+
     offer: CheckoutIntentsAPI.Offer;
 
     orderId: string | null;
