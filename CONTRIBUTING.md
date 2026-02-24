@@ -60,7 +60,7 @@ $ yarn link checkout-intents
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global checkout-intents
+$ pnpm link --global checkout-intents
 ```
 
 ## Running tests
