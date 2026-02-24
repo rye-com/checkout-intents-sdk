@@ -17,7 +17,7 @@ export {
   type CheckoutIntentConfirmParams,
   type CheckoutIntentPurchaseParams,
   type CheckoutIntentsCursorPagination,
-} from './checkout-intents/checkout-intents';
+} from './checkout-intents';
 export {
   Products,
   type Product,
@@ -25,9 +25,3 @@ export {
   type ProductImage,
   type ProductLookupParams,
 } from './products';
-export {
-  Shipments,
-  type Shipment,
-  type ShipmentListParams,
-  type ShipmentsCursorPagination,
-} from './shipments';
