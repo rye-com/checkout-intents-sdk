@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
-import * as CheckoutIntentsAPI from '../checkout-intents';
 import * as BetasAPI from './betas';
+import * as CheckoutIntentsAPI from '../checkout-intents/checkout-intents';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -39,6 +39,8 @@ export interface CheckoutSessionCreateParams {
   buyer?: CheckoutSessionCreateParams.Buyer;
 
   constraints?: CheckoutSessionCreateParams.Constraints;
+
+  discoverPromoCodes?: boolean;
 
   promoCodes?: Array<string>;
 
