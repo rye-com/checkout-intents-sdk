@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as CheckoutIntentsAPI from '../checkout-intents';
 import * as BetasAPI from './betas';
-import * as CheckoutIntentsAPI from '../checkout-intents/checkout-intents';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -41,6 +41,12 @@ export interface CheckoutSessionCreateParams {
   constraints?: CheckoutSessionCreateParams.Constraints;
 
   discoverPromoCodes?: boolean;
+
+  /**
+   * Optional layout for the checkout UI (e.g. "wizard"). Defaults to the standard
+   * layout.
+   */
+  layout?: 'default' | 'wizard';
 
   promoCodes?: Array<string>;
 
