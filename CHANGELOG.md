@@ -1,5 +1,46 @@
 # Changelog
 
+## 0.17.0 (2026-02-24)
+
+Full Changelog: [v0.16.0...v0.17.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.16.0...v0.17.0)
+
+### Features
+
+* add merchants API endpoint ([94491d2](https://github.com/rye-com/checkout-intents-sdk/commit/94491d2c0c5d51857f089691b1c3c6f0e2a545a3))
+* Add PaymentMethod support for Prava ([f7d284e](https://github.com/rye-com/checkout-intents-sdk/commit/f7d284efe0b6b2df8e5b13d5c0f483f83888d549))
+* Billing: Add BillingReconciliationService for expired drawdown orders ([23deddc](https://github.com/rye-com/checkout-intents-sdk/commit/23deddca0cb6492539aa18e303922441a5cf3d9d))
+* Billing: Envelope payment processing fields ([8b69860](https://github.com/rye-com/checkout-intents-sdk/commit/8b698608eb17e472f5035fb93ce3dcc296aaef5d))
+* Centralize Shopify domain resolution into ShopifyDomainResolver service ([02ccc90](https://github.com/rye-com/checkout-intents-sdk/commit/02ccc9097fa78cd57aaa41ed207427491a888252))
+* Enable searching checkoutIntent by order Id on dev console ([1947302](https://github.com/rye-com/checkout-intents-sdk/commit/1947302f5ee905d200356075e597c79f3b605c11))
+* Phase 3: Strategy Interface + Normalizer ([6e3115c](https://github.com/rye-com/checkout-intents-sdk/commit/6e3115c3d644a526e23aa91bd359ab003990b3ff))
+* Remove `shipments` from our stainless config ([14dd78b](https://github.com/rye-com/checkout-intents-sdk/commit/14dd78b52b00b56c0f1296b95182dca8340fb081))
+* Remove duplicate method from controller ([82d0864](https://github.com/rye-com/checkout-intents-sdk/commit/82d08649c4cfbfd2271d98207a1aca9a5d2670e0))
+* Store estimated delivery date on completed checkout intent ([9d97549](https://github.com/rye-com/checkout-intents-sdk/commit/9d97549082af1d9eb89fe6e76f138621d522d8bf))
+* Unwrap `rd.bizrate.com` affiliate URLs ([c83fbee](https://github.com/rye-com/checkout-intents-sdk/commit/c83fbee32e0614dfd723ad9143120cf7315e179e))
+* Update return states to better reflect return lifecycle ([4dcbf77](https://github.com/rye-com/checkout-intents-sdk/commit/4dcbf771f915ca515fc1e03dccaed1d230744dfc))
+* wire up wizard layout and pass layout type through JWT ([38d14ed](https://github.com/rye-com/checkout-intents-sdk/commit/38d14ed239d4ff47dc6455fd91f816a8fd505d3f))
+
+
+### Bug Fixes
+
+* **client:** avoid removing abort listener too early ([eb0a821](https://github.com/rye-com/checkout-intents-sdk/commit/eb0a821b1da3cca22806266338845a3bfa29ff5c))
+* **docs/contributing:** correct pnpm link command ([98ee209](https://github.com/rye-com/checkout-intents-sdk/commit/98ee20966e5efc56fdf0f8d516eb97046280b4d1))
+
+
+### Chores
+
+* **client:** restructure abort controller binding ([8aee978](https://github.com/rye-com/checkout-intents-sdk/commit/8aee978ff57f187b104922b2ed2b8e6990e5a632))
+* **internal/client:** fix form-urlencoded requests ([3b5e961](https://github.com/rye-com/checkout-intents-sdk/commit/3b5e96119107b71a165b9ce0cc765566d1719665))
+* **internal:** avoid type checking errors with ts-reset ([6f2f8be](https://github.com/rye-com/checkout-intents-sdk/commit/6f2f8befd3f6d4bb90e4b5c1b6714f6415be82fe))
+* **internal:** fix pagination internals not accepting option promises ([a4201ba](https://github.com/rye-com/checkout-intents-sdk/commit/a4201bab515ae2df5f25c50c427741bbb10abb9f))
+* **internal:** hoist custom code into `/lib` ([97fb063](https://github.com/rye-com/checkout-intents-sdk/commit/97fb06355fdcead060df04761013e6ce54a88e15))
+* **internal:** improvements ([bfeec64](https://github.com/rye-com/checkout-intents-sdk/commit/bfeec64e0f1043cef2b984baa926a4a6e1cd1a23))
+* **internal:** improvements ([e9c7ead](https://github.com/rye-com/checkout-intents-sdk/commit/e9c7eadc9bd9fb82ac4aca7ef75e20c08a1ba2af))
+* **internal:** improvements ([288e68f](https://github.com/rye-com/checkout-intents-sdk/commit/288e68f88dfff62e151ea65a0fb5dc00a4d4900e))
+* **internal:** remove mock server code ([50b53a8](https://github.com/rye-com/checkout-intents-sdk/commit/50b53a89be7c61bed28614ea0ef782c4f24f3fb6))
+* **internal:** skip test requiring mock server ([b0a81c3](https://github.com/rye-com/checkout-intents-sdk/commit/b0a81c3b9ba7a4b0808914a75a6d64a5c2dcecf4))
+* update mock server docs ([3fc759b](https://github.com/rye-com/checkout-intents-sdk/commit/3fc759b25ad2cd144302e8115f654bad34f1ba50))
+
 ## 0.16.0 (2026-02-04)
 
 Full Changelog: [v0.15.1...v0.16.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.15.1...v0.16.0)
