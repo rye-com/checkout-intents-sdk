@@ -19,13 +19,6 @@ import { AbstractPage, type CursorPaginationParams, CursorPaginationResponse } f
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
-import {
-  Billing,
-  BillingGetBalanceResponse,
-  BillingListTransactionsParams,
-  BillingListTransactionsResponse,
-  BillingListTransactionsResponsesCursorPagination,
-} from './resources/billing';
 import { BrandRetrieveResponse, Brands } from './resources/brands';
 import {
   BaseCheckoutIntent,
@@ -800,14 +793,12 @@ export class CheckoutIntents {
   betas: API.Betas = new API.Betas(this);
   brands: API.Brands = new API.Brands(this);
   products: API.Products = new API.Products(this);
-  billing: API.Billing = new API.Billing(this);
 }
 
 CheckoutIntents.CheckoutIntentsResource = CheckoutIntentsResource;
 CheckoutIntents.Betas = Betas;
 CheckoutIntents.Brands = Brands;
 CheckoutIntents.Products = Products;
-CheckoutIntents.Billing = Billing;
 
 export declare namespace CheckoutIntents {
   export type RequestOptions = Opts.RequestOptions;
@@ -845,13 +836,5 @@ export declare namespace CheckoutIntents {
     type ProductAvailability as ProductAvailability,
     type ProductImage as ProductImage,
     type ProductLookupParams as ProductLookupParams,
-  };
-
-  export {
-    Billing as Billing,
-    type BillingGetBalanceResponse as BillingGetBalanceResponse,
-    type BillingListTransactionsResponse as BillingListTransactionsResponse,
-    type BillingListTransactionsResponsesCursorPagination as BillingListTransactionsResponsesCursorPagination,
-    type BillingListTransactionsParams as BillingListTransactionsParams,
   };
 }

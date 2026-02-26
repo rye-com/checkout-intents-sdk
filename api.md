@@ -52,15 +52,3 @@ Types:
 Methods:
 
 - <code title="get /api/v1/products/lookup">client.products.<a href="./src/resources/products.ts">lookup</a>({ ...params }) -> Product</code>
-
-# Billing
-
-Types:
-
-- <code><a href="./src/resources/billing.ts">BillingGetBalanceResponse</a></code>
-- <code><a href="./src/resources/billing.ts">BillingListTransactionsResponse</a></code>
-
-Methods:
-
-- <code title="get /api/v1/billing/balance">client.billing.<a href="./src/resources/billing.ts">getBalance</a>() -> BillingGetBalanceResponse</code>
-- <code title="get /api/v1/billing/transactions">client.billing.<a href="./src/resources/billing.ts">listTransactions</a>({ ...params }) -> BillingListTransactionsResponsesCursorPagination</code>
