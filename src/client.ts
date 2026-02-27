@@ -28,6 +28,22 @@ import {
 } from './resources/billing';
 import { BrandRetrieveResponse, Brands } from './resources/brands';
 import {
+  Product,
+  ProductAvailability,
+  ProductImage,
+  ProductLookupParams,
+  Products,
+} from './resources/products';
+import {
+  Shipment,
+  ShipmentListParams,
+  ShipmentStatus,
+  ShipmentTracking,
+  Shipments,
+  ShipmentsCursorPagination,
+} from './resources/shipments';
+import { Betas, CheckoutSession } from './resources/betas/betas';
+import {
   BaseCheckoutIntent,
   Buyer,
   CheckoutIntent,
@@ -42,15 +58,7 @@ import {
   Offer,
   PaymentMethod,
   VariantSelection,
-} from './resources/checkout-intents';
-import {
-  Product,
-  ProductAvailability,
-  ProductImage,
-  ProductLookupParams,
-  Products,
-} from './resources/products';
-import { Betas, CheckoutSession } from './resources/betas/betas';
+} from './resources/checkout-intents/checkout-intents';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
@@ -800,6 +808,7 @@ export class CheckoutIntents {
   betas: API.Betas = new API.Betas(this);
   brands: API.Brands = new API.Brands(this);
   products: API.Products = new API.Products(this);
+  shipments: API.Shipments = new API.Shipments(this);
   billing: API.Billing = new API.Billing(this);
 }
 
@@ -807,6 +816,7 @@ CheckoutIntents.CheckoutIntentsResource = CheckoutIntentsResource;
 CheckoutIntents.Betas = Betas;
 CheckoutIntents.Brands = Brands;
 CheckoutIntents.Products = Products;
+CheckoutIntents.Shipments = Shipments;
 CheckoutIntents.Billing = Billing;
 
 export declare namespace CheckoutIntents {
@@ -845,6 +855,15 @@ export declare namespace CheckoutIntents {
     type ProductAvailability as ProductAvailability,
     type ProductImage as ProductImage,
     type ProductLookupParams as ProductLookupParams,
+  };
+
+  export {
+    Shipments as Shipments,
+    type Shipment as Shipment,
+    type ShipmentStatus as ShipmentStatus,
+    type ShipmentTracking as ShipmentTracking,
+    type ShipmentsCursorPagination as ShipmentsCursorPagination,
+    type ShipmentListParams as ShipmentListParams,
   };
 
   export {
