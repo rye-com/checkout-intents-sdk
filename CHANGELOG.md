@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.18.0 (2026-02-27)
+
+Full Changelog: [v0.17.0...v0.18.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.17.0...v0.18.0)
+
+### Features
+
+* Add hidden billing API endpoints for drawdown balance and transactions ([d462c46](https://github.com/rye-com/checkout-intents-sdk/commit/d462c46dda8f087255602bdb1d0588ef5361858d))
+* Added new shipments endpoint for tracking Amazon orders ([f20d7f5](https://github.com/rye-com/checkout-intents-sdk/commit/f20d7f55668f92ed9982fa6225f4f11f3b4b7c81))
+* proxy product images through Rye domain ([b5cad7c](https://github.com/rye-com/checkout-intents-sdk/commit/b5cad7cd6b91b2d1813e00a7e3db693b1f18b1c1))
+
+
+### Chores
+
+* **internal:** improvements ([9988b8c](https://github.com/rye-com/checkout-intents-sdk/commit/9988b8cdd7c524ecc15e76a01b27cad3726c1397))
+* **internal:** move stringifyQuery implementation to internal function ([9e34f84](https://github.com/rye-com/checkout-intents-sdk/commit/9e34f8439334b6fff6da689ab87356be75d43f75))
+
 ## 0.17.0 (2026-02-24)
 
 Full Changelog: [v0.16.0...v0.17.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.16.0...v0.17.0)
