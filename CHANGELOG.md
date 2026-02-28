@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.18.1 (2026-02-28)
+
+Full Changelog: [v0.18.0...v0.18.1](https://github.com/rye-com/checkout-intents-sdk/compare/v0.18.0...v0.18.1)
+
+### Chores
+
+* **internal:** improvements ([8c1bbe8](https://github.com/rye-com/checkout-intents-sdk/commit/8c1bbe880aa6bc13c5d7e83dbb0d1d2bbd7fe483))
+
 ## 0.18.0 (2026-02-27)
 
 Full Changelog: [v0.17.0...v0.18.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.17.0...v0.18.0)
