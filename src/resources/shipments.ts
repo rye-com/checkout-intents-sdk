@@ -49,6 +49,10 @@ export namespace Shipment {
 
     createdAt: string;
 
+    /**
+     * The external ID is provided by the marketplace and matches the shipment to their
+     * system.
+     */
     externalId: string;
 
     shippedAt: string;
@@ -66,11 +70,9 @@ export namespace Shipment {
     export interface TrackingEvent {
       description: string | null;
 
-      displayDate: string | null;
-
-      displayTime: string | null;
-
       location: TrackingEvent.Location;
+
+      timestamp: TrackingEvent.Timestamp | null;
     }
 
     export namespace TrackingEvent {
@@ -80,6 +82,18 @@ export namespace Shipment {
         country?: string | null;
 
         province?: string | null;
+      }
+
+      export interface Timestamp {
+        /**
+         * ISO 8601 string with timezone offset, e.g. "2025-02-05T17:02:00.000-05:00"
+         */
+        local: string;
+
+        /**
+         * UTC timestamp
+         */
+        utc: string;
       }
     }
   }
@@ -93,6 +107,10 @@ export namespace Shipment {
 
     deliveredAt: string;
 
+    /**
+     * The external ID is provided by the marketplace and matches the shipment to their
+     * system.
+     */
     externalId: string;
 
     shippedAt: string;
@@ -110,11 +128,9 @@ export namespace Shipment {
     export interface TrackingEvent {
       description: string | null;
 
-      displayDate: string | null;
-
-      displayTime: string | null;
-
       location: TrackingEvent.Location;
+
+      timestamp: TrackingEvent.Timestamp | null;
     }
 
     export namespace TrackingEvent {
@@ -124,6 +140,18 @@ export namespace Shipment {
         country?: string | null;
 
         province?: string | null;
+      }
+
+      export interface Timestamp {
+        /**
+         * ISO 8601 string with timezone offset, e.g. "2025-02-05T17:02:00.000-05:00"
+         */
+        local: string;
+
+        /**
+         * UTC timestamp
+         */
+        utc: string;
       }
     }
   }
@@ -135,6 +163,10 @@ export namespace Shipment {
 
     createdAt: string;
 
+    /**
+     * The external ID is provided by the marketplace and matches the shipment to their
+     * system.
+     */
     externalId: string;
 
     shippedAt: string;
@@ -152,11 +184,9 @@ export namespace Shipment {
     export interface TrackingEvent {
       description: string | null;
 
-      displayDate: string | null;
-
-      displayTime: string | null;
-
       location: TrackingEvent.Location;
+
+      timestamp: TrackingEvent.Timestamp | null;
     }
 
     export namespace TrackingEvent {
@@ -166,6 +196,18 @@ export namespace Shipment {
         country?: string | null;
 
         province?: string | null;
+      }
+
+      export interface Timestamp {
+        /**
+         * ISO 8601 string with timezone offset, e.g. "2025-02-05T17:02:00.000-05:00"
+         */
+        local: string;
+
+        /**
+         * UTC timestamp
+         */
+        utc: string;
       }
     }
   }
@@ -177,6 +219,10 @@ export namespace Shipment {
 
     createdAt: string;
 
+    /**
+     * The external ID is provided by the marketplace and matches the shipment to their
+     * system.
+     */
     externalId: string;
 
     shippedAt: string;
@@ -194,11 +240,9 @@ export namespace Shipment {
     export interface TrackingEvent {
       description: string | null;
 
-      displayDate: string | null;
-
-      displayTime: string | null;
-
       location: TrackingEvent.Location;
+
+      timestamp: TrackingEvent.Timestamp | null;
     }
 
     export namespace TrackingEvent {
@@ -208,6 +252,18 @@ export namespace Shipment {
         country?: string | null;
 
         province?: string | null;
+      }
+
+      export interface Timestamp {
+        /**
+         * ISO 8601 string with timezone offset, e.g. "2025-02-05T17:02:00.000-05:00"
+         */
+        local: string;
+
+        /**
+         * UTC timestamp
+         */
+        utc: string;
       }
     }
   }
@@ -250,9 +306,15 @@ export interface ShipmentTracking {
 
   carrierName?: string | null;
 
-  estimatedDeliveryDate?: string | null;
+  deliveryDate?: ShipmentTracking.DeliveryDate | null;
 
   url?: string | null;
+}
+
+export namespace ShipmentTracking {
+  export interface DeliveryDate {
+    estimated: string;
+  }
 }
 
 export interface ShipmentListParams extends CursorPaginationParams {
