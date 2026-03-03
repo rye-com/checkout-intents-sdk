@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as ProductsAPI from './products';
 import * as CheckoutIntentsAPI from './checkout-intents/checkout-intents';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
@@ -43,6 +44,44 @@ export interface Product {
   sku: string | null;
 
   url: string;
+
+  variantDimensions?: Array<Product.VariantDimension>;
+
+  variants?: Array<Product.Variant>;
+}
+
+export namespace Product {
+  export interface VariantDimension {
+    name: string;
+
+    values: Array<string>;
+  }
+
+  export interface Variant {
+    /**
+     * Construct a type with a set of properties K of type T
+     */
+    attributes: { [key: string]: string };
+
+    /**
+     * The availability status of a product.
+     *
+     * - `in_stock`: Product is available for immediate purchase
+     * - `out_of_stock`: Product is currently unavailable
+     * - `preorder`: Product is available for pre-order before release
+     * - `backorder`: Product is temporarily out of stock but can be ordered
+     * - `unknown`: Availability could not be determined
+     */
+    availability: ProductsAPI.ProductAvailability;
+
+    images: Array<ProductsAPI.ProductImage>;
+
+    name: string | null;
+
+    price: CheckoutIntentsAPI.Money;
+
+    sku: string | null;
+  }
 }
 
 /**
