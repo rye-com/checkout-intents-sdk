@@ -45,9 +45,9 @@ export interface Product {
 
   url: string;
 
-  variantDimensions?: Array<Product.VariantDimension>;
+  variantDimensions?: Array<Product.VariantDimension> | null;
 
-  variants?: Array<Product.Variant>;
+  variants?: Array<Product.Variant> | null;
 }
 
 export namespace Product {
