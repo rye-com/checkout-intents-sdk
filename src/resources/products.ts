@@ -52,7 +52,7 @@ export interface Product {
 
 export namespace Product {
   export interface VariantDimension {
-    name: string;
+    label: string;
 
     values: Array<string>;
   }
