@@ -59,11 +59,6 @@ export namespace Product {
 
   export interface Variant {
     /**
-     * Construct a type with a set of properties K of type T
-     */
-    attributes: { [key: string]: string };
-
-    /**
      * The availability status of a product.
      *
      * - `in_stock`: Product is available for immediate purchase
@@ -73,6 +68,8 @@ export namespace Product {
      * - `unknown`: Availability could not be determined
      */
     availability: ProductsAPI.ProductAvailability;
+
+    dimensions: Array<CheckoutIntentsAPI.VariantSelection>;
 
     images: Array<ProductsAPI.ProductImage>;
 
