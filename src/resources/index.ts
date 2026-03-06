@@ -30,6 +30,8 @@ export {
   type Product,
   type ProductAvailability,
   type ProductImage,
+  type ProductVariant,
+  type VariantDimension,
   type ProductLookupParams,
 } from './products';
 export {

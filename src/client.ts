@@ -32,7 +32,9 @@ import {
   ProductAvailability,
   ProductImage,
   ProductLookupParams,
+  ProductVariant,
   Products,
+  VariantDimension,
 } from './resources/products';
 import {
   Shipment,
@@ -876,6 +878,8 @@ export declare namespace CheckoutIntents {
     type Product as Product,
     type ProductAvailability as ProductAvailability,
     type ProductImage as ProductImage,
+    type ProductVariant as ProductVariant,
+    type VariantDimension as VariantDimension,
     type ProductLookupParams as ProductLookupParams,
   };
 
