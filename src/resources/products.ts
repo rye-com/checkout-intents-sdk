@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import * as ProductsAPI from './products';
 import * as CheckoutIntentsAPI from './checkout-intents/checkout-intents';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
@@ -45,40 +44,9 @@ export interface Product {
 
   url: string;
 
-  variantDimensions?: Array<Product.VariantDimension> | null;
+  variantDimensions?: Array<VariantDimension> | null;
 
-  variants?: Array<Product.Variant> | null;
-}
-
-export namespace Product {
-  export interface VariantDimension {
-    label: string;
-
-    values: Array<string>;
-  }
-
-  export interface Variant {
-    /**
-     * The availability status of a product.
-     *
-     * - `in_stock`: Product is available for immediate purchase
-     * - `out_of_stock`: Product is currently unavailable
-     * - `preorder`: Product is available for pre-order before release
-     * - `backorder`: Product is temporarily out of stock but can be ordered
-     * - `unknown`: Availability could not be determined
-     */
-    availability: ProductsAPI.ProductAvailability;
-
-    dimensions: Array<CheckoutIntentsAPI.VariantSelection>;
-
-    images: Array<ProductsAPI.ProductImage>;
-
-    name: string | null;
-
-    price: CheckoutIntentsAPI.Money;
-
-    sku: string | null;
-  }
+  variants?: Array<ProductVariant> | null;
 }
 
 /**
@@ -98,6 +66,35 @@ export interface ProductImage {
   url: string;
 }
 
+export interface ProductVariant {
+  /**
+   * The availability status of a product.
+   *
+   * - `in_stock`: Product is available for immediate purchase
+   * - `out_of_stock`: Product is currently unavailable
+   * - `preorder`: Product is available for pre-order before release
+   * - `backorder`: Product is temporarily out of stock but can be ordered
+   * - `unknown`: Availability could not be determined
+   */
+  availability: ProductAvailability;
+
+  dimensions: Array<CheckoutIntentsAPI.VariantSelection>;
+
+  images: Array<ProductImage>;
+
+  name: string | null;
+
+  price: CheckoutIntentsAPI.Money;
+
+  sku: string | null;
+}
+
+export interface VariantDimension {
+  label: string;
+
+  values: Array<string>;
+}
+
 export interface ProductLookupParams {
   url: string;
 }
@@ -107,6 +104,8 @@ export declare namespace Products {
     type Product as Product,
     type ProductAvailability as ProductAvailability,
     type ProductImage as ProductImage,
+    type ProductVariant as ProductVariant,
+    type VariantDimension as VariantDimension,
     type ProductLookupParams as ProductLookupParams,
   };
 }
