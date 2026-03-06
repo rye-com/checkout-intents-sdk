@@ -58,6 +58,8 @@ Types:
 - <code><a href="./src/resources/products.ts">Product</a></code>
 - <code><a href="./src/resources/products.ts">ProductAvailability</a></code>
 - <code><a href="./src/resources/products.ts">ProductImage</a></code>
+- <code><a href="./src/resources/products.ts">ProductVariant</a></code>
+- <code><a href="./src/resources/products.ts">VariantDimension</a></code>
 
 Methods:
 
