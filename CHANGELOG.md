@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.19.0 (2026-03-07)
+
+Full Changelog: [v0.18.1...v0.19.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.18.1...v0.19.0)
+
+### Features
+
+* Add variant models to Stainless SDK config ([6d792a1](https://github.com/rye-com/checkout-intents-sdk/commit/6d792a1661ff3349fc3307133c4531d3605f3efc))
+* add variant types and wire through extraction pipeline (RYE-6876) ([9b07a32](https://github.com/rye-com/checkout-intents-sdk/commit/9b07a322c84d5a6c27e9c60d08053e505e92a6dd))
+* Cut 1x Firestore read from offer retrieval ([742cc77](https://github.com/rye-com/checkout-intents-sdk/commit/742cc7705f0db3dd2f75e0b052245a77d1b3b6f5))
+* expose Shopify variants and extract ProductGroup variants from JSON-LD (RYE-6878) ([bafc499](https://github.com/rye-com/checkout-intents-sdk/commit/bafc499595130abfd05d579f30b1c7ac03af36be))
+* rename ProductVariant.attributes to dimensions ([eea6df0](https://github.com/rye-com/checkout-intents-sdk/commit/eea6df073ffe06be1cd77b34f9da3207a033bdc7))
+
+
+### Bug Fixes
+
+* handle [@type](https://github.com/type) array and AggregateOffer array in JSON-LD parser ([c38319a](https://github.com/rye-com/checkout-intents-sdk/commit/c38319a0670ff3666134a5848d4af8fa15f849dc))
+* rename VariantDimension.name to label for consistency with VariantSelection ([9a18014](https://github.com/rye-com/checkout-intents-sdk/commit/9a180144e81a042877e668b513e12cce9f0d4cc0))
+
+
+### Chores
+
+* **internal:** codegen related update ([30cff36](https://github.com/rye-com/checkout-intents-sdk/commit/30cff3642aeec8238d14f0e3f57578af68d2ce65))
+* **internal:** improvements ([f7cc791](https://github.com/rye-com/checkout-intents-sdk/commit/f7cc791b53c661072bf4038c687ff6ac7af51e9e))
+
 ## 0.18.1 (2026-02-28)
 
 Full Changelog: [v0.18.0...v0.18.1](https://github.com/rye-com/checkout-intents-sdk/compare/v0.18.0...v0.18.1)
