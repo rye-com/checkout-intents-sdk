@@ -2,7 +2,7 @@
 
 import { APIResource } from '../core/resource';
 import * as ProductsAPI from './products';
-import * as CheckoutIntentsAPI from './checkout-intents';
+import * as CheckoutIntentsAPI from './checkout-intents/checkout-intents';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
