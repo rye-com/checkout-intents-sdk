@@ -34,6 +34,8 @@ export type BillingListTransactionsResponsesCursorPagination =
 
 export interface BillingGetBalanceResponse {
   balance: CheckoutIntentsAPI.Money;
+
+  drawdownEnabled: boolean;
 }
 
 export interface BillingListTransactionsResponse {
