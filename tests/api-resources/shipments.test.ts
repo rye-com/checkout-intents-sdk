@@ -41,7 +41,7 @@ describe('resource shipments', () => {
           after: 'after',
           before: 'before',
           ids: ['string'],
-          limit: 0,
+          limit: 1,
           status: ['out_for_delivery'],
         },
         { path: '/_stainless_unknown_path' },
