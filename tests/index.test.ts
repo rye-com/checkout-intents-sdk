@@ -328,13 +328,13 @@ describe('instantiate client', () => {
     test('empty env variable', () => {
       process.env['CHECKOUT_INTENTS_BASE_URL'] = ''; // empty
       const client = new CheckoutIntents({ apiKey: 'My API Key' });
-      expect(client.baseURL).toEqual('https://staging.api.rye.com/');
+      expect(client.baseURL).toEqual('https://staging.api.rye.com');
     });
 
     test('blank env variable', () => {
       process.env['CHECKOUT_INTENTS_BASE_URL'] = '  '; // blank
       const client = new CheckoutIntents({ apiKey: 'My API Key' });
-      expect(client.baseURL).toEqual('https://staging.api.rye.com/');
+      expect(client.baseURL).toEqual('https://staging.api.rye.com');
     });
 
     test('env variable with environment', () => {
@@ -351,7 +351,7 @@ describe('instantiate client', () => {
         baseURL: null,
         environment: 'staging',
       });
-      expect(client.baseURL).toEqual('https://staging.api.rye.com/');
+      expect(client.baseURL).toEqual('https://staging.api.rye.com');
     });
 
     test('in request options', () => {
