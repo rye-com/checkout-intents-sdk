@@ -29,7 +29,7 @@ export class CheckoutIntentsResource extends APIResource {
    *     postalCode: '10001',
    *     province: 'NY',
    *   },
-   *   productUrl: 'productUrl',
+   *   productUrl: 'https://www.amazon.com/dp/B0DFC9MT8Q',
    *   quantity: 1,
    * });
    * ```
@@ -152,7 +152,7 @@ export class CheckoutIntentsResource extends APIResource {
    *       stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH',
    *       type: 'stripe_token',
    *     },
-   *     productUrl: 'productUrl',
+   *     productUrl: 'https://www.amazon.com/dp/B0DFC9MT8Q',
    *     quantity: 1,
    *   });
    * ```

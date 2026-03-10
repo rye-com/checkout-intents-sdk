@@ -22,7 +22,7 @@ describe('resource checkoutIntents', () => {
         postalCode: '10001',
         province: 'NY',
       },
-      productUrl: 'productUrl',
+      productUrl: 'https://www.amazon.com/dp/B0DFC9MT8Q',
       quantity: 1,
     });
     const rawResponse = await responsePromise.asResponse();
@@ -49,7 +49,7 @@ describe('resource checkoutIntents', () => {
         province: 'NY',
         address2: 'Apt 1',
       },
-      productUrl: 'productUrl',
+      productUrl: 'https://www.amazon.com/dp/B0DFC9MT8Q',
       quantity: 1,
       constraints: {
         maxShippingPrice: 500,
@@ -57,7 +57,7 @@ describe('resource checkoutIntents', () => {
         offerRetrievalEffort: 'max',
       },
       discoverPromoCodes: true,
-      promoCodes: ['sqF12lZ1VlBb'],
+      promoCodes: ['SAVE20'],
       variantSelections: [{ label: 'Size, Color, etc.', value: 'Small, Red, XS, L, etc.' }],
     });
   });
@@ -95,7 +95,7 @@ describe('resource checkoutIntents', () => {
           id: ['string'],
           after: 'after',
           before: 'before',
-          limit: 0,
+          limit: 1,
           state: ['completed'],
         },
         { path: '/_stainless_unknown_path' },
@@ -160,7 +160,7 @@ describe('resource checkoutIntents', () => {
         province: 'NY',
       },
       paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
-      productUrl: 'productUrl',
+      productUrl: 'https://www.amazon.com/dp/B0DFC9MT8Q',
       quantity: 1,
     });
     const rawResponse = await responsePromise.asResponse();
@@ -188,7 +188,7 @@ describe('resource checkoutIntents', () => {
         address2: 'Apt 1',
       },
       paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
-      productUrl: 'productUrl',
+      productUrl: 'https://www.amazon.com/dp/B0DFC9MT8Q',
       quantity: 1,
       constraints: {
         maxShippingPrice: 500,
@@ -196,7 +196,7 @@ describe('resource checkoutIntents', () => {
         offerRetrievalEffort: 'max',
       },
       discoverPromoCodes: true,
-      promoCodes: ['sqF12lZ1VlBb'],
+      promoCodes: ['SAVE20'],
       variantSelections: [{ label: 'Size, Color, etc.', value: 'Small, Red, XS, L, etc.' }],
     });
   });
