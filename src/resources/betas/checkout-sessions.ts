@@ -17,7 +17,7 @@ export class CheckoutSessions extends APIResource {
    * ```ts
    * const checkoutSession =
    *   await client.betas.checkoutSessions.create({
-   *     productUrl: 'productUrl',
+   *     productUrl: 'https://www.amazon.com/dp/B0DFC9MT8Q',
    *     quantity: 1,
    *   });
    * ```

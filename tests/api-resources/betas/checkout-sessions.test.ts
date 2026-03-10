@@ -10,7 +10,10 @@ const client = new CheckoutIntents({
 describe('resource checkoutSessions', () => {
   // Mock server tests are disabled
   test.skip('create: only required params', async () => {
-    const responsePromise = client.betas.checkoutSessions.create({ productUrl: 'productUrl', quantity: 1 });
+    const responsePromise = client.betas.checkoutSessions.create({
+      productUrl: 'https://www.amazon.com/dp/B0DFC9MT8Q',
+      quantity: 1,
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -23,7 +26,7 @@ describe('resource checkoutSessions', () => {
   // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.betas.checkoutSessions.create({
-      productUrl: 'productUrl',
+      productUrl: 'https://www.amazon.com/dp/B0DFC9MT8Q',
       quantity: 1,
       buyer: {
         address1: '123 Main St',

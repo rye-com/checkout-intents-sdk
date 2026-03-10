@@ -29,7 +29,7 @@ describe('resource shipments', () => {
         {
           after: 'after',
           before: 'before',
-          limit: 0,
+          limit: 1,
         },
         { path: '/_stainless_unknown_path' },
       ),
