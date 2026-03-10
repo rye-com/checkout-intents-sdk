@@ -75,8 +75,8 @@ import {
 import { isEmptyObj } from './internal/utils/values';
 
 const environments = {
-  staging: 'https://staging.api.rye.com/',
-  production: 'https://api.rye.com/',
+  staging: 'https://staging.api.rye.com',
+  production: 'https://api.rye.com',
 };
 type Environment = keyof typeof environments;
 
@@ -101,8 +101,8 @@ export interface ClientOptions {
    * Specifies the environment to use for the API.
    *
    * Each environment maps to a different base URL:
-   * - `staging` corresponds to `https://staging.api.rye.com/`
-   * - `production` corresponds to `https://api.rye.com/`
+   * - `staging` corresponds to `https://staging.api.rye.com`
+   * - `production` corresponds to `https://api.rye.com`
    */
   environment?: Environment | undefined;
 
@@ -198,7 +198,7 @@ export class CheckoutIntents {
    *
    * @param {string | undefined} [opts.apiKey=process.env['CHECKOUT_INTENTS_API_KEY'] ?? undefined]
    * @param {Environment} [opts.environment=staging] - Specifies the environment URL to use for the API.
-   * @param {string} [opts.baseURL=process.env['CHECKOUT_INTENTS_BASE_URL'] ?? https://staging.api.rye.com/] - Override the default base URL for the API.
+   * @param {string} [opts.baseURL=process.env['CHECKOUT_INTENTS_BASE_URL'] ?? https://staging.api.rye.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
    * @param {Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
