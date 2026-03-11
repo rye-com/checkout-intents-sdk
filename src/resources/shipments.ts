@@ -55,6 +55,8 @@ export namespace Shipment {
      */
     externalId: string;
 
+    marketplaceOrderId: string;
+
     shippedAt: string;
 
     status: 'shipped';
@@ -113,6 +115,8 @@ export namespace Shipment {
      */
     externalId: string;
 
+    marketplaceOrderId: string;
+
     shippedAt: string;
 
     status: 'delivered';
@@ -168,6 +172,8 @@ export namespace Shipment {
      * system.
      */
     externalId: string;
+
+    marketplaceOrderId: string;
 
     shippedAt: string;
 
@@ -225,6 +231,8 @@ export namespace Shipment {
      */
     externalId: string;
 
+    marketplaceOrderId: string;
+
     shippedAt: string;
 
     status: 'out_for_delivery';
@@ -275,6 +283,8 @@ export namespace Shipment {
 
     createdAt: string;
 
+    marketplaceOrderId: string;
+
     status: 'ordered';
 
     updatedAt: string;
@@ -286,6 +296,8 @@ export namespace Shipment {
     checkoutIntentId: string;
 
     createdAt: string;
+
+    marketplaceOrderId: string;
 
     status: 'canceled';
 
