@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.20.0 (2026-03-17)
+
+Full Changelog: [v0.19.0...v0.20.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.19.0...v0.20.0)
+
+### Features
+
+* Return 403 for non-drawdown developers on billing endpoints ([6efb0ef](https://github.com/rye-com/checkout-intents-sdk/commit/6efb0ef7c84b96945289a825aacdec5701633909))
+* Update shipment types in prep for tracking updates ([659e96b](https://github.com/rye-com/checkout-intents-sdk/commit/659e96b78ce73648eed716f2987de6d09055d5ac))
+
+
+### Bug Fixes
+
+* **client:** preserve URL params already embedded in path ([7722906](https://github.com/rye-com/checkout-intents-sdk/commit/772290609c88901944617d6848192a9b32b68cca))
+* **docs:** remove double-slash from server urls ([3ab9a47](https://github.com/rye-com/checkout-intents-sdk/commit/3ab9a47935945dec8d9ec0ca91c2f3f48c7c99a7))
+
+
+### Chores
+
+* **ci:** skip uploading artifacts on stainless-internal branches ([ea447a1](https://github.com/rye-com/checkout-intents-sdk/commit/ea447a1b65292b3ee7be2745e8bc50b8108206a9))
+* **docs:** improve examples ([62df29f](https://github.com/rye-com/checkout-intents-sdk/commit/62df29fcba2fe2efaad4a322d6837e5fdd33ba5f))
+* **internal:** tweak CI branches ([aa51a1d](https://github.com/rye-com/checkout-intents-sdk/commit/aa51a1dcd2500bf9381de8402adca0d717c8450a))
+* **internal:** update dependencies to address dependabot vulnerabilities ([e356ea2](https://github.com/rye-com/checkout-intents-sdk/commit/e356ea27e97c5645d3fe103d7195a923e303e7a2))
+* **internal:** update tests ([4bfac14](https://github.com/rye-com/checkout-intents-sdk/commit/4bfac14b5167fa4c2a17939282ea710c870535fb))
+
 ## 0.19.0 (2026-03-07)
 
 Full Changelog: [v0.18.1...v0.19.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.18.1...v0.19.0)
