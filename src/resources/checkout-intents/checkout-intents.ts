@@ -350,8 +350,6 @@ export namespace CheckoutIntent {
   }
 
   export interface CompletedCheckoutIntent extends CheckoutIntentsAPI.BaseCheckoutIntent {
-    estimatedDeliveryDate: string | null;
-
     offer: CheckoutIntentsAPI.Offer;
 
     orderId: string | null;
@@ -359,6 +357,11 @@ export namespace CheckoutIntent {
     paymentMethod: CheckoutIntentsAPI.PaymentMethod;
 
     state: 'completed';
+
+    /**
+     * @deprecated
+     */
+    estimatedDeliveryDate?: string | null;
   }
 
   export interface FailedCheckoutIntent extends CheckoutIntentsAPI.BaseCheckoutIntent {
@@ -446,7 +449,17 @@ export namespace Offer {
 
       cost: CheckoutIntentsAPI.Money;
 
+      deliveryEstimate?: AvailableOption.DeliveryEstimate | null;
+
       discount?: CheckoutIntentsAPI.Money;
+    }
+
+    export namespace AvailableOption {
+      export interface DeliveryEstimate {
+        earliest: string;
+
+        latest: string;
+      }
     }
   }
 }
