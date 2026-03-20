@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.21.0 (2026-03-20)
+
+Full Changelog: [v0.20.0...v0.21.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.20.0...v0.21.0)
+
+### Features
+
+* Add deliveryEstimate to shipping options in offers. ([88d63ce](https://github.com/rye-com/checkout-intents-sdk/commit/88d63cef615ef8f5106b7dddea86e5083710a87a))
+
 ## 0.20.0 (2026-03-17)
 
 Full Changelog: [v0.19.0...v0.20.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.19.0...v0.20.0)
