@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.21.1 (2026-03-23)
+
+Full Changelog: [v0.21.0...v0.21.1](https://github.com/rye-com/checkout-intents-sdk/compare/v0.21.0...v0.21.1)
+
+### Bug Fixes
+
+* **api:** use repeat format for array query param serialization ([79fee81](https://github.com/rye-com/checkout-intents-sdk/commit/79fee819e6f6efad933a916833b730ef5ce7409b))
+
 ## 0.21.0 (2026-03-20)
 
 Full Changelog: [v0.20.0...v0.21.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.20.0...v0.21.0)
