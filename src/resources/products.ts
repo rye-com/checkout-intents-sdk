@@ -67,6 +67,8 @@ export interface ProductImage {
 }
 
 export interface ProductVariant {
+  id: string | null;
+
   /**
    * The availability status of a product.
    *
