@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.21.2 (2026-03-27)
+
+Full Changelog: [v0.21.1...v0.21.2](https://github.com/rye-com/checkout-intents-sdk/compare/v0.21.1...v0.21.2)
+
+### Bug Fixes
+
+* prevent e2e intents from going to manual fulfillment (RYE-7136) ([1bfc6fb](https://github.com/rye-com/checkout-intents-sdk/commit/1bfc6fbfac7ca6da84b2ee5bc63f1cb685ce906b))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([f61dba6](https://github.com/rye-com/checkout-intents-sdk/commit/f61dba69b623465bd704efffa729ecca095e319c))
+* **internal:** improvements ([1d07d42](https://github.com/rye-com/checkout-intents-sdk/commit/1d07d428816c208696a57a9a855256e109b9e11e))
+* **internal:** update gitignore ([8ed2cea](https://github.com/rye-com/checkout-intents-sdk/commit/8ed2ceadc272c2cbab1f833e00ce112ba42689c1))
+
 ## 0.21.1 (2026-03-23)
 
 Full Changelog: [v0.21.0...v0.21.1](https://github.com/rye-com/checkout-intents-sdk/compare/v0.21.0...v0.21.1)
