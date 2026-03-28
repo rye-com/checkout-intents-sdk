@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.22.0 (2026-03-28)
+
+Full Changelog: [v0.21.2...v0.22.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.21.2...v0.22.0)
+
+### Features
+
+* Add payment gateway to stainless.yml ([849f16c](https://github.com/rye-com/checkout-intents-sdk/commit/849f16c8ad023ec6d0100ff06b6344464da8bb86))
+
 ## 0.21.2 (2026-03-27)
 
 Full Changelog: [v0.21.1...v0.21.2](https://github.com/rye-com/checkout-intents-sdk/compare/v0.21.1...v0.21.2)
