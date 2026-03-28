@@ -78,6 +78,17 @@ Methods:
 - <code title="get /api/v1/shipments/{id}">client.shipments.<a href="./src/resources/shipments.ts">retrieve</a>(id) -> Shipment</code>
 - <code title="get /api/v1/shipments">client.shipments.<a href="./src/resources/shipments.ts">list</a>({ ...params }) -> ShipmentsCursorPagination</code>
 
+# PaymentGateways
+
+Types:
+
+- <code><a href="./src/resources/payment-gateways.ts">PaymentGateway</a></code>
+- <code><a href="./src/resources/payment-gateways.ts">PaymentGatewaySession</a></code>
+
+Methods:
+
+- <code title="post /api/v1/payment-gateways/{gateway}/session">client.paymentGateways.<a href="./src/resources/payment-gateways.ts">createSession</a>(gateway) -> PaymentGatewaySession</code>
+
 # Billing
 
 Types:

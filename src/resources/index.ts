@@ -25,6 +25,7 @@ export {
   type CheckoutIntentPurchaseParams,
   type CheckoutIntentsCursorPagination,
 } from './checkout-intents/checkout-intents';
+export { PaymentGateways, type PaymentGateway, type PaymentGatewaySession } from './payment-gateways';
 export {
   Products,
   type Product,
