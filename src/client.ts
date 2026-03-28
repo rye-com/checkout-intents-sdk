@@ -27,6 +27,7 @@ import {
   BillingListTransactionsResponsesCursorPagination,
 } from './resources/billing';
 import { BrandRetrieveResponse, Brands } from './resources/brands';
+import { PaymentGateway, PaymentGatewaySession, PaymentGateways } from './resources/payment-gateways';
 import {
   Product,
   ProductAvailability,
@@ -812,6 +813,7 @@ export class CheckoutIntents {
   brands: API.Brands = new API.Brands(this);
   products: API.Products = new API.Products(this);
   shipments: API.Shipments = new API.Shipments(this);
+  paymentGateways: API.PaymentGateways = new API.PaymentGateways(this);
   billing: API.Billing = new API.Billing(this);
 }
 
@@ -820,6 +822,7 @@ CheckoutIntents.Betas = Betas;
 CheckoutIntents.Brands = Brands;
 CheckoutIntents.Products = Products;
 CheckoutIntents.Shipments = Shipments;
+CheckoutIntents.PaymentGateways = PaymentGateways;
 CheckoutIntents.Billing = Billing;
 
 export declare namespace CheckoutIntents {
@@ -869,6 +872,12 @@ export declare namespace CheckoutIntents {
     type ShipmentTracking as ShipmentTracking,
     type ShipmentsCursorPagination as ShipmentsCursorPagination,
     type ShipmentListParams as ShipmentListParams,
+  };
+
+  export {
+    PaymentGateways as PaymentGateways,
+    type PaymentGateway as PaymentGateway,
+    type PaymentGatewaySession as PaymentGatewaySession,
   };
 
   export {
