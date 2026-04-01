@@ -74,6 +74,8 @@ export namespace Shipment {
 
       location: TrackingEvent.Location;
 
+      status: ShipmentsAPI.ShipmentStatus;
+
       timestamp: TrackingEvent.Timestamp | null;
     }
 
@@ -134,6 +136,8 @@ export namespace Shipment {
 
       location: TrackingEvent.Location;
 
+      status: ShipmentsAPI.ShipmentStatus;
+
       timestamp: TrackingEvent.Timestamp | null;
     }
 
@@ -192,6 +196,8 @@ export namespace Shipment {
 
       location: TrackingEvent.Location;
 
+      status: ShipmentsAPI.ShipmentStatus;
+
       timestamp: TrackingEvent.Timestamp | null;
     }
 
@@ -249,6 +255,8 @@ export namespace Shipment {
       description: string | null;
 
       location: TrackingEvent.Location;
+
+      status: ShipmentsAPI.ShipmentStatus;
 
       timestamp: TrackingEvent.Timestamp | null;
     }
