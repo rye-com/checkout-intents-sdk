@@ -501,7 +501,8 @@ export type PaymentMethod =
   | PaymentMethod.BasisTheoryPaymentMethod
   | PaymentMethod.NekudaPaymentMethod
   | PaymentMethod.PravaPaymentMethod
-  | PaymentMethod.DrawdownPaymentMethod;
+  | PaymentMethod.DrawdownPaymentMethod
+  | PaymentMethod.X402PaymentMethod;
 
 export namespace PaymentMethod {
   export interface StripeTokenPaymentMethod {
@@ -535,6 +536,12 @@ export namespace PaymentMethod {
 
   export interface DrawdownPaymentMethod {
     type: 'drawdown';
+  }
+
+  export interface X402PaymentMethod {
+    network: 'base' | 'solana' | 'tempo';
+
+    type: 'x402';
   }
 }
 
