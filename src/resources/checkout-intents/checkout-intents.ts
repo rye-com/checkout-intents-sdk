@@ -324,6 +324,7 @@ export interface Buyer {
 export type CheckoutIntent =
   | CheckoutIntent.RetrievingOfferCheckoutIntent
   | CheckoutIntent.AwaitingConfirmationCheckoutIntent
+  | CheckoutIntent.AwaitingPaymentCheckoutIntent
   | CheckoutIntent.PlacingOrderCheckoutIntent
   | CheckoutIntent.CompletedCheckoutIntent
   | CheckoutIntent.FailedCheckoutIntent;
@@ -339,6 +340,14 @@ export namespace CheckoutIntent {
     state: 'awaiting_confirmation';
 
     paymentMethod?: CheckoutIntentsAPI.PaymentMethod;
+  }
+
+  export interface AwaitingPaymentCheckoutIntent extends CheckoutIntentsAPI.BaseCheckoutIntent {
+    offer: CheckoutIntentsAPI.Offer;
+
+    paymentMethod: CheckoutIntentsAPI.PaymentMethod;
+
+    state: 'awaiting_payment';
   }
 
   export interface PlacingOrderCheckoutIntent extends CheckoutIntentsAPI.BaseCheckoutIntent {
@@ -589,7 +598,14 @@ export namespace CheckoutIntentCreateParams {
 export interface CheckoutIntentListParams extends CursorPaginationParams {
   id?: Array<string>;
 
-  state?: Array<'completed' | 'failed' | 'retrieving_offer' | 'awaiting_confirmation' | 'placing_order'>;
+  state?: Array<
+    | 'completed'
+    | 'failed'
+    | 'retrieving_offer'
+    | 'awaiting_confirmation'
+    | 'awaiting_payment'
+    | 'placing_order'
+  >;
 }
 
 export interface CheckoutIntentAddPaymentParams {
