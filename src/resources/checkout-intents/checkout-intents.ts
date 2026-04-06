@@ -324,7 +324,7 @@ export interface Buyer {
 export type CheckoutIntent =
   | CheckoutIntent.RetrievingOfferCheckoutIntent
   | CheckoutIntent.AwaitingConfirmationCheckoutIntent
-  | CheckoutIntent.AwaitingPaymentCheckoutIntent
+  | CheckoutIntent.RequiresActionCheckoutIntent
   | CheckoutIntent.PlacingOrderCheckoutIntent
   | CheckoutIntent.CompletedCheckoutIntent
   | CheckoutIntent.FailedCheckoutIntent;
@@ -342,12 +342,38 @@ export namespace CheckoutIntent {
     paymentMethod?: CheckoutIntentsAPI.PaymentMethod;
   }
 
-  export interface AwaitingPaymentCheckoutIntent extends CheckoutIntentsAPI.BaseCheckoutIntent {
+  export interface RequiresActionCheckoutIntent extends CheckoutIntentsAPI.BaseCheckoutIntent {
+    nextAction: RequiresActionCheckoutIntent.NextAction;
+
     offer: CheckoutIntentsAPI.Offer;
 
     paymentMethod: CheckoutIntentsAPI.PaymentMethod;
 
-    state: 'awaiting_payment';
+    state: 'requires_action';
+  }
+
+  export namespace RequiresActionCheckoutIntent {
+    export interface NextAction {
+      type: 'x402';
+
+      x402: NextAction.X402;
+    }
+
+    export namespace NextAction {
+      export interface X402 {
+        currency: 'USDC';
+
+        expiresAt: string;
+
+        maxAmountRequired: string;
+
+        network: string;
+
+        recipient: string;
+
+        scheme: 'exact';
+      }
+    }
   }
 
   export interface PlacingOrderCheckoutIntent extends CheckoutIntentsAPI.BaseCheckoutIntent {
@@ -603,7 +629,7 @@ export interface CheckoutIntentListParams extends CursorPaginationParams {
     | 'failed'
     | 'retrieving_offer'
     | 'awaiting_confirmation'
-    | 'awaiting_payment'
+    | 'requires_action'
     | 'placing_order'
   >;
 }
