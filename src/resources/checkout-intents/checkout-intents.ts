@@ -319,6 +319,7 @@ export namespace CheckoutIntent {
        * Type derived from runtime array - always in sync
        */
       code:
+        | 'unknown'
         | 'checkout_intent_expired'
         | 'payment_failed'
         | 'insufficient_stock'
@@ -339,8 +340,7 @@ export namespace CheckoutIntent {
         | 'bot_protection_blocked'
         | 'constraint_total_price_exceeded'
         | 'constraint_shipping_cost_exceeded'
-        | 'promo_code_discovery_not_enabled'
-        | 'unknown';
+        | 'promo_code_discovery_not_enabled';
 
       message: string;
     }
