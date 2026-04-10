@@ -93,10 +93,13 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/billing.ts">BillingCreateTopupInvoiceResponse</a></code>
 - <code><a href="./src/resources/billing.ts">BillingGetBalanceResponse</a></code>
 - <code><a href="./src/resources/billing.ts">BillingListTransactionsResponse</a></code>
 
 Methods:
 
+- <code title="delete /api/v1/billing/drawdown/topup/{invoiceId}">client.billing.<a href="./src/resources/billing.ts">cancelTopupInvoice</a>(invoiceID) -> void</code>
+- <code title="post /api/v1/billing/drawdown/topup">client.billing.<a href="./src/resources/billing.ts">createTopupInvoice</a>({ ...params }) -> BillingCreateTopupInvoiceResponse</code>
 - <code title="get /api/v1/billing/balance">client.billing.<a href="./src/resources/billing.ts">getBalance</a>() -> BillingGetBalanceResponse</code>
 - <code title="get /api/v1/billing/transactions">client.billing.<a href="./src/resources/billing.ts">listTransactions</a>({ ...params }) -> BillingListTransactionsResponsesCursorPagination</code>

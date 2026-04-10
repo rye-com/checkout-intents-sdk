@@ -21,6 +21,8 @@ import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
 import {
   Billing,
+  BillingCreateTopupInvoiceParams,
+  BillingCreateTopupInvoiceResponse,
   BillingGetBalanceResponse,
   BillingListTransactionsParams,
   BillingListTransactionsResponse,
@@ -904,9 +906,11 @@ export declare namespace CheckoutIntents {
 
   export {
     Billing as Billing,
+    type BillingCreateTopupInvoiceResponse as BillingCreateTopupInvoiceResponse,
     type BillingGetBalanceResponse as BillingGetBalanceResponse,
     type BillingListTransactionsResponse as BillingListTransactionsResponse,
     type BillingListTransactionsResponsesCursorPagination as BillingListTransactionsResponsesCursorPagination,
+    type BillingCreateTopupInvoiceParams as BillingCreateTopupInvoiceParams,
     type BillingListTransactionsParams as BillingListTransactionsParams,
   };
 }
