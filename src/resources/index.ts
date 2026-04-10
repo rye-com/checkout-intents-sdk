@@ -3,8 +3,10 @@
 export { Betas, type CheckoutSession } from './betas/betas';
 export {
   Billing,
+  type BillingCreateTopupInvoiceResponse,
   type BillingGetBalanceResponse,
   type BillingListTransactionsResponse,
+  type BillingCreateTopupInvoiceParams,
   type BillingListTransactionsParams,
   type BillingListTransactionsResponsesCursorPagination,
 } from './billing';

@@ -9,6 +9,38 @@ const client = new CheckoutIntents({
 
 describe('resource billing', () => {
   // Mock server tests are disabled
+  test.skip('cancelTopupInvoice', async () => {
+    const responsePromise = client.billing.cancelTopupInvoice('invoiceId');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Mock server tests are disabled
+  test.skip('createTopupInvoice: only required params', async () => {
+    const responsePromise = client.billing.createTopupInvoice({ amountSubunits: 500000 });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Mock server tests are disabled
+  test.skip('createTopupInvoice: required and optional params', async () => {
+    const response = await client.billing.createTopupInvoice({
+      amountSubunits: 500000,
+      chargeAutomatically: false,
+    });
+  });
+
+  // Mock server tests are disabled
   test.skip('getBalance', async () => {
     const responsePromise = client.billing.getBalance();
     const rawResponse = await responsePromise.asResponse();
