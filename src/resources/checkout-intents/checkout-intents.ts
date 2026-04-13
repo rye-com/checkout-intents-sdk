@@ -340,7 +340,8 @@ export namespace CheckoutIntent {
         | 'bot_protection_blocked'
         | 'constraint_total_price_exceeded'
         | 'constraint_shipping_cost_exceeded'
-        | 'promo_code_discovery_not_enabled';
+        | 'promo_code_discovery_not_enabled'
+        | 'product_not_found';
 
       message: string;
     }
