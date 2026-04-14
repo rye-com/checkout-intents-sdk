@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.24.0 (2026-04-14)
+
+Full Changelog: [v0.23.0...v0.24.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.23.0...v0.24.0)
+
+### Features
+
+* Add clearer product-not-found error for ASIN 404s ([1029bb3](https://github.com/rye-com/checkout-intents-sdk/commit/1029bb3e65b5254492d588fe52724a5b362c2d90))
+* **api:** manual updates ([4e6e77a](https://github.com/rye-com/checkout-intents-sdk/commit/4e6e77a607624dccfcdcc862b854431062a0bdef))
+* **api:** manual updates ([81cd8a0](https://github.com/rye-com/checkout-intents-sdk/commit/81cd8a0f96b2284db7c9053721e41571e323fa42))
+* **billing:** add DELETE /billing/drawdown/topup/:invoiceId endpoint ([b25e4c7](https://github.com/rye-com/checkout-intents-sdk/commit/b25e4c7e03693a9e91e715831329b8bf466da62b))
+* Fix TSOA spec generation by adding ci-billing path mapping ([c53150b](https://github.com/rye-com/checkout-intents-sdk/commit/c53150bca7d441fe1b13dde046dcf1e556e73182))
+* Gate x402 payments behind Hypertune feature flag ([7845e8f](https://github.com/rye-com/checkout-intents-sdk/commit/7845e8fbdd0981edfb6b5d66fdac1827f08c84ca))
+
+
+### Chores
+
+* **internal:** codegen related update ([c4d797f](https://github.com/rye-com/checkout-intents-sdk/commit/c4d797f850cf940a7547b2475b6d6f08015999c8))
+* **internal:** codegen related update ([0a7fa69](https://github.com/rye-com/checkout-intents-sdk/commit/0a7fa69c960ebcd8d186207aaa86f7a992fab20c))
+
 ## 0.23.0 (2026-04-01)
 
 Full Changelog: [v0.22.0...v0.23.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.22.0...v0.23.0)
