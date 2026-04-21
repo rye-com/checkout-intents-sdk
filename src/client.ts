@@ -29,6 +29,7 @@ import {
   BillingListTransactionsResponsesCursorPagination,
 } from './resources/billing';
 import { BrandRetrieveResponse, Brands } from './resources/brands';
+import { Event, EventListParams, Events, EventsCursorPagination } from './resources/events';
 import { PaymentGateway, PaymentGatewaySession, PaymentGateways } from './resources/payment-gateways';
 import {
   Product,
@@ -817,6 +818,7 @@ export class CheckoutIntents {
   shipments: API.Shipments = new API.Shipments(this);
   paymentGateways: API.PaymentGateways = new API.PaymentGateways(this);
   billing: API.Billing = new API.Billing(this);
+  events: API.Events = new API.Events(this);
 }
 
 CheckoutIntents.CheckoutIntentsResource = CheckoutIntentsResource;
@@ -826,6 +828,7 @@ CheckoutIntents.Products = Products;
 CheckoutIntents.Shipments = Shipments;
 CheckoutIntents.PaymentGateways = PaymentGateways;
 CheckoutIntents.Billing = Billing;
+CheckoutIntents.Events = Events;
 
 export declare namespace CheckoutIntents {
   export type RequestOptions = Opts.RequestOptions;
@@ -890,5 +893,12 @@ export declare namespace CheckoutIntents {
     type BillingListTransactionsResponsesCursorPagination as BillingListTransactionsResponsesCursorPagination,
     type BillingCreateTopupInvoiceParams as BillingCreateTopupInvoiceParams,
     type BillingListTransactionsParams as BillingListTransactionsParams,
+  };
+
+  export {
+    Events as Events,
+    type Event as Event,
+    type EventsCursorPagination as EventsCursorPagination,
+    type EventListParams as EventListParams,
   };
 }
