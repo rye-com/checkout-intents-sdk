@@ -27,7 +27,6 @@ export {
   type CheckoutIntentPurchaseParams,
   type CheckoutIntentsCursorPagination,
 } from './checkout-intents/checkout-intents';
-export { Events, type Event, type EventListParams, type EventsCursorPagination } from './events';
 export { PaymentGateways, type PaymentGateway, type PaymentGatewaySession } from './payment-gateways';
 export {
   Products,
