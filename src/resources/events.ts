@@ -60,7 +60,8 @@ export interface Event {
     | 'checkout_intent.completed'
     | 'checkout_intent.order_failed'
     | 'shipment.created'
-    | 'shipment.updated';
+    | 'shipment.updated'
+    | 'webhook_endpoint.verification_challenge';
 }
 
 export namespace Event {
@@ -78,7 +79,7 @@ export namespace Event {
     /**
      * Type of the object which triggered the event.
      */
-    type: 'checkout_intent' | 'shipment';
+    type: 'checkout_intent' | 'shipment' | 'webhook_endpoint';
   }
 }
 
