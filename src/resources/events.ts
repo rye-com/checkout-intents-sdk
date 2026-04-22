@@ -5,6 +5,7 @@ import { APIPromise } from '../core/api-promise';
 import { CursorPagination, type CursorPaginationParams, PagePromise } from '../core/pagination';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
+import { unwrapEvent } from '../lib/events';
 
 export class Events extends APIResource {
   /**
@@ -22,6 +23,19 @@ export class Events extends APIResource {
     options?: RequestOptions,
   ): PagePromise<EventsCursorPagination, Event> {
     return this._client.getAPIList('/api/v1/events', CursorPagination<Event>, { query, ...options });
+  }
+
+  /**
+   * Verifies the webhook signature and parses the payload into an Event.
+   *
+   * @param body - The raw request body as a string or ArrayBuffer. Must be the exact bytes received; do not modify.
+   * @param signatureHeader - The value of the `x-rye-signature` HTTP header.
+   * @param secret - Your webhook secret key (typically from the `RYE_HMAC_SECRET_KEY` environment variable).
+   * @returns The parsed Event if the signature is valid.
+   * @throws WebhookSignatureVerificationError if the signature is missing, malformed, or invalid.
+   */
+  unwrap(body: string | ArrayBuffer, signatureHeader: string | null, secret: string): Promise<Event> {
+    return unwrapEvent(body, signatureHeader, secret);
   }
 }
 

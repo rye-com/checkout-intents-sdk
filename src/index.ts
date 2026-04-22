@@ -21,5 +21,5 @@ export {
   PermissionDeniedError,
   UnprocessableEntityError,
 } from './core/error';
-export { PollTimeoutError } from './lib/errors';
+export { PollTimeoutError, WebhookSignatureVerificationError } from './lib/errors';
 export type { PollOptions } from './lib/polling';

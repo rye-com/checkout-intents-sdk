@@ -5,6 +5,12 @@
 
 import { CheckoutIntentsError } from '../core/error';
 
+export class WebhookSignatureVerificationError extends CheckoutIntentsError {
+  constructor(message: string) {
+    super(message);
+  }
+}
+
 export class PollTimeoutError extends CheckoutIntentsError {
   /** The checkout intent ID that was being polled */
   readonly intentId: string;
