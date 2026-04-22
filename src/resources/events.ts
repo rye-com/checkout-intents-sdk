@@ -5,7 +5,7 @@ import { APIPromise } from '../core/api-promise';
 import { CursorPagination, type CursorPaginationParams, PagePromise } from '../core/pagination';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
-import { unwrapEvent } from '../helpers/events';
+import { unwrapEvent } from '../lib/events';
 
 export class Events extends APIResource {
   /**
