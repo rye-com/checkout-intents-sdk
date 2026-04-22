@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.25.0 (2026-04-22)
+
+Full Changelog: [v0.24.0...v0.25.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.24.0...v0.25.0)
+
+### Features
+
+* Add `events.unwrap()` for webhook signature verification ([ac3a635](https://github.com/rye-com/checkout-intents-sdk/commit/ac3a63523f9c99b8b678ee7034d3963a2941ff76))
+* Add `webhook_endpoint.verification_challenge` event type ([9025061](https://github.com/rye-com/checkout-intents-sdk/commit/9025061b625f299df75c68abe916da1b87f1762a))
+* Add events endpoints ([0be5cb8](https://github.com/rye-com/checkout-intents-sdk/commit/0be5cb873f8990088245774a62ad912589fc6879))
+* **api:** add events endpoints ([0eae35a](https://github.com/rye-com/checkout-intents-sdk/commit/0eae35a074247ef5b62c22870c320156466cf729))
+
+
+### Chores
+
+* **internal:** improvements ([ee54354](https://github.com/rye-com/checkout-intents-sdk/commit/ee54354d5776fe7514360e40205ec95eec298959))
+
+
+### Refactors
+
+* Move event helpers to lib/ ([a67d926](https://github.com/rye-com/checkout-intents-sdk/commit/a67d9267a4507d6424802f10e4ae8caa78ecb35f))
+
 ## 0.24.0 (2026-04-14)
 
 Full Changelog: [v0.23.0...v0.24.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.23.0...v0.24.0)
