@@ -61,7 +61,17 @@ export interface Event {
     | 'checkout_intent.order_failed'
     | 'shipment.created'
     | 'shipment.updated'
+    | 'product.updated'
+    | 'product.removed'
     | 'webhook_endpoint.verification_challenge';
+
+  /**
+   * The event data payload. The concrete shape depends on `source.type`.
+   *
+   * Refer to [webhook event types](https://docs.rye.com/api-v2/webhooks/types) for
+   * the payload shape associated with each `source.type`.
+   */
+  data?: { [key: string]: unknown };
 }
 
 export namespace Event {
@@ -79,7 +89,7 @@ export namespace Event {
     /**
      * Type of the object which triggered the event.
      */
-    type: 'checkout_intent' | 'shipment' | 'webhook_endpoint';
+    type: 'checkout_intent' | 'shipment' | 'product' | 'webhook_endpoint';
   }
 }
 
