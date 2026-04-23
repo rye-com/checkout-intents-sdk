@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.26.0 (2026-04-23)
+
+Full Changelog: [v0.25.0...v0.26.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.25.0...v0.26.0)
+
+### Features
+
+* **api:** add new data field to event type ([fd81931](https://github.com/rye-com/checkout-intents-sdk/commit/fd81931d172ede041dc774469d2cc33419397f3d))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([6b2fdc1](https://github.com/rye-com/checkout-intents-sdk/commit/6b2fdc1bd84407585bb31af158292beef874fa5d))
+
 ## 0.25.0 (2026-04-22)
 
 Full Changelog: [v0.24.0...v0.25.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.24.0...v0.25.0)
