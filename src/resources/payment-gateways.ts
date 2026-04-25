@@ -19,7 +19,7 @@ export class PaymentGateways extends APIResource {
   }
 }
 
-export type PaymentGateway = 'basis-theory';
+export type PaymentGateway = 'basis-theory'
 
 export interface PaymentGatewaySession {
   container: string;
@@ -30,5 +30,8 @@ export interface PaymentGatewaySession {
 }
 
 export declare namespace PaymentGateways {
-  export { type PaymentGateway as PaymentGateway, type PaymentGatewaySession as PaymentGatewaySession };
+  export {
+    type PaymentGateway as PaymentGateway,
+    type PaymentGatewaySession as PaymentGatewaySession
+  };
 }
