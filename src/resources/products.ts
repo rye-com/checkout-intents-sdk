@@ -58,7 +58,7 @@ export interface Product {
  * - `backorder`: Product is temporarily out of stock but can be ordered
  * - `unknown`: Availability could not be determined
  */
-export type ProductAvailability = 'in_stock' | 'out_of_stock' | 'preorder' | 'backorder' | 'unknown';
+export type ProductAvailability = 'in_stock' | 'out_of_stock' | 'preorder' | 'backorder' | 'unknown'
 
 export interface ProductImage {
   isFeatured: boolean;
@@ -108,6 +108,6 @@ export declare namespace Products {
     type ProductImage as ProductImage,
     type ProductVariant as ProductVariant,
     type VariantDimension as VariantDimension,
-    type ProductLookupParams as ProductLookupParams,
+    type ProductLookupParams as ProductLookupParams
   };
 }
