@@ -87,8 +87,7 @@ export class PagePromise<
     super(
       client,
       request,
-      async (client, props) =>
-        new Page(client, props.response, await defaultParseResponse(client, props), props.options),
+      async (client, props) => new Page(client, props.response, await defaultParseResponse(client, props), props.options)
     );
   }
 
@@ -138,12 +137,7 @@ export class CursorPagination<Item> extends AbstractPage<Item> implements Cursor
 
   pageInfo: CursorPaginationResponse.PageInfo;
 
-  constructor(
-    client: CheckoutIntents,
-    response: Response,
-    body: CursorPaginationResponse<Item>,
-    options: FinalRequestOptions,
-  ) {
+  constructor(client: CheckoutIntents, response: Response, body: CursorPaginationResponse<Item>, options: FinalRequestOptions) {
     super(client, response, body, options);
 
     this.data = body.data || [];
@@ -157,7 +151,7 @@ export class CursorPagination<Item> extends AbstractPage<Item> implements Cursor
   nextPageRequestOptions(): PageRequestOptions | null {
     if ((this.options.query as Record<string, unknown>)?.['before']) {
       // in reverse
-      const startCursor = this.pageInfo?.startCursor;
+      const startCursor = this.pageInfo?.startCursor
       if (!startCursor) {
         return null;
       }
@@ -171,7 +165,7 @@ export class CursorPagination<Item> extends AbstractPage<Item> implements Cursor
       };
     }
 
-    const cursor = this.pageInfo?.endCursor;
+    const cursor = this.pageInfo?.endCursor
     if (!cursor) {
       return null;
     }

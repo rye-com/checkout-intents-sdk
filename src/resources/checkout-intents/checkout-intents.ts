@@ -67,14 +67,8 @@ export class CheckoutIntentsResource extends APIResource {
    * }
    * ```
    */
-  list(
-    query: CheckoutIntentListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<CheckoutIntentsCursorPagination, CheckoutIntent> {
-    return this._client.getAPIList('/api/v1/checkout-intents', CursorPagination<CheckoutIntent>, {
-      query,
-      ...options,
-    });
+  list(query: CheckoutIntentListParams | null | undefined = {}, options?: RequestOptions): PagePromise<CheckoutIntentsCursorPagination, CheckoutIntent> {
+    return this._client.getAPIList('/api/v1/checkout-intents', CursorPagination<CheckoutIntent>, { query, ...options });
   }
 
   /**
@@ -91,11 +85,7 @@ export class CheckoutIntentsResource extends APIResource {
    *   });
    * ```
    */
-  addPayment(
-    id: string,
-    body: CheckoutIntentAddPaymentParams,
-    options?: RequestOptions,
-  ): APIPromise<CheckoutIntent> {
+  addPayment(id: string, body: CheckoutIntentAddPaymentParams, options?: RequestOptions): APIPromise<CheckoutIntent> {
     return this._client.post(path`/api/v1/checkout-intents/${id}/payment`, { body, ...options });
   }
 
@@ -118,11 +108,7 @@ export class CheckoutIntentsResource extends APIResource {
    * );
    * ```
    */
-  confirm(
-    id: string,
-    body: CheckoutIntentConfirmParams,
-    options?: RequestOptions,
-  ): APIPromise<CheckoutIntent> {
+  confirm(id: string, body: CheckoutIntentConfirmParams, options?: RequestOptions): APIPromise<CheckoutIntent> {
     return this._client.post(path`/api/v1/checkout-intents/${id}/confirm`, { body, ...options });
   }
 
@@ -162,7 +148,7 @@ export class CheckoutIntentsResource extends APIResource {
   }
 }
 
-export type CheckoutIntentsCursorPagination = CursorPagination<CheckoutIntent>;
+export type CheckoutIntentsCursorPagination = CursorPagination<CheckoutIntent>
 
 export interface BaseCheckoutIntent {
   id: string;
@@ -225,13 +211,7 @@ export interface Buyer {
   address2?: string;
 }
 
-export type CheckoutIntent =
-  | CheckoutIntent.RetrievingOfferCheckoutIntent
-  | CheckoutIntent.AwaitingConfirmationCheckoutIntent
-  | CheckoutIntent.RequiresActionCheckoutIntent
-  | CheckoutIntent.PlacingOrderCheckoutIntent
-  | CheckoutIntent.CompletedCheckoutIntent
-  | CheckoutIntent.FailedCheckoutIntent;
+export type CheckoutIntent = CheckoutIntent.RetrievingOfferCheckoutIntent | CheckoutIntent.AwaitingConfirmationCheckoutIntent | CheckoutIntent.RequiresActionCheckoutIntent | CheckoutIntent.PlacingOrderCheckoutIntent | CheckoutIntent.CompletedCheckoutIntent | CheckoutIntent.FailedCheckoutIntent
 
 export namespace CheckoutIntent {
   export interface RetrievingOfferCheckoutIntent extends CheckoutIntentsAPI.BaseCheckoutIntent {
@@ -318,30 +298,7 @@ export namespace CheckoutIntent {
       /**
        * Type derived from runtime array - always in sync
        */
-      code:
-        | 'unknown'
-        | 'checkout_intent_expired'
-        | 'payment_failed'
-        | 'insufficient_stock'
-        | 'product_out_of_stock'
-        | 'offer_retrieval_failed'
-        | 'order_placement_failed'
-        | 'developer_not_found'
-        | 'missing_shipping_method'
-        | 'unsupported_currency'
-        | 'invalid_input'
-        | 'incorrect_cost_breakdown'
-        | 'unsupported_store_no_guest_checkout'
-        | 'workflow_invocation_failed'
-        | 'variant_selections_invalid'
-        | 'variant_selections_required'
-        | 'form_validation_error'
-        | 'captcha_blocked'
-        | 'bot_protection_blocked'
-        | 'constraint_total_price_exceeded'
-        | 'constraint_shipping_cost_exceeded'
-        | 'promo_code_discovery_not_enabled'
-        | 'product_not_found';
+      code: 'unknown' | 'checkout_intent_expired' | 'payment_failed' | 'insufficient_stock' | 'product_out_of_stock' | 'offer_retrieval_failed' | 'order_placement_failed' | 'developer_not_found' | 'missing_shipping_method' | 'unsupported_currency' | 'invalid_input' | 'incorrect_cost_breakdown' | 'unsupported_store_no_guest_checkout' | 'workflow_invocation_failed' | 'variant_selections_invalid' | 'variant_selections_required' | 'form_validation_error' | 'captcha_blocked' | 'bot_protection_blocked' | 'constraint_total_price_exceeded' | 'constraint_shipping_cost_exceeded' | 'promo_code_discovery_not_enabled' | 'product_not_found';
 
       message: string;
     }
@@ -436,13 +393,7 @@ export namespace Offer {
   }
 }
 
-export type PaymentMethod =
-  | PaymentMethod.StripeTokenPaymentMethod
-  | PaymentMethod.BasisTheoryPaymentMethod
-  | PaymentMethod.NekudaPaymentMethod
-  | PaymentMethod.PravaPaymentMethod
-  | PaymentMethod.DrawdownPaymentMethod
-  | PaymentMethod.X402PaymentMethod;
+export type PaymentMethod = PaymentMethod.StripeTokenPaymentMethod | PaymentMethod.BasisTheoryPaymentMethod | PaymentMethod.NekudaPaymentMethod | PaymentMethod.PravaPaymentMethod | PaymentMethod.DrawdownPaymentMethod | PaymentMethod.X402PaymentMethod
 
 export namespace PaymentMethod {
   export interface StripeTokenPaymentMethod {
@@ -529,14 +480,7 @@ export namespace CheckoutIntentCreateParams {
 export interface CheckoutIntentListParams extends CursorPaginationParams {
   id?: Array<string>;
 
-  state?: Array<
-    | 'completed'
-    | 'failed'
-    | 'retrieving_offer'
-    | 'awaiting_confirmation'
-    | 'requires_action'
-    | 'placing_order'
-  >;
+  state?: Array<'completed' | 'failed' | 'retrieving_offer' | 'awaiting_confirmation' | 'requires_action' | 'placing_order'>;
 }
 
 export interface CheckoutIntentAddPaymentParams {
@@ -600,8 +544,11 @@ export declare namespace CheckoutIntentsResource {
     type CheckoutIntentListParams as CheckoutIntentListParams,
     type CheckoutIntentAddPaymentParams as CheckoutIntentAddPaymentParams,
     type CheckoutIntentConfirmParams as CheckoutIntentConfirmParams,
-    type CheckoutIntentPurchaseParams as CheckoutIntentPurchaseParams,
+    type CheckoutIntentPurchaseParams as CheckoutIntentPurchaseParams
   };
 
-  export { Shipments as Shipments, type ShipmentListParams as ShipmentListParams };
+  export {
+    Shipments as Shipments,
+    type ShipmentListParams as ShipmentListParams
+  };
 }
