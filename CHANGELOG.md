@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.27.0 (2026-04-27)
+
+Full Changelog: [v0.26.0...v0.27.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.26.0...v0.27.0)
+
+### Features
+
+* Expose `retailer` field ([03b0587](https://github.com/rye-com/checkout-intents-sdk/commit/03b0587709f83235129a0f99c1ce3f2d852d0d8a))
+
+
+### Chores
+
+* **formatter:** run prettier and eslint separately ([e1061d9](https://github.com/rye-com/checkout-intents-sdk/commit/e1061d984f75c340227eb7ec95078dae7b6c8b22))
+
 ## 0.26.0 (2026-04-23)
 
 Full Changelog: [v0.25.0...v0.26.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.25.0...v0.26.0)
