@@ -19,10 +19,7 @@ export class Billing extends APIResource {
    * ```
    */
   cancelTopupInvoice(invoiceID: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/api/v1/billing/drawdown/topup/${invoiceID}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/api/v1/billing/drawdown/topup/${invoiceID}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -36,10 +33,7 @@ export class Billing extends APIResource {
    * });
    * ```
    */
-  createTopupInvoice(
-    body: BillingCreateTopupInvoiceParams,
-    options?: RequestOptions,
-  ): APIPromise<BillingCreateTopupInvoiceResponse> {
+  createTopupInvoice(body: BillingCreateTopupInvoiceParams, options?: RequestOptions): APIPromise<BillingCreateTopupInvoiceResponse> {
     return this._client.post('/api/v1/billing/drawdown/topup', { body, ...options });
   }
 
@@ -66,20 +60,12 @@ export class Billing extends APIResource {
    * }
    * ```
    */
-  listTransactions(
-    query: BillingListTransactionsParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<BillingListTransactionsResponsesCursorPagination, BillingListTransactionsResponse> {
-    return this._client.getAPIList(
-      '/api/v1/billing/transactions',
-      CursorPagination<BillingListTransactionsResponse>,
-      { query, ...options },
-    );
+  listTransactions(query: BillingListTransactionsParams | null | undefined = {}, options?: RequestOptions): PagePromise<BillingListTransactionsResponsesCursorPagination, BillingListTransactionsResponse> {
+    return this._client.getAPIList('/api/v1/billing/transactions', CursorPagination<BillingListTransactionsResponse>, { query, ...options });
   }
 }
 
-export type BillingListTransactionsResponsesCursorPagination =
-  CursorPagination<BillingListTransactionsResponse>;
+export type BillingListTransactionsResponsesCursorPagination = CursorPagination<BillingListTransactionsResponse>
 
 export interface BillingCreateTopupInvoiceResponse {
   id: string;
@@ -148,7 +134,8 @@ export interface BillingCreateTopupInvoiceParams {
   chargeAutomatically?: boolean;
 }
 
-export interface BillingListTransactionsParams extends CursorPaginationParams {}
+export interface BillingListTransactionsParams extends CursorPaginationParams {
+}
 
 export declare namespace Billing {
   export {
@@ -157,6 +144,6 @@ export declare namespace Billing {
     type BillingListTransactionsResponse as BillingListTransactionsResponse,
     type BillingListTransactionsResponsesCursorPagination as BillingListTransactionsResponsesCursorPagination,
     type BillingCreateTopupInvoiceParams as BillingCreateTopupInvoiceParams,
-    type BillingListTransactionsParams as BillingListTransactionsParams,
+    type BillingListTransactionsParams as BillingListTransactionsParams
   };
 }

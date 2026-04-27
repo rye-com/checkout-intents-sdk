@@ -99,5 +99,7 @@ export namespace CheckoutSessionCreateParams {
 }
 
 export declare namespace CheckoutSessions {
-  export { type CheckoutSessionCreateParams as CheckoutSessionCreateParams };
+  export {
+    type CheckoutSessionCreateParams as CheckoutSessionCreateParams
+  };
 }
