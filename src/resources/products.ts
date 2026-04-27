@@ -40,6 +40,8 @@ export interface Product {
 
   price: CheckoutIntentsAPI.Money;
 
+  retailer: string | null;
+
   sku: string | null;
 
   url: string;
