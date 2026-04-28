@@ -5,7 +5,9 @@ import * as CheckoutSessionsAPI from './checkout-sessions';
 import { CheckoutSessionCreateParams, CheckoutSessions } from './checkout-sessions';
 
 export class Betas extends APIResource {
-  checkoutSessions: CheckoutSessionsAPI.CheckoutSessions = new CheckoutSessionsAPI.CheckoutSessions(this._client);
+  checkoutSessions: CheckoutSessionsAPI.CheckoutSessions = new CheckoutSessionsAPI.CheckoutSessions(
+    this._client,
+  );
 }
 
 /**
@@ -26,12 +28,10 @@ export interface CheckoutSession {
 Betas.CheckoutSessions = CheckoutSessions;
 
 export declare namespace Betas {
-  export {
-    type CheckoutSession as CheckoutSession
-  };
+  export { type CheckoutSession as CheckoutSession };
 
   export {
     CheckoutSessions as CheckoutSessions,
-    type CheckoutSessionCreateParams as CheckoutSessionCreateParams
+    type CheckoutSessionCreateParams as CheckoutSessionCreateParams,
   };
 }

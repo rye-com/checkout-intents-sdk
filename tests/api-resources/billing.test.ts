@@ -2,7 +2,10 @@
 
 import CheckoutIntents from 'checkout-intents';
 
-const client = new CheckoutIntents({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
+const client = new CheckoutIntents({
+  apiKey: 'My API Key',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+});
 
 describe('resource billing', () => {
   // Mock server tests are disabled
@@ -31,7 +34,10 @@ describe('resource billing', () => {
 
   // Mock server tests are disabled
   test.skip('createTopupInvoice: required and optional params', async () => {
-    const response = await client.billing.createTopupInvoice({ amountSubunits: 500000, chargeAutomatically: false });
+    const response = await client.billing.createTopupInvoice({
+      amountSubunits: 500000,
+      chargeAutomatically: false,
+    });
   });
 
   // Mock server tests are disabled
@@ -61,12 +67,15 @@ describe('resource billing', () => {
   // Mock server tests are disabled
   test.skip('listTransactions: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.billing.listTransactions({
-    after: 'after',
-    before: 'before',
-    limit: 1,
-  }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(CheckoutIntents.NotFoundError);
+    await expect(
+      client.billing.listTransactions(
+        {
+          after: 'after',
+          before: 'before',
+          limit: 1,
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(CheckoutIntents.NotFoundError);
   });
 });
