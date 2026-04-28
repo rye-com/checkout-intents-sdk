@@ -23,14 +23,23 @@ export class Shipments extends APIResource {
    * Enables developers to query shipments associated with their account, with
    * filters and cursor-based pagination.
    */
-  list(query: ShipmentListParams | null | undefined = {}, options?: RequestOptions): PagePromise<ShipmentsCursorPagination, Shipment> {
+  list(
+    query: ShipmentListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<ShipmentsCursorPagination, Shipment> {
     return this._client.getAPIList('/api/v1/shipments', CursorPagination<Shipment>, { query, ...options });
   }
 }
 
-export type ShipmentsCursorPagination = CursorPagination<Shipment>
+export type ShipmentsCursorPagination = CursorPagination<Shipment>;
 
-export type Shipment = Shipment.WithStatusBaseShipmentWithTrackingShipped | Shipment.DeliveredShipment | Shipment.WithStatusBaseShipmentWithTrackingDelayed | Shipment.WithStatusBaseShipmentWithTrackingOutForDelivery | Shipment.WithStatusBaseShipmentOrdered | Shipment.WithStatusBaseShipmentCanceled
+export type Shipment =
+  | Shipment.WithStatusBaseShipmentWithTrackingShipped
+  | Shipment.DeliveredShipment
+  | Shipment.WithStatusBaseShipmentWithTrackingDelayed
+  | Shipment.WithStatusBaseShipmentWithTrackingOutForDelivery
+  | Shipment.WithStatusBaseShipmentOrdered
+  | Shipment.WithStatusBaseShipmentCanceled;
 
 export namespace Shipment {
   export interface WithStatusBaseShipmentWithTrackingShipped {
@@ -304,7 +313,13 @@ export namespace Shipment {
   }
 }
 
-export type ShipmentStatus = 'out_for_delivery' | 'delivered' | 'shipped' | 'canceled' | 'delayed' | 'ordered'
+export type ShipmentStatus =
+  | 'out_for_delivery'
+  | 'delivered'
+  | 'shipped'
+  | 'canceled'
+  | 'delayed'
+  | 'ordered';
 
 export interface ShipmentTracking {
   number: string | null;
@@ -334,6 +349,6 @@ export declare namespace Shipments {
     type ShipmentStatus as ShipmentStatus,
     type ShipmentTracking as ShipmentTracking,
     type ShipmentsCursorPagination as ShipmentsCursorPagination,
-    type ShipmentListParams as ShipmentListParams
+    type ShipmentListParams as ShipmentListParams,
   };
 }
