@@ -36,7 +36,5 @@ export interface BrandRetrieveResponse {
 }
 
 export declare namespace Brands {
-  export {
-    type BrandRetrieveResponse as BrandRetrieveResponse
-  };
+  export { type BrandRetrieveResponse as BrandRetrieveResponse };
 }
