@@ -21,18 +21,23 @@ export class Shipments extends APIResource {
    * }
    * ```
    */
-  list(id: string, query: ShipmentListParams | null | undefined = {}, options?: RequestOptions): PagePromise<ShipmentsCursorPagination, ShipmentsAPI.Shipment> {
-    return this._client.getAPIList(path`/api/v1/checkout-intents/${id}/shipments`, CursorPagination<ShipmentsAPI.Shipment>, { query, ...options });
+  list(
+    id: string,
+    query: ShipmentListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<ShipmentsCursorPagination, ShipmentsAPI.Shipment> {
+    return this._client.getAPIList(
+      path`/api/v1/checkout-intents/${id}/shipments`,
+      CursorPagination<ShipmentsAPI.Shipment>,
+      { query, ...options },
+    );
   }
 }
 
-export interface ShipmentListParams extends CursorPaginationParams {
-}
+export interface ShipmentListParams extends CursorPaginationParams {}
 
 export declare namespace Shipments {
-  export {
-    type ShipmentListParams as ShipmentListParams
-  };
+  export { type ShipmentListParams as ShipmentListParams };
 }
 
-export { type ShipmentsCursorPagination }
+export { type ShipmentsCursorPagination };

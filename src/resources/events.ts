@@ -17,12 +17,15 @@ export class Events extends APIResource {
   /**
    * Retrieve a paginated list of events.
    */
-  list(query: EventListParams | null | undefined = {}, options?: RequestOptions): PagePromise<EventsCursorPagination, Event> {
+  list(
+    query: EventListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<EventsCursorPagination, Event> {
     return this._client.getAPIList('/api/v1/events', CursorPagination<Event>, { query, ...options });
   }
 }
 
-export type EventsCursorPagination = CursorPagination<Event>
+export type EventsCursorPagination = CursorPagination<Event>;
 
 export interface Event {
   /**
@@ -51,7 +54,16 @@ export interface Event {
    * Refer to [types of events](https://docs.rye.com/api-v2/webhooks/types) for a
    * list of possible values.
    */
-  type: 'checkout_intent.offer_retrieved' | 'checkout_intent.offer_failed' | 'checkout_intent.completed' | 'checkout_intent.order_failed' | 'shipment.created' | 'shipment.updated' | 'product.updated' | 'product.removed' | 'webhook_endpoint.verification_challenge';
+  type:
+    | 'checkout_intent.offer_retrieved'
+    | 'checkout_intent.offer_failed'
+    | 'checkout_intent.completed'
+    | 'checkout_intent.order_failed'
+    | 'shipment.created'
+    | 'shipment.updated'
+    | 'product.updated'
+    | 'product.removed'
+    | 'webhook_endpoint.verification_challenge';
 
   /**
    * The event data payload. The concrete shape depends on `source.type`.
@@ -81,13 +93,12 @@ export namespace Event {
   }
 }
 
-export interface EventListParams extends CursorPaginationParams {
-}
+export interface EventListParams extends CursorPaginationParams {}
 
 export declare namespace Events {
   export {
     type Event as Event,
     type EventsCursorPagination as EventsCursorPagination,
-    type EventListParams as EventListParams
+    type EventListParams as EventListParams,
   };
 }
