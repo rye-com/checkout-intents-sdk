@@ -28,6 +28,11 @@ export {
   type CheckoutIntentsCursorPagination,
 } from './checkout-intents/checkout-intents';
 export { Events, type Event, type EventListParams, type EventsCursorPagination } from './events';
+export {
+  MerchantConnectors,
+  type InstallationLink,
+  type MerchantConnectorCreateInstallationLinkParams,
+} from './merchant-connectors';
 export { PaymentGateways, type PaymentGateway, type PaymentGatewaySession } from './payment-gateways';
 export {
   Products,
