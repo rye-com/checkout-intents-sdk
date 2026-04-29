@@ -110,3 +110,13 @@ Methods:
 
 - <code title="get /api/v1/events/{id}">client.events.<a href="./src/resources/events.ts">retrieve</a>(id) -> Event</code>
 - <code title="get /api/v1/events">client.events.<a href="./src/resources/events.ts">list</a>({ ...params }) -> EventsCursorPagination</code>
+
+# MerchantConnectors
+
+Types:
+
+- <code><a href="./src/resources/merchant-connectors.ts">InstallationLink</a></code>
+
+Methods:
+
+- <code title="get /api/v1/merchant-connectors/{connector}/installation-link">client.merchantConnectors.<a href="./src/resources/merchant-connectors.ts">createInstallationLink</a>(connector, { ...params }) -> InstallationLink</code>

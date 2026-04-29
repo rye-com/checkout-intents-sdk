@@ -30,6 +30,11 @@ import {
 } from './resources/billing';
 import { BrandRetrieveResponse, Brands } from './resources/brands';
 import { Event, EventListParams, Events, EventsCursorPagination } from './resources/events';
+import {
+  InstallationLink,
+  MerchantConnectorCreateInstallationLinkParams,
+  MerchantConnectors,
+} from './resources/merchant-connectors';
 import { PaymentGateway, PaymentGatewaySession, PaymentGateways } from './resources/payment-gateways';
 import {
   Product,
@@ -831,6 +836,7 @@ export class CheckoutIntents {
   paymentGateways: API.PaymentGateways = new API.PaymentGateways(this);
   billing: API.Billing = new API.Billing(this);
   events: API.Events = new API.Events(this);
+  merchantConnectors: API.MerchantConnectors = new API.MerchantConnectors(this);
 }
 
 CheckoutIntents.CheckoutIntentsResource = CheckoutIntentsResource;
@@ -841,6 +847,7 @@ CheckoutIntents.Shipments = Shipments;
 CheckoutIntents.PaymentGateways = PaymentGateways;
 CheckoutIntents.Billing = Billing;
 CheckoutIntents.Events = Events;
+CheckoutIntents.MerchantConnectors = MerchantConnectors;
 
 export declare namespace CheckoutIntents {
   export type RequestOptions = Opts.RequestOptions;
@@ -912,5 +919,11 @@ export declare namespace CheckoutIntents {
     type Event as Event,
     type EventsCursorPagination as EventsCursorPagination,
     type EventListParams as EventListParams,
+  };
+
+  export {
+    MerchantConnectors as MerchantConnectors,
+    type InstallationLink as InstallationLink,
+    type MerchantConnectorCreateInstallationLinkParams as MerchantConnectorCreateInstallationLinkParams,
   };
 }
