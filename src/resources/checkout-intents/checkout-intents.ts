@@ -297,10 +297,46 @@ export namespace CheckoutIntent {
 
     state: 'completed';
 
+    commissions?: CompletedCheckoutIntent.Commissions;
+
     /**
      * @deprecated
      */
     estimatedDeliveryDate?: string | null;
+  }
+
+  export namespace CompletedCheckoutIntent {
+    export interface Commissions {
+      count: number;
+
+      items: Array<Commissions.Item>;
+    }
+
+    export namespace Commissions {
+      export interface Item {
+        id: string;
+
+        developerShareAmount: CheckoutIntentsAPI.Money;
+
+        grossAmount: CheckoutIntentsAPI.Money;
+
+        /**
+         * Direction of settlement: who owes whom once the commission is finalized.
+         */
+        settlementDirection: 'rye_owes_developer' | 'developer_owes_rye';
+
+        /**
+         * Lifecycle status of a commission record.
+         */
+        status: 'pending' | 'confirmed' | 'updated' | 'finalized' | 'refunded' | 'expired';
+
+        /**
+         * Type of commission earned on an order. Canonical definition used by both the API
+         * contract and the internal `@rye-com/ci-commissions` package.
+         */
+        type: 'surcharge' | 'promo_arbitrage' | 'discount_code' | 'affiliate' | 'out_of_band';
+      }
+    }
   }
 
   export interface FailedCheckoutIntent extends CheckoutIntentsAPI.BaseCheckoutIntent {
