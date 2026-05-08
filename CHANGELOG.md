@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.28.0 (2026-05-08)
+
+Full Changelog: [v0.27.0...v0.28.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.27.0...v0.28.0)
+
+### Features
+
+* support setting headers via env ([c7d65de](https://github.com/rye-com/checkout-intents-sdk/commit/c7d65de489885dcd2073791b0414fa25ef1f2744))
+
+
+### Chores
+
+* **internal:** improvements ([d56fc71](https://github.com/rye-com/checkout-intents-sdk/commit/d56fc71a8afb294c5f7f8bca9221c47dcf34e39d))
+
 ## 0.27.0 (2026-04-27)
 
 Full Changelog: [v0.26.0...v0.27.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.26.0...v0.27.0)

@@ -19,19 +19,63 @@ import { AbstractPage, type CursorPaginationParams, CursorPaginationResponse } f
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
-import { Billing, BillingCreateTopupInvoiceParams, BillingCreateTopupInvoiceResponse, BillingGetBalanceResponse, BillingListTransactionsParams, BillingListTransactionsResponse, BillingListTransactionsResponsesCursorPagination } from './resources/billing';
+import {
+  Billing,
+  BillingCreateTopupInvoiceParams,
+  BillingCreateTopupInvoiceResponse,
+  BillingGetBalanceResponse,
+  BillingListTransactionsParams,
+  BillingListTransactionsResponse,
+  BillingListTransactionsResponsesCursorPagination,
+} from './resources/billing';
 import { BrandRetrieveResponse, Brands } from './resources/brands';
 import { Event, EventListParams, Events, EventsCursorPagination } from './resources/events';
 import { PaymentGateway, PaymentGatewaySession, PaymentGateways } from './resources/payment-gateways';
-import { Product, ProductAvailability, ProductImage, ProductLookupParams, ProductVariant, Products, VariantDimension } from './resources/products';
-import { Shipment, ShipmentListParams, ShipmentStatus, ShipmentTracking, Shipments, ShipmentsCursorPagination } from './resources/shipments';
+import {
+  Product,
+  ProductAvailability,
+  ProductImage,
+  ProductLookupParams,
+  ProductVariant,
+  Products,
+  VariantDimension,
+} from './resources/products';
+import {
+  Shipment,
+  ShipmentListParams,
+  ShipmentStatus,
+  ShipmentTracking,
+  Shipments,
+  ShipmentsCursorPagination,
+} from './resources/shipments';
 import { Betas, CheckoutSession } from './resources/betas/betas';
-import { BaseCheckoutIntent, Buyer, CheckoutIntent, CheckoutIntentAddPaymentParams, CheckoutIntentConfirmParams, CheckoutIntentCreateParams, CheckoutIntentListParams, CheckoutIntentPurchaseParams, CheckoutIntentsCursorPagination, CheckoutIntentsResource, Money, Offer, PaymentMethod, VariantSelection } from './resources/checkout-intents/checkout-intents';
+import {
+  BaseCheckoutIntent,
+  Buyer,
+  CheckoutIntent,
+  CheckoutIntentAddPaymentParams,
+  CheckoutIntentConfirmParams,
+  CheckoutIntentCreateParams,
+  CheckoutIntentListParams,
+  CheckoutIntentPurchaseParams,
+  CheckoutIntentsCursorPagination,
+  CheckoutIntentsResource,
+  Money,
+  Offer,
+  PaymentMethod,
+  VariantSelection,
+} from './resources/checkout-intents/checkout-intents';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
 import { readEnv } from './internal/utils/env';
-import { type LogLevel, type Logger, formatRequestDetails, loggerFor, parseLogLevel } from './internal/utils/log';
+import {
+  type LogLevel,
+  type Logger,
+  formatRequestDetails,
+  loggerFor,
+  parseLogLevel,
+} from './internal/utils/log';
 import { isEmptyObj } from './internal/utils/values';
 
 const environments = {
@@ -136,7 +180,7 @@ export interface ClientOptions {
 }
 
 /**
- * API Client for interfacing with the Checkout Intents API. 
+ * API Client for interfacing with the Checkout Intents API.
  */
 export class CheckoutIntents {
   apiKey: string;
@@ -173,7 +217,7 @@ export class CheckoutIntents {
   }: ClientOptions = {}) {
     if (apiKey === undefined) {
       throw new Errors.CheckoutIntentsError(
-        'The CHECKOUT_INTENTS_API_KEY environment variable is missing or empty; either provide it, or instantiate the CheckoutIntents client with an apiKey option, like new CheckoutIntents({ apiKey: \'My API Key\' }).'
+        "The CHECKOUT_INTENTS_API_KEY environment variable is missing or empty; either provide it, or instantiate the CheckoutIntents client with an apiKey option, like new CheckoutIntents({ apiKey: 'My API Key' }).",
       );
     }
 
@@ -197,8 +241,8 @@ export class CheckoutIntents {
 
     if (baseURL && opts.environment) {
       throw new Errors.CheckoutIntentsError(
-        'Ambiguous URL; The `baseURL` option (or CHECKOUT_INTENTS_BASE_URL env var) and the `environment` option are given. If you want to use the environment you must pass baseURL: null'
-      )
+        'Ambiguous URL; The `baseURL` option (or CHECKOUT_INTENTS_BASE_URL env var) and the `environment` option are given. If you want to use the environment you must pass baseURL: null',
+      );
     }
 
     this.baseURL = options.baseURL || environments[options.environment || 'staging'];
@@ -207,14 +251,29 @@ export class CheckoutIntents {
     const defaultLogLevel = 'warn';
     // Set default logLevel early so that we can log a warning in parseLogLevel.
     this.logLevel = defaultLogLevel;
-    this.logLevel = parseLogLevel(options.logLevel, 'ClientOptions.logLevel', this) ?? parseLogLevel(readEnv('CHECKOUT_INTENTS_LOG'), 'process.env[\'CHECKOUT_INTENTS_LOG\']', this) ?? defaultLogLevel;
+    this.logLevel =
+      parseLogLevel(options.logLevel, 'ClientOptions.logLevel', this) ??
+      parseLogLevel(readEnv('CHECKOUT_INTENTS_LOG'), "process.env['CHECKOUT_INTENTS_LOG']", this) ??
+      defaultLogLevel;
     this.fetchOptions = options.fetchOptions;
     this.maxRetries = options.maxRetries ?? 2;
     this.fetch = options.fetch ?? Shims.getDefaultFetch();
     this.#encoder = Opts.FallbackEncoder;
 
+    const customHeadersEnv = readEnv('CHECKOUT_INTENTS_CUSTOM_HEADERS');
+    if (customHeadersEnv) {
+      const parsed: Record<string, string> = {};
+      for (const line of customHeadersEnv.split('\n')) {
+        const colon = line.indexOf(':');
+        if (colon >= 0) {
+          parsed[line.substring(0, colon).trim()] = line.substring(colon + 1).trim();
+        }
+      }
+      options.defaultHeaders = { ...parsed, ...options.defaultHeaders };
+    }
+
     this._options = options;
-    this.idempotencyHeader = 'Idempotency-Key'
+    this.idempotencyHeader = 'Idempotency-Key';
 
     this.apiKey = apiKey;
   }
@@ -234,7 +293,7 @@ export class CheckoutIntents {
       fetch: this.fetch,
       fetchOptions: this.fetchOptions,
       apiKey: this.apiKey,
-      ...options
+      ...options,
     });
     return client;
   }
@@ -247,7 +306,7 @@ export class CheckoutIntents {
   }
 
   protected defaultQuery(): Record<string, string | undefined> | undefined {
-    return this._options.defaultQuery
+    return this._options.defaultQuery;
   }
 
   protected validateHeaders({ values, nulls }: NullableHeaders) {
@@ -279,7 +338,11 @@ export class CheckoutIntents {
     return Errors.APIError.generate(status, error, message, headers);
   }
 
-  buildURL(path: string, query: Record<string, unknown> | null | undefined, defaultBaseURL?: string | undefined): string {
+  buildURL(
+    path: string,
+    query: Record<string, unknown> | null | undefined,
+    defaultBaseURL?: string | undefined,
+  ): string {
     const baseURL = (!this.#baseURLOverridden() && defaultBaseURL) || this.baseURL;
     const url =
       isAbsoluteURL(path) ?
@@ -367,7 +430,9 @@ export class CheckoutIntents {
 
     await this.prepareOptions(options);
 
-    const { req, url, timeout } = await this.buildRequest(options, { retryCount: maxRetries - retriesRemaining });
+    const { req, url, timeout } = await this.buildRequest(options, {
+      retryCount: maxRetries - retriesRemaining,
+    });
 
     await this.prepareRequest(req, { url, options });
 
@@ -376,7 +441,16 @@ export class CheckoutIntents {
     const retryLogStr = retryOfRequestLogID === undefined ? '' : `, retryOf: ${retryOfRequestLogID}`;
     const startTime = Date.now();
 
-    loggerFor(this).debug(`[${requestLogID}] sending request`, formatRequestDetails({ retryOfRequestLogID, method: options.method, url, options, headers: req.headers }));
+    loggerFor(this).debug(
+      `[${requestLogID}] sending request`,
+      formatRequestDetails({
+        retryOfRequestLogID,
+        method: options.method,
+        url,
+        options,
+        headers: req.headers,
+      }),
+    );
 
     if (options.signal?.aborted) {
       throw new Errors.APIUserAbortError();
@@ -395,21 +469,45 @@ export class CheckoutIntents {
       // deno throws "TypeError: error sending request for url (https://example/): client error (Connect): tcp connect error: Operation timed out (os error 60): Operation timed out (os error 60)"
       // undici throws "TypeError: fetch failed" with cause "ConnectTimeoutError: Connect Timeout Error (attempted address: example:443, timeout: 1ms)"
       // others do not provide enough information to distinguish timeouts from other connection errors
-      const isTimeout = isAbortError(response) || /timed? ?out/i.test(String(response) + ('cause' in response ? String(response.cause) : ''))
+      const isTimeout =
+        isAbortError(response) ||
+        /timed? ?out/i.test(String(response) + ('cause' in response ? String(response.cause) : ''));
       if (retriesRemaining) {
-        loggerFor(this).info(`[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} - ${retryMessage}`)
-        loggerFor(this).debug(`[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} (${retryMessage})`, formatRequestDetails({ retryOfRequestLogID, url, durationMs: headersTime - startTime, message: response.message }));
+        loggerFor(this).info(
+          `[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} - ${retryMessage}`,
+        );
+        loggerFor(this).debug(
+          `[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} (${retryMessage})`,
+          formatRequestDetails({
+            retryOfRequestLogID,
+            url,
+            durationMs: headersTime - startTime,
+            message: response.message,
+          }),
+        );
         return this.retryRequest(options, retriesRemaining, retryOfRequestLogID ?? requestLogID);
       }
-      loggerFor(this).info(`[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} - error; no more retries left`)
-      loggerFor(this).debug(`[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} (error; no more retries left)`, formatRequestDetails({ retryOfRequestLogID, url, durationMs: headersTime - startTime, message: response.message }));
+      loggerFor(this).info(
+        `[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} - error; no more retries left`,
+      );
+      loggerFor(this).debug(
+        `[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} (error; no more retries left)`,
+        formatRequestDetails({
+          retryOfRequestLogID,
+          url,
+          durationMs: headersTime - startTime,
+          message: response.message,
+        }),
+      );
       if (isTimeout) {
         throw new Errors.APIConnectionTimeoutError();
       }
       throw new Errors.APIConnectionError({ cause: response });
     }
 
-    const responseInfo = `[${requestLogID}${retryLogStr}] ${req.method} ${url} ${response.ok ? 'succeeded' : 'failed'} with status ${response.status} in ${headersTime - startTime}ms`;
+    const responseInfo = `[${requestLogID}${retryLogStr}] ${req.method} ${url} ${
+      response.ok ? 'succeeded' : 'failed'
+    } with status ${response.status} in ${headersTime - startTime}ms`;
 
     if (!response.ok) {
       const shouldRetry = await this.shouldRetry(response);
@@ -418,27 +516,60 @@ export class CheckoutIntents {
 
         // We don't need the body of this response.
         await Shims.CancelReadableStream(response.body);
-        loggerFor(this).info(`${responseInfo} - ${retryMessage}`)
-        loggerFor(this).debug(`[${requestLogID}] response error (${retryMessage})`, formatRequestDetails({ retryOfRequestLogID, url: response.url, status: response.status, headers: response.headers, durationMs: headersTime - startTime }));
-        return this.retryRequest(options, retriesRemaining, retryOfRequestLogID ?? requestLogID, response.headers);
+        loggerFor(this).info(`${responseInfo} - ${retryMessage}`);
+        loggerFor(this).debug(
+          `[${requestLogID}] response error (${retryMessage})`,
+          formatRequestDetails({
+            retryOfRequestLogID,
+            url: response.url,
+            status: response.status,
+            headers: response.headers,
+            durationMs: headersTime - startTime,
+          }),
+        );
+        return this.retryRequest(
+          options,
+          retriesRemaining,
+          retryOfRequestLogID ?? requestLogID,
+          response.headers,
+        );
       }
 
       const retryMessage = shouldRetry ? `error; no more retries left` : `error; not retryable`;
 
-      loggerFor(this).info(`${responseInfo} - ${retryMessage}`)
+      loggerFor(this).info(`${responseInfo} - ${retryMessage}`);
 
       const errText = await response.text().catch((err: any) => castToError(err).message);
       const errJSON = safeJSON(errText) as any;
       const errMessage = errJSON ? undefined : errText;
 
-      loggerFor(this).debug(`[${requestLogID}] response error (${retryMessage})`, formatRequestDetails({ retryOfRequestLogID, url: response.url, status: response.status, headers: response.headers, message: errMessage, durationMs: Date.now() - startTime }));
+      loggerFor(this).debug(
+        `[${requestLogID}] response error (${retryMessage})`,
+        formatRequestDetails({
+          retryOfRequestLogID,
+          url: response.url,
+          status: response.status,
+          headers: response.headers,
+          message: errMessage,
+          durationMs: Date.now() - startTime,
+        }),
+      );
 
       const err = this.makeStatusError(response.status, errJSON, errMessage, response.headers);
       throw err;
     }
 
-    loggerFor(this).info(responseInfo)
-    loggerFor(this).debug(`[${requestLogID}] response start`, formatRequestDetails({ retryOfRequestLogID, url: response.url, status: response.status, headers: response.headers, durationMs: headersTime - startTime }));
+    loggerFor(this).info(responseInfo);
+    loggerFor(this).debug(
+      `[${requestLogID}] response start`,
+      formatRequestDetails({
+        retryOfRequestLogID,
+        url: response.url,
+        status: response.status,
+        headers: response.headers,
+        durationMs: headersTime - startTime,
+      }),
+    );
 
     return { response, options, controller, requestLogID, retryOfRequestLogID, startTime };
   }
@@ -456,7 +587,10 @@ export class CheckoutIntents {
     );
   }
 
-  requestAPIList<Item = unknown, PageClass extends Pagination.AbstractPage<Item> = Pagination.AbstractPage<Item>>(
+  requestAPIList<
+    Item = unknown,
+    PageClass extends Pagination.AbstractPage<Item> = Pagination.AbstractPage<Item>,
+  >(
     Page: new (...args: ConstructorParameters<typeof Pagination.AbstractPage>) => PageClass,
     options: PromiseOrValue<FinalRequestOptions>,
   ): Pagination.PagePromise<PageClass, Item> {
@@ -476,7 +610,9 @@ export class CheckoutIntents {
 
     const timeout = setTimeout(abort, ms);
 
-    const isReadableBody = ((globalThis as any).ReadableStream && options.body instanceof (globalThis as any).ReadableStream) || (typeof options.body === "object" && options.body !== null && Symbol.asyncIterator in options.body);
+    const isReadableBody =
+      ((globalThis as any).ReadableStream && options.body instanceof (globalThis as any).ReadableStream) ||
+      (typeof options.body === 'object' && options.body !== null && Symbol.asyncIterator in options.body);
 
     const fetchOptions: RequestInit = {
       signal: controller.signal as any,
@@ -491,7 +627,6 @@ export class CheckoutIntents {
     }
 
     try {
-
       // use undefined this binding; fetch errors if bound to something else in browser/cloudflare
       return await this.fetch.call(undefined, url, fetchOptions);
     } finally {
@@ -592,11 +727,12 @@ export class CheckoutIntents {
     const req: FinalizedRequestInit = {
       method,
       headers: reqHeaders,
-      ...(options.signal && { signal: options.signal}),
-      ...((globalThis as any).ReadableStream && body instanceof (globalThis as any).ReadableStream && { duplex: "half" }),
+      ...(options.signal && { signal: options.signal }),
+      ...((globalThis as any).ReadableStream &&
+        body instanceof (globalThis as any).ReadableStream && { duplex: 'half' }),
       ...(body && { body }),
-      ...(this.fetchOptions as any ?? {}),
-      ...(options.fetchOptions as any ?? {}),
+      ...((this.fetchOptions as any) ?? {}),
+      ...((options.fetchOptions as any) ?? {}),
     };
 
     return { req, url, timeout: options.timeout };
@@ -621,15 +757,17 @@ export class CheckoutIntents {
 
     const headers = buildHeaders([
       idempotencyHeaders,
-      {Accept: 'application/json',
-      'User-Agent': this.getUserAgent(),
-      'X-Stainless-Retry-Count': String(retryCount),
-      ...(options.timeout ? { 'X-Stainless-Timeout': String(Math.trunc(options.timeout / 1000)) } : {}),
-      ...getPlatformHeaders()},
+      {
+        Accept: 'application/json',
+        'User-Agent': this.getUserAgent(),
+        'X-Stainless-Retry-Count': String(retryCount),
+        ...(options.timeout ? { 'X-Stainless-Timeout': String(Math.trunc(options.timeout / 1000)) } : {}),
+        ...getPlatformHeaders(),
+      },
       await this.authHeaders(options),
       this._options.defaultHeaders,
       bodyHeaders,
-      options.headers
+      options.headers,
     ]);
 
     this.validateHeaders(headers);
@@ -656,11 +794,9 @@ export class CheckoutIntents {
       ArrayBuffer.isView(body) ||
       body instanceof ArrayBuffer ||
       body instanceof DataView ||
-      (
-        typeof body === 'string' &&
+      (typeof body === 'string' &&
         // Preserve legacy string encoding behavior for now
-        headers.values.has('content-type')
-      ) ||
+        headers.values.has('content-type')) ||
       // `Blob` is superset of `File`
       ((globalThis as any).Blob && body instanceof (globalThis as any).Blob) ||
       // `FormData` -> `multipart/form-data`
@@ -691,7 +827,7 @@ export class CheckoutIntents {
   }
 
   static CheckoutIntents = this;
-  static DEFAULT_TIMEOUT = 60000 // 1 minute
+  static DEFAULT_TIMEOUT = 60000; // 1 minute
 
   static CheckoutIntentsError = Errors.CheckoutIntentsError;
   static APIError = Errors.APIError;
@@ -729,80 +865,74 @@ CheckoutIntents.Billing = Billing;
 CheckoutIntents.Events = Events;
 
 export declare namespace CheckoutIntents {
-      export type RequestOptions = Opts.RequestOptions;
+  export type RequestOptions = Opts.RequestOptions;
 
-      export import CursorPagination = Pagination.CursorPagination;
-export {
-  type CursorPaginationParams as CursorPaginationParams,
-  type CursorPaginationResponse as CursorPaginationResponse
-};
+  export import CursorPagination = Pagination.CursorPagination;
+  export {
+    type CursorPaginationParams as CursorPaginationParams,
+    type CursorPaginationResponse as CursorPaginationResponse,
+  };
 
-export {
-  CheckoutIntentsResource as CheckoutIntentsResource,
-  type BaseCheckoutIntent as BaseCheckoutIntent,
-  type Buyer as Buyer,
-  type CheckoutIntent as CheckoutIntent,
-  type Money as Money,
-  type Offer as Offer,
-  type PaymentMethod as PaymentMethod,
-  type VariantSelection as VariantSelection,
-  type CheckoutIntentsCursorPagination as CheckoutIntentsCursorPagination,
-  type CheckoutIntentCreateParams as CheckoutIntentCreateParams,
-  type CheckoutIntentListParams as CheckoutIntentListParams,
-  type CheckoutIntentAddPaymentParams as CheckoutIntentAddPaymentParams,
-  type CheckoutIntentConfirmParams as CheckoutIntentConfirmParams,
-  type CheckoutIntentPurchaseParams as CheckoutIntentPurchaseParams
-};
+  export {
+    CheckoutIntentsResource as CheckoutIntentsResource,
+    type BaseCheckoutIntent as BaseCheckoutIntent,
+    type Buyer as Buyer,
+    type CheckoutIntent as CheckoutIntent,
+    type Money as Money,
+    type Offer as Offer,
+    type PaymentMethod as PaymentMethod,
+    type VariantSelection as VariantSelection,
+    type CheckoutIntentsCursorPagination as CheckoutIntentsCursorPagination,
+    type CheckoutIntentCreateParams as CheckoutIntentCreateParams,
+    type CheckoutIntentListParams as CheckoutIntentListParams,
+    type CheckoutIntentAddPaymentParams as CheckoutIntentAddPaymentParams,
+    type CheckoutIntentConfirmParams as CheckoutIntentConfirmParams,
+    type CheckoutIntentPurchaseParams as CheckoutIntentPurchaseParams,
+  };
 
-export {
-  Betas as Betas,
-  type CheckoutSession as CheckoutSession
-};
+  export { Betas as Betas, type CheckoutSession as CheckoutSession };
 
-export {
-  Brands as Brands,
-  type BrandRetrieveResponse as BrandRetrieveResponse
-};
+  export { Brands as Brands, type BrandRetrieveResponse as BrandRetrieveResponse };
 
-export {
-  Products as Products,
-  type Product as Product,
-  type ProductAvailability as ProductAvailability,
-  type ProductImage as ProductImage,
-  type ProductVariant as ProductVariant,
-  type VariantDimension as VariantDimension,
-  type ProductLookupParams as ProductLookupParams
-};
+  export {
+    Products as Products,
+    type Product as Product,
+    type ProductAvailability as ProductAvailability,
+    type ProductImage as ProductImage,
+    type ProductVariant as ProductVariant,
+    type VariantDimension as VariantDimension,
+    type ProductLookupParams as ProductLookupParams,
+  };
 
-export {
-  Shipments as Shipments,
-  type Shipment as Shipment,
-  type ShipmentStatus as ShipmentStatus,
-  type ShipmentTracking as ShipmentTracking,
-  type ShipmentsCursorPagination as ShipmentsCursorPagination,
-  type ShipmentListParams as ShipmentListParams
-};
+  export {
+    Shipments as Shipments,
+    type Shipment as Shipment,
+    type ShipmentStatus as ShipmentStatus,
+    type ShipmentTracking as ShipmentTracking,
+    type ShipmentsCursorPagination as ShipmentsCursorPagination,
+    type ShipmentListParams as ShipmentListParams,
+  };
 
-export {
-  PaymentGateways as PaymentGateways,
-  type PaymentGateway as PaymentGateway,
-  type PaymentGatewaySession as PaymentGatewaySession
-};
+  export {
+    PaymentGateways as PaymentGateways,
+    type PaymentGateway as PaymentGateway,
+    type PaymentGatewaySession as PaymentGatewaySession,
+  };
 
-export {
-  Billing as Billing,
-  type BillingCreateTopupInvoiceResponse as BillingCreateTopupInvoiceResponse,
-  type BillingGetBalanceResponse as BillingGetBalanceResponse,
-  type BillingListTransactionsResponse as BillingListTransactionsResponse,
-  type BillingListTransactionsResponsesCursorPagination as BillingListTransactionsResponsesCursorPagination,
-  type BillingCreateTopupInvoiceParams as BillingCreateTopupInvoiceParams,
-  type BillingListTransactionsParams as BillingListTransactionsParams
-};
+  export {
+    Billing as Billing,
+    type BillingCreateTopupInvoiceResponse as BillingCreateTopupInvoiceResponse,
+    type BillingGetBalanceResponse as BillingGetBalanceResponse,
+    type BillingListTransactionsResponse as BillingListTransactionsResponse,
+    type BillingListTransactionsResponsesCursorPagination as BillingListTransactionsResponsesCursorPagination,
+    type BillingCreateTopupInvoiceParams as BillingCreateTopupInvoiceParams,
+    type BillingListTransactionsParams as BillingListTransactionsParams,
+  };
 
-export {
-  Events as Events,
-  type Event as Event,
-  type EventsCursorPagination as EventsCursorPagination,
-  type EventListParams as EventListParams
-};
-    }
+  export {
+    Events as Events,
+    type Event as Event,
+    type EventsCursorPagination as EventsCursorPagination,
+    type EventListParams as EventListParams,
+  };
+}
