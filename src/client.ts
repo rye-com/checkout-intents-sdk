@@ -29,6 +29,15 @@ import {
   BillingListTransactionsResponsesCursorPagination,
 } from './resources/billing';
 import { BrandRetrieveResponse, Brands } from './resources/brands';
+import {
+  Commission,
+  CommissionListParams,
+  CommissionStatus,
+  CommissionType,
+  Commissions,
+  CommissionsCursorPagination,
+  SettlementDirection,
+} from './resources/commissions';
 import { Event, EventListParams, Events, EventsCursorPagination } from './resources/events';
 import {
   InstallationLink,
@@ -855,6 +864,7 @@ export class CheckoutIntents {
   brands: API.Brands = new API.Brands(this);
   products: API.Products = new API.Products(this);
   shipments: API.Shipments = new API.Shipments(this);
+  commissions: API.Commissions = new API.Commissions(this);
   paymentGateways: API.PaymentGateways = new API.PaymentGateways(this);
   billing: API.Billing = new API.Billing(this);
   events: API.Events = new API.Events(this);
@@ -866,6 +876,7 @@ CheckoutIntents.Betas = Betas;
 CheckoutIntents.Brands = Brands;
 CheckoutIntents.Products = Products;
 CheckoutIntents.Shipments = Shipments;
+CheckoutIntents.Commissions = Commissions;
 CheckoutIntents.PaymentGateways = PaymentGateways;
 CheckoutIntents.Billing = Billing;
 CheckoutIntents.Events = Events;
@@ -918,6 +929,16 @@ export declare namespace CheckoutIntents {
     type ShipmentTracking as ShipmentTracking,
     type ShipmentsCursorPagination as ShipmentsCursorPagination,
     type ShipmentListParams as ShipmentListParams,
+  };
+
+  export {
+    Commissions as Commissions,
+    type Commission as Commission,
+    type CommissionStatus as CommissionStatus,
+    type CommissionType as CommissionType,
+    type SettlementDirection as SettlementDirection,
+    type CommissionsCursorPagination as CommissionsCursorPagination,
+    type CommissionListParams as CommissionListParams,
   };
 
   export {
