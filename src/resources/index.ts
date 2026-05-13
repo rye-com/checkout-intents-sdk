@@ -27,6 +27,15 @@ export {
   type CheckoutIntentPurchaseParams,
   type CheckoutIntentsCursorPagination,
 } from './checkout-intents/checkout-intents';
+export {
+  Commissions,
+  type Commission,
+  type CommissionStatus,
+  type CommissionType,
+  type SettlementDirection,
+  type CommissionListParams,
+  type CommissionsCursorPagination,
+} from './commissions';
 export { Events, type Event, type EventListParams, type EventsCursorPagination } from './events';
 export {
   MerchantConnectors,

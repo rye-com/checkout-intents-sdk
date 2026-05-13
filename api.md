@@ -74,6 +74,19 @@ Methods:
 - <code title="get /api/v1/shipments/{id}">client.shipments.<a href="./src/resources/shipments.ts">retrieve</a>(id) -> Shipment</code>
 - <code title="get /api/v1/shipments">client.shipments.<a href="./src/resources/shipments.ts">list</a>({ ...params }) -> ShipmentsCursorPagination</code>
 
+# Commissions
+
+Types:
+
+- <code><a href="./src/resources/commissions.ts">Commission</a></code>
+- <code><a href="./src/resources/commissions.ts">CommissionStatus</a></code>
+- <code><a href="./src/resources/commissions.ts">CommissionType</a></code>
+- <code><a href="./src/resources/commissions.ts">SettlementDirection</a></code>
+
+Methods:
+
+- <code title="get /api/v1/commissions">client.commissions.<a href="./src/resources/commissions.ts">list</a>({ ...params }) -> CommissionsCursorPagination</code>
+
 # PaymentGateways
 
 Types:
