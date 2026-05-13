@@ -47,24 +47,14 @@ export interface Commission {
   createdAt: string;
 
   /**
-   * Portion of `grossAmount` allocated to the developer.
+   * Commission amount paid to the developer.
    */
-  developerShareAmount: CheckoutIntentsAPI.Money;
+  developerCommission: CheckoutIntentsAPI.Money;
 
   /**
-   * Developer's share of `grossAmount` expressed as a percentage (0–100).
+   * Fee retained by Rye.
    */
-  developerSharePercent: number;
-
-  /**
-   * Gross commission amount before splitting between developer and Rye.
-   */
-  grossAmount: CheckoutIntentsAPI.Money;
-
-  /**
-   * Portion of `grossAmount` allocated to Rye.
-   */
-  ryeShareAmount: CheckoutIntentsAPI.Money;
+  ryeFee: CheckoutIntentsAPI.Money;
 
   /**
    * Whether Rye owes the developer or vice versa once settled.
@@ -109,6 +99,8 @@ export type CommissionType = 'surcharge' | 'promo_arbitrage' | 'discount_code' |
 export type SettlementDirection = 'rye_owes_developer' | 'developer_owes_rye';
 
 export interface CommissionListParams extends CursorPaginationParams {
+  checkoutIntentId?: string;
+
   /**
    * Lifecycle status of a commission record.
    */

@@ -28,6 +28,7 @@ describe('resource commissions', () => {
         {
           after: 'after',
           before: 'before',
+          checkoutIntentId: 'checkoutIntentId',
           limit: 1,
           status: 'pending',
           type: 'surcharge',
