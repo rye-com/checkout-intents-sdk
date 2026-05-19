@@ -1,7 +1,6 @@
 import fs from 'fs';
 import type { ResponseLike } from 'checkout-intents/internal/to-file';
 import { toFile } from 'checkout-intents/core/uploads';
-import { File } from 'node:buffer';
 
 class MyClass {
   name: string = 'foo';
