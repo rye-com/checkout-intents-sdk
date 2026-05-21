@@ -79,28 +79,6 @@ export class CheckoutIntentsResource extends APIResource {
   }
 
   /**
-   * Add payment details to a checkout intent
-   *
-   * @example
-   * ```ts
-   * const checkoutIntent =
-   *   await client.checkoutIntents.addPayment('id', {
-   *     paymentMethod: {
-   *       stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH',
-   *       type: 'stripe_token',
-   *     },
-   *   });
-   * ```
-   */
-  addPayment(
-    id: string,
-    body: CheckoutIntentAddPaymentParams,
-    options?: RequestOptions,
-  ): APIPromise<CheckoutIntent> {
-    return this._client.post(path`/api/v1/checkout-intents/${id}/payment`, { body, ...options });
-  }
-
-  /**
    * Confirm a checkout intent with provided payment information
    *
    * Confirm means we have buyer's name, address and payment info, so we can move
@@ -636,10 +614,6 @@ export interface CheckoutIntentListParams extends CursorPaginationParams {
   >;
 }
 
-export interface CheckoutIntentAddPaymentParams {
-  paymentMethod: PaymentMethod;
-}
-
 export interface CheckoutIntentConfirmParams {
   paymentMethod: PaymentMethod;
 }
@@ -695,7 +669,6 @@ export declare namespace CheckoutIntentsResource {
     type CheckoutIntentsCursorPagination as CheckoutIntentsCursorPagination,
     type CheckoutIntentCreateParams as CheckoutIntentCreateParams,
     type CheckoutIntentListParams as CheckoutIntentListParams,
-    type CheckoutIntentAddPaymentParams as CheckoutIntentAddPaymentParams,
     type CheckoutIntentConfirmParams as CheckoutIntentConfirmParams,
     type CheckoutIntentPurchaseParams as CheckoutIntentPurchaseParams,
   };

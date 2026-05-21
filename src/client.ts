@@ -67,7 +67,6 @@ import {
   BaseCheckoutIntent,
   Buyer,
   CheckoutIntent,
-  CheckoutIntentAddPaymentParams,
   CheckoutIntentConfirmParams,
   CheckoutIntentCreateParams,
   CheckoutIntentListParams,
@@ -903,7 +902,6 @@ export declare namespace CheckoutIntents {
     type CheckoutIntentsCursorPagination as CheckoutIntentsCursorPagination,
     type CheckoutIntentCreateParams as CheckoutIntentCreateParams,
     type CheckoutIntentListParams as CheckoutIntentListParams,
-    type CheckoutIntentAddPaymentParams as CheckoutIntentAddPaymentParams,
     type CheckoutIntentConfirmParams as CheckoutIntentConfirmParams,
     type CheckoutIntentPurchaseParams as CheckoutIntentPurchaseParams,
   };
