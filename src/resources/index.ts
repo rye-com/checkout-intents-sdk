@@ -22,7 +22,6 @@ export {
   type VariantSelection,
   type CheckoutIntentCreateParams,
   type CheckoutIntentListParams,
-  type CheckoutIntentAddPaymentParams,
   type CheckoutIntentConfirmParams,
   type CheckoutIntentPurchaseParams,
   type CheckoutIntentsCursorPagination,

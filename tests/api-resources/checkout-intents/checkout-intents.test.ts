@@ -104,27 +104,6 @@ describe('resource checkoutIntents', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('addPayment: only required params', async () => {
-    const responsePromise = client.checkoutIntents.addPayment('id', {
-      paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  // Mock server tests are disabled
-  test.skip('addPayment: required and optional params', async () => {
-    const response = await client.checkoutIntents.addPayment('id', {
-      paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
-    });
-  });
-
-  // Mock server tests are disabled
   test.skip('confirm: only required params', async () => {
     const responsePromise = client.checkoutIntents.confirm('id', {
       paymentMethod: { stripeToken: 'tok_1RkrWWHGDlstla3f1Fc7ZrhH', type: 'stripe_token' },
