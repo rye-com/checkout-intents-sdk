@@ -91,9 +91,6 @@ export interface BillingCreateTopupInvoiceResponse {
    */
   bankTransferDetails: BillingCreateTopupInvoiceResponse.BankTransferDetails;
 
-  /**
-   * Vendor-agnostic provider types
-   */
   status: 'draft' | 'open' | 'paid' | 'uncollectible' | 'void' | 'unknown';
 
   url: string | null;
