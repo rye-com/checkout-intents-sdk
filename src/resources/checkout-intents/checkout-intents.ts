@@ -435,6 +435,11 @@ export interface Offer {
   shipping: Offer.Shipping;
 
   appliedPromoCodes?: Array<string>;
+
+  /**
+   * The developer's commission on an offer.
+   */
+  developerCommission?: Offer.DeveloperCommission;
 }
 
 export namespace Offer {
@@ -508,6 +513,15 @@ export namespace Offer {
         latest?: string;
       }
     }
+  }
+
+  /**
+   * The developer's commission on an offer.
+   */
+  export interface DeveloperCommission {
+    amount: CheckoutIntentsAPI.Money;
+
+    estimate: boolean;
   }
 }
 
