@@ -341,9 +341,9 @@ export interface Offer {
   appliedPromoCodes?: Array<string>;
 
   /**
-   * The developer's commission on an offer.
+   * The commission a developer would earn if this offer is placed.
    */
-  developerCommission?: Offer.DeveloperCommission;
+  commission?: Offer.Commission;
 }
 
 export namespace Offer {
@@ -420,9 +420,9 @@ export namespace Offer {
   }
 
   /**
-   * The developer's commission on an offer.
+   * The commission a developer would earn if this offer is placed.
    */
-  export interface DeveloperCommission {
+  export interface Commission {
     amount: CheckoutIntentsAPI.Money;
 
     estimate: boolean;
