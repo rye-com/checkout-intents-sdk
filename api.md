@@ -136,3 +136,21 @@ Types:
 Methods:
 
 - <code title="get /api/v1/merchant-connectors/{connector}/installation-link">client.merchantConnectors.<a href="./src/resources/merchant-connectors.ts">createInstallationLink</a>(connector, { ...params }) -> InstallationLink</code>
+
+# Returns
+
+Types:
+
+- <code><a href="./src/resources/returns.ts">Return</a></code>
+- <code><a href="./src/resources/returns.ts">ReturnDenial</a></code>
+- <code><a href="./src/resources/returns.ts">ReturnFailure</a></code>
+- <code><a href="./src/resources/returns.ts">ReturnNextAction</a></code>
+- <code><a href="./src/resources/returns.ts">ReturnReason</a></code>
+- <code><a href="./src/resources/returns.ts">ReturnRefund</a></code>
+- <code><a href="./src/resources/returns.ts">ReturnState</a></code>
+- <code><a href="./src/resources/returns.ts">ReturnTimeline</a></code>
+
+Methods:
+
+- <code title="post /api/v1/returns">client.returns.<a href="./src/resources/returns.ts">create</a>({ ...params }) -> Return</code>
+- <code title="get /api/v1/returns/{returnId}">client.returns.<a href="./src/resources/returns.ts">retrieve</a>(returnID) -> Return</code>
