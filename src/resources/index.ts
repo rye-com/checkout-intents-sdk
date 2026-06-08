@@ -52,6 +52,18 @@ export {
   type ProductLookupParams,
 } from './products';
 export {
+  Returns,
+  type Return,
+  type ReturnDenial,
+  type ReturnFailure,
+  type ReturnNextAction,
+  type ReturnReason,
+  type ReturnRefund,
+  type ReturnState,
+  type ReturnTimeline,
+  type ReturnCreateParams,
+} from './returns';
+export {
   Shipments,
   type Shipment,
   type ShipmentStatus,
