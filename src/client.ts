@@ -55,6 +55,18 @@ import {
   VariantDimension,
 } from './resources/products';
 import {
+  Return,
+  ReturnCreateParams,
+  ReturnDenial,
+  ReturnFailure,
+  ReturnNextAction,
+  ReturnReason,
+  ReturnRefund,
+  ReturnState,
+  ReturnTimeline,
+  Returns,
+} from './resources/returns';
+import {
   Shipment,
   ShipmentListParams,
   ShipmentStatus,
@@ -846,6 +858,7 @@ export class CheckoutIntents {
   billing: API.Billing = new API.Billing(this);
   events: API.Events = new API.Events(this);
   merchantConnectors: API.MerchantConnectors = new API.MerchantConnectors(this);
+  returns: API.Returns = new API.Returns(this);
 }
 
 CheckoutIntents.CheckoutIntentsResource = CheckoutIntentsResource;
@@ -858,6 +871,7 @@ CheckoutIntents.PaymentGateways = PaymentGateways;
 CheckoutIntents.Billing = Billing;
 CheckoutIntents.Events = Events;
 CheckoutIntents.MerchantConnectors = MerchantConnectors;
+CheckoutIntents.Returns = Returns;
 
 export declare namespace CheckoutIntents {
   export type RequestOptions = Opts.RequestOptions;
@@ -944,5 +958,18 @@ export declare namespace CheckoutIntents {
     MerchantConnectors as MerchantConnectors,
     type InstallationLink as InstallationLink,
     type MerchantConnectorCreateInstallationLinkParams as MerchantConnectorCreateInstallationLinkParams,
+  };
+
+  export {
+    Returns as Returns,
+    type Return as Return,
+    type ReturnDenial as ReturnDenial,
+    type ReturnFailure as ReturnFailure,
+    type ReturnNextAction as ReturnNextAction,
+    type ReturnReason as ReturnReason,
+    type ReturnRefund as ReturnRefund,
+    type ReturnState as ReturnState,
+    type ReturnTimeline as ReturnTimeline,
+    type ReturnCreateParams as ReturnCreateParams,
   };
 }
