@@ -17,6 +17,7 @@ Methods:
 - <code title="get /api/v1/checkout-intents">client.checkoutIntents.<a href="./src/resources/checkout-intents/checkout-intents.ts">list</a>({ ...params }) -> CheckoutIntentsCursorPagination</code>
 - <code title="post /api/v1/checkout-intents/{id}/confirm">client.checkoutIntents.<a href="./src/resources/checkout-intents/checkout-intents.ts">confirm</a>(id, { ...params }) -> CheckoutIntent</code>
 - <code title="post /api/v1/checkout-intents/purchase">client.checkoutIntents.<a href="./src/resources/checkout-intents/checkout-intents.ts">purchase</a>({ ...params }) -> CheckoutIntent</code>
+- <code title="get /api/v1/checkout-intents/{id}/order">client.checkoutIntents.<a href="./src/resources/checkout-intents/checkout-intents.ts">retrieveOrder</a>(id) -> Order</code>
 
 ## Shipments
 
@@ -45,6 +46,17 @@ Types:
 Methods:
 
 - <code title="get /api/v1/brands/domain/{domain}">client.brands.<a href="./src/resources/brands.ts">retrieve</a>(domain) -> BrandRetrieveResponse</code>
+
+# Orders
+
+Types:
+
+- <code><a href="./src/resources/orders.ts">Order</a></code>
+
+Methods:
+
+- <code title="get /api/v1/orders/{id}">client.orders.<a href="./src/resources/orders.ts">retrieve</a>(id) -> Order</code>
+- <code title="get /api/v1/orders">client.orders.<a href="./src/resources/orders.ts">list</a>({ ...params }) -> OrdersCursorPagination</code>
 
 # Products
 

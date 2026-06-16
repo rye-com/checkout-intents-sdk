@@ -44,6 +44,7 @@ import {
   MerchantConnectorCreateInstallationLinkParams,
   MerchantConnectors,
 } from './resources/merchant-connectors';
+import { Order, OrderListParams, Orders, OrdersCursorPagination } from './resources/orders';
 import { PaymentGateway, PaymentGatewaySession, PaymentGateways } from './resources/payment-gateways';
 import {
   Product,
@@ -851,6 +852,7 @@ export class CheckoutIntents {
   checkoutIntents: API.CheckoutIntentsResource = new API.CheckoutIntentsResource(this);
   betas: API.Betas = new API.Betas(this);
   brands: API.Brands = new API.Brands(this);
+  orders: API.Orders = new API.Orders(this);
   products: API.Products = new API.Products(this);
   shipments: API.Shipments = new API.Shipments(this);
   commissions: API.Commissions = new API.Commissions(this);
@@ -864,6 +866,7 @@ export class CheckoutIntents {
 CheckoutIntents.CheckoutIntentsResource = CheckoutIntentsResource;
 CheckoutIntents.Betas = Betas;
 CheckoutIntents.Brands = Brands;
+CheckoutIntents.Orders = Orders;
 CheckoutIntents.Products = Products;
 CheckoutIntents.Shipments = Shipments;
 CheckoutIntents.Commissions = Commissions;
@@ -901,6 +904,13 @@ export declare namespace CheckoutIntents {
   export { Betas as Betas, type CheckoutSession as CheckoutSession };
 
   export { Brands as Brands, type BrandRetrieveResponse as BrandRetrieveResponse };
+
+  export {
+    Orders as Orders,
+    type Order as Order,
+    type OrdersCursorPagination as OrdersCursorPagination,
+    type OrderListParams as OrderListParams,
+  };
 
   export {
     Products as Products,
