@@ -2,6 +2,7 @@
 
 import { APIResource } from '../../core/resource';
 import * as CheckoutIntentsAPI from './checkout-intents';
+import * as OrdersAPI from '../orders';
 import * as ShipmentsAPI from './shipments';
 import { ShipmentListParams, Shipments } from './shipments';
 import { APIPromise } from '../../core/api-promise';
@@ -233,6 +234,23 @@ export class CheckoutIntentsResource extends APIResource {
   ): Promise<CheckoutIntent.CompletedCheckoutIntent | CheckoutIntent.FailedCheckoutIntent> {
     await this.confirm(id, body, options);
     return this.pollUntilCompleted(id, options);
+  }
+
+  /**
+   * Retrieve the order associated with a checkout intent.
+   *
+   * Returns the single order created when the checkout intent reached the
+   * `completed` state. 404 if the intent has not produced an order yet.
+   *
+   * @example
+   * ```ts
+   * const order = await client.checkoutIntents.retrieveOrder(
+   *   'id',
+   * );
+   * ```
+   */
+  retrieveOrder(id: string, options?: RequestOptions): APIPromise<OrdersAPI.Order> {
+    return this._client.get(path`/api/v1/checkout-intents/${id}/order`, options);
   }
 }
 
