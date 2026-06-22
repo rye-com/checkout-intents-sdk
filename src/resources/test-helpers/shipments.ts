@@ -7,6 +7,12 @@ import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
 export class Shipments extends APIResource {
+  /**
+   * Advance the simulated shipment for a checkout intent. To trigger delayed or
+   * canceled shipping scenarios, create the checkout intent with a matching shipping
+   * and delivery test product:
+   * https://rye.com/docs/api-v2/testing/test-products#shipping-&-delivery
+   */
   advance(checkoutIntentID: string, options?: RequestOptions): APIPromise<ShipmentAdvanceResponse> {
     return this._client.post(
       path`/api/v1/test-helpers/checkout-intents/${checkoutIntentID}/shipments/advance`,
