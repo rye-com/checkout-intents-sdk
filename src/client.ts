@@ -91,6 +91,7 @@ import {
   PaymentMethod,
   VariantSelection,
 } from './resources/checkout-intents/checkout-intents';
+import { TestHelpers } from './resources/test-helpers/test-helpers';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
@@ -869,6 +870,7 @@ export class CheckoutIntents {
   events: API.Events = new API.Events(this);
   merchantConnectors: API.MerchantConnectors = new API.MerchantConnectors(this);
   returns: API.Returns = new API.Returns(this);
+  testHelpers: API.TestHelpers = new API.TestHelpers(this);
 }
 
 CheckoutIntents.CheckoutIntentsResource = CheckoutIntentsResource;
@@ -883,6 +885,7 @@ CheckoutIntents.Billing = Billing;
 CheckoutIntents.Events = Events;
 CheckoutIntents.MerchantConnectors = MerchantConnectors;
 CheckoutIntents.Returns = Returns;
+CheckoutIntents.TestHelpers = TestHelpers;
 
 export declare namespace CheckoutIntents {
   export type RequestOptions = Opts.RequestOptions;
@@ -990,4 +993,6 @@ export declare namespace CheckoutIntents {
     type ReturnTimeline as ReturnTimeline,
     type ReturnCreateParams as ReturnCreateParams,
   };
+
+  export { TestHelpers as TestHelpers };
 }

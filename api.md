@@ -162,3 +162,25 @@ Methods:
 
 - <code title="post /api/v1/returns">client.returns.<a href="./src/resources/returns.ts">create</a>({ ...params }) -> Return</code>
 - <code title="get /api/v1/returns/{returnId}">client.returns.<a href="./src/resources/returns.ts">retrieve</a>(returnID) -> Return</code>
+
+# TestHelpers
+
+## Returns
+
+Methods:
+
+- <code title="post /api/v1/test-helpers/returns">client.testHelpers.returns.<a href="./src/resources/test-helpers/returns.ts">create</a>({ ...params }) -> Return</code>
+- <code title="post /api/v1/test-helpers/returns/{returnId}/approve">client.testHelpers.returns.<a href="./src/resources/test-helpers/returns.ts">approve</a>(returnID, { ...params }) -> Return</code>
+- <code title="post /api/v1/test-helpers/returns/{returnId}/deny">client.testHelpers.returns.<a href="./src/resources/test-helpers/returns.ts">deny</a>(returnID, { ...params }) -> Return</code>
+- <code title="post /api/v1/test-helpers/returns/{returnId}/fail">client.testHelpers.returns.<a href="./src/resources/test-helpers/returns.ts">fail</a>(returnID, { ...params }) -> Return</code>
+- <code title="post /api/v1/test-helpers/returns/{returnId}/refund">client.testHelpers.returns.<a href="./src/resources/test-helpers/returns.ts">refund</a>(returnID, { ...params }) -> Return</code>
+
+## Shipments
+
+Types:
+
+- <code><a href="./src/resources/test-helpers/shipments.ts">ShipmentAdvanceResponse</a></code>
+
+Methods:
+
+- <code title="post /api/v1/test-helpers/checkout-intents/{checkoutIntentId}/shipments/advance">client.testHelpers.shipments.<a href="./src/resources/test-helpers/shipments.ts">advance</a>(checkoutIntentID) -> ShipmentAdvanceResponse</code>
