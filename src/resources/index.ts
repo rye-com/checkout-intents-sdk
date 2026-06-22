@@ -72,3 +72,4 @@ export {
   type ShipmentListParams,
   type ShipmentsCursorPagination,
 } from './shipments';
+export { TestHelpers } from './test-helpers/test-helpers';
