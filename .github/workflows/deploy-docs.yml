@@ -5,7 +5,7 @@ on:
   # zizmor: ignore[dangerous-triggers] — the job checks out no code and runs no
   # untrusted input; it only fires an authenticated curl to Mintlify.
   workflow_run:
-    workflows: ["Publish NPM"]
+    workflows: ['Publish NPM']
     types: [completed]
 
 # This workflow only makes an outbound API call, so it needs no GITHUB_TOKEN scopes.
