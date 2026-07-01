@@ -48,6 +48,12 @@ export interface Order {
    * Timestamp the order was last updated at
    */
   updatedAt: string;
+
+  /**
+   * The `referenceId` you supplied on the checkout intent, echoed back so you can
+   * reconcile this order against your own records. Absent when none was supplied.
+   */
+  referenceId?: string;
 }
 
 export interface OrderListParams extends CursorPaginationParams {}

@@ -50,6 +50,8 @@ export interface CheckoutSessionCreateParams {
 
   promoCodes?: Array<string>;
 
+  referenceId?: string;
+
   variantSelections?: Array<CheckoutIntentsAPI.VariantSelection>;
 }
 
