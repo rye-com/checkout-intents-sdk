@@ -59,6 +59,7 @@ describe('resource checkoutIntents', () => {
       },
       discoverPromoCodes: true,
       promoCodes: ['SAVE20'],
+      referenceId: 'order-1234',
       variantSelections: [{ label: 'Size, Color, etc.', value: 'Small, Red, XS, L, etc.' }],
     });
   });
@@ -177,6 +178,7 @@ describe('resource checkoutIntents', () => {
       },
       discoverPromoCodes: true,
       promoCodes: ['SAVE20'],
+      referenceId: 'order-1234',
       variantSelections: [{ label: 'Size, Color, etc.', value: 'Small, Red, XS, L, etc.' }],
     });
   });

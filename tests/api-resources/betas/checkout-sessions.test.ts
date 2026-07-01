@@ -48,6 +48,7 @@ describe('resource checkoutSessions', () => {
       discoverPromoCodes: true,
       layout: 'default',
       promoCodes: ['string'],
+      referenceId: 'order-1234',
       variantSelections: [{ label: 'Size, Color, etc.', value: 'Small, Red, XS, L, etc.' }],
     });
   });
