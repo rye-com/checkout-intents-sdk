@@ -1,5 +1,48 @@
 # Changelog
 
+## 0.28.0 (2026-07-01)
+
+Full Changelog: [v0.27.0...v0.28.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.27.0...v0.28.0)
+
+### Features
+
+* [return-api/release]: mark return api as public ([3689afb](https://github.com/rye-com/checkout-intents-sdk/commit/3689afb8125e264bd23842d790d0e8839175d4d5))
+* Add more paginator test cases ([7fc2808](https://github.com/rye-com/checkout-intents-sdk/commit/7fc2808b34ea7dc55fe8780fa9d1c1524ba74d26))
+* Add referenceId field, log Rye order ID upon placement if available ([2a5eb2a](https://github.com/rye-com/checkout-intents-sdk/commit/2a5eb2a89647b9e6d79db01ff2a171c58abb4d74))
+* **api:** add merchant connector installation link endpoint ([7fa285a](https://github.com/rye-com/checkout-intents-sdk/commit/7fa285a5fb3295885352baf8c87e64af9b4622c8))
+* Catch cvc expiration early ([04bfe22](https://github.com/rye-com/checkout-intents-sdk/commit/04bfe223e9a30b7c48b320aa9f7af30ad4bdb8d0))
+* Commission GET-by-id + checkoutIntentId filter ([ede987b](https://github.com/rye-com/checkout-intents-sdk/commit/ede987b264508a368965cd4ee403e44637148975))
+* Commission REST endpoints + response enrichment (RYE-6914) ([9f7d780](https://github.com/rye-com/checkout-intents-sdk/commit/9f7d78071982175c9ae38ad0ac5ba61b75e2e218))
+* **commissions:** types + cursor-paginated repo (1/2) ([4a47241](https://github.com/rye-com/checkout-intents-sdk/commit/4a472413a3ff4d0544caadcc771ac2f6cb00d4b9))
+* Detect expired CVCs ([4590484](https://github.com/rye-com/checkout-intents-sdk/commit/45904841fc903b64f325e735bbfa4abcf0a15c73))
+* internal updates ([c358469](https://github.com/rye-com/checkout-intents-sdk/commit/c358469ec54ba77b76fc2e6054a9b5b813ffe684))
+* Move order write into PostPurchaseOperations ([e6f468a](https://github.com/rye-com/checkout-intents-sdk/commit/e6f468a1a1b79678be0470d1d4b9fdf6f64ac19f))
+* Revert "Catch cvc expiration early" ([ca8533f](https://github.com/rye-com/checkout-intents-sdk/commit/ca8533fb5bb2ce78f22cb91a0fb201727eb848ff))
+* Show commissions in offer (2/2) ([9369671](https://github.com/rye-com/checkout-intents-sdk/commit/93696712b880d897b7813c67f0c7e9a57fc032f5))
+* Show estimated commission amount in offer API response (RYE-7349) ([2d03841](https://github.com/rye-com/checkout-intents-sdk/commit/2d0384151cc25f8df7b94b0b45b77fe88cb4ce3b))
+* support setting headers via env ([d118036](https://github.com/rye-com/checkout-intents-sdk/commit/d118036828352c7c0598fab91ed21a007b51ef89))
+
+
+### Bug Fixes
+
+* **client:** send content-type header for requests with an omitted optional body ([ec39755](https://github.com/rye-com/checkout-intents-sdk/commit/ec39755f8449b62137d9e7c95b07ce7d4eb7bbb7))
+* **typescript:** upgrade tsc-multi so that it works with Node 26 ([8f6c998](https://github.com/rye-com/checkout-intents-sdk/commit/8f6c998ad8b485432dcd84c97cbf284fe79ae0d0))
+
+
+### Chores
+
+* **format:** run eslint and prettier separately ([b209639](https://github.com/rye-com/checkout-intents-sdk/commit/b2096399b9faa24f096657db28e007111b06f77a))
+* **internal:** improvements ([53a0096](https://github.com/rye-com/checkout-intents-sdk/commit/53a0096a1b8d32a6819c22d589779275a158bafb))
+* **internal:** improvements ([3415579](https://github.com/rye-com/checkout-intents-sdk/commit/341557946ba16004b96dc32b9191ed18b4ca5b16))
+* **internal:** improvements ([b65c889](https://github.com/rye-com/checkout-intents-sdk/commit/b65c889feda3d98204538d95a7ba6dee1c11784c))
+* redact api-key headers in debug logs ([3312d41](https://github.com/rye-com/checkout-intents-sdk/commit/3312d413761e08ae98e8e57492e45400edfb8510))
+* **tests:** remove redundant File import ([9bd36cc](https://github.com/rye-com/checkout-intents-sdk/commit/9bd36cc7c71a842746cd3a4b5af1bc946d05f1f9))
+
+
+### Documentation
+
+* **api:** improve shipments advance api description ([f6fa2c9](https://github.com/rye-com/checkout-intents-sdk/commit/f6fa2c98df89cc7bad41c9e344e72c3801dd22e7))
+
 ## 0.27.0 (2026-04-27)
 
 Full Changelog: [v0.26.0...v0.27.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.26.0...v0.27.0)
