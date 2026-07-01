@@ -273,6 +273,8 @@ export interface BaseCheckoutIntent {
 
   promoCodes?: Array<string>;
 
+  referenceId?: string;
+
   variantSelections?: Array<VariantSelection>;
 }
 
@@ -611,6 +613,8 @@ export interface CheckoutIntentCreateParams {
 
   promoCodes?: Array<string>;
 
+  referenceId?: string;
+
   variantSelections?: Array<VariantSelection>;
 }
 
@@ -664,6 +668,8 @@ export interface CheckoutIntentPurchaseParams {
   discoverPromoCodes?: boolean;
 
   promoCodes?: Array<string>;
+
+  referenceId?: string;
 
   variantSelections?: Array<VariantSelection>;
 }
