@@ -35,6 +35,13 @@ export interface Order {
   id: string;
 
   /**
+   * The cancellation for this order, or `null` if none has been requested. Populated
+   * by joining the separate cancellations collection on the order's marketplace
+   * order id.
+   */
+  cancellation: Order.RequestedCancellation | Order.CompletedCancellation | Order.DeniedCancellation | null;
+
+  /**
    * ID of the checkout intent that was responsible for creating this order.
    */
   checkoutIntentId: string;
@@ -54,6 +61,94 @@ export interface Order {
    * reconcile this order against your own records. Absent when none was supplied.
    */
   referenceId?: string;
+}
+
+export namespace Order {
+  export interface RequestedCancellation {
+    id: string;
+
+    checkoutIntentId: string;
+
+    createdAt: string;
+
+    marketplaceOrderId: string;
+
+    reason: RequestedCancellation.Reason;
+
+    state: 'requested';
+  }
+
+  export namespace RequestedCancellation {
+    export interface Reason {
+      code: 'requested_by_customer' | 'fraud' | 'inventory' | 'payment_issue' | 'staff_error' | 'other';
+
+      /**
+       * Optional free-text note explaining the cancellation, forwarded to the merchant
+       * when possible.
+       */
+      message?: string;
+    }
+  }
+
+  export interface CompletedCancellation {
+    id: string;
+
+    checkoutIntentId: string;
+
+    createdAt: string;
+
+    marketplaceOrderId: string;
+
+    reason: CompletedCancellation.Reason;
+
+    state: 'completed';
+  }
+
+  export namespace CompletedCancellation {
+    export interface Reason {
+      code: 'requested_by_customer' | 'fraud' | 'inventory' | 'payment_issue' | 'staff_error' | 'other';
+
+      /**
+       * Optional free-text note explaining the cancellation, forwarded to the merchant
+       * when possible.
+       */
+      message?: string;
+    }
+  }
+
+  export interface DeniedCancellation {
+    id: string;
+
+    checkoutIntentId: string;
+
+    createdAt: string;
+
+    denialReason: DeniedCancellation.DenialReason;
+
+    marketplaceOrderId: string;
+
+    reason: DeniedCancellation.Reason;
+
+    state: 'denied';
+  }
+
+  export namespace DeniedCancellation {
+    export interface DenialReason {
+      code: 'other' | 'already_shipped' | 'non_cancellable_item' | 'cancellation_window_expired';
+
+      message: string;
+    }
+
+    export interface Reason {
+      code: 'requested_by_customer' | 'fraud' | 'inventory' | 'payment_issue' | 'staff_error' | 'other';
+
+      /**
+       * Optional free-text note explaining the cancellation, forwarded to the merchant
+       * when possible.
+       */
+      message?: string;
+    }
+  }
 }
 
 export interface OrderListParams extends CursorPaginationParams {}
