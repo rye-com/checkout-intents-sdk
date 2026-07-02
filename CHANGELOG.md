@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.29.0 (2026-07-02)
+
+Full Changelog: [v0.28.0...v0.29.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.28.0...v0.29.0)
+
+### Features
+
+* Add `POST /orders/:id/cancel` endpoint ([eac32b9](https://github.com/rye-com/checkout-intents-sdk/commit/eac32b9d77a6509db91e748caf304b20e4c88ddb))
+* Tidy-up before PRing `/orders/:id/cancel` ([c778313](https://github.com/rye-com/checkout-intents-sdk/commit/c778313ed0bbf5e569ef65b78434e24a688f2eb0))
+
+
+### Chores
+
+* **docs:** improve test helper summaries and descriptions ([d28ecf3](https://github.com/rye-com/checkout-intents-sdk/commit/d28ecf3cae6aadaa4ab1af2e58195582bb801ad2))
+
 ## 0.28.0 (2026-07-01)
 
 Full Changelog: [v0.27.0...v0.28.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.27.0...v0.28.0)
