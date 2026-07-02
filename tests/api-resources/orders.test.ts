@@ -46,4 +46,23 @@ describe('resource orders', () => {
       ),
     ).rejects.toThrow(CheckoutIntents.NotFoundError);
   });
+
+  // Mock server tests are disabled
+  test.skip('cancel: only required params', async () => {
+    const responsePromise = client.orders.cancel('id', { reason: { code: 'requested_by_customer' } });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Mock server tests are disabled
+  test.skip('cancel: required and optional params', async () => {
+    const response = await client.orders.cancel('id', {
+      reason: { code: 'requested_by_customer', message: 'message' },
+    });
+  });
 });

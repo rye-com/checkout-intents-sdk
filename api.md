@@ -51,12 +51,14 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/orders.ts">Cancellation</a></code>
 - <code><a href="./src/resources/orders.ts">Order</a></code>
 
 Methods:
 
 - <code title="get /api/v1/orders/{id}">client.orders.<a href="./src/resources/orders.ts">retrieve</a>(id) -> Order</code>
 - <code title="get /api/v1/orders">client.orders.<a href="./src/resources/orders.ts">list</a>({ ...params }) -> OrdersCursorPagination</code>
+- <code title="post /api/v1/orders/{id}/cancel">client.orders.<a href="./src/resources/orders.ts">cancel</a>(id, { ...params }) -> Cancellation</code>
 
 # Products
 
