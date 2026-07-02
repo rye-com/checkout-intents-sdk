@@ -15,6 +15,9 @@ export class Returns extends APIResource {
     return this._client.post('/api/v1/test-helpers/returns', { body, ...options });
   }
 
+  /**
+   * Approve a simulated return.
+   */
   approve(
     returnID: string,
     body: ReturnApproveParams,
@@ -23,14 +26,23 @@ export class Returns extends APIResource {
     return this._client.post(path`/api/v1/test-helpers/returns/${returnID}/approve`, { body, ...options });
   }
 
+  /**
+   * Deny a simulated return.
+   */
   deny(returnID: string, body: ReturnDenyParams, options?: RequestOptions): APIPromise<ReturnsAPI.Return> {
     return this._client.post(path`/api/v1/test-helpers/returns/${returnID}/deny`, { body, ...options });
   }
 
+  /**
+   * Mark a simulated return as failed.
+   */
   fail(returnID: string, body: ReturnFailParams, options?: RequestOptions): APIPromise<ReturnsAPI.Return> {
     return this._client.post(path`/api/v1/test-helpers/returns/${returnID}/fail`, { body, ...options });
   }
 
+  /**
+   * Refund a simulated return using the order total as the simulated refund amount.
+   */
   refund(
     returnID: string,
     body: ReturnRefundParams,
