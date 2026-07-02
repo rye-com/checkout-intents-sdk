@@ -41,7 +41,14 @@ export {
   type InstallationLink,
   type MerchantConnectorCreateInstallationLinkParams,
 } from './merchant-connectors';
-export { Orders, type Order, type OrderListParams, type OrdersCursorPagination } from './orders';
+export {
+  Orders,
+  type Cancellation,
+  type Order,
+  type OrderListParams,
+  type OrderCancelParams,
+  type OrdersCursorPagination,
+} from './orders';
 export { PaymentGateways, type PaymentGateway, type PaymentGatewaySession } from './payment-gateways';
 export {
   Products,

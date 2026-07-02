@@ -44,7 +44,14 @@ import {
   MerchantConnectorCreateInstallationLinkParams,
   MerchantConnectors,
 } from './resources/merchant-connectors';
-import { Order, OrderListParams, Orders, OrdersCursorPagination } from './resources/orders';
+import {
+  Cancellation,
+  Order,
+  OrderCancelParams,
+  OrderListParams,
+  Orders,
+  OrdersCursorPagination,
+} from './resources/orders';
 import { PaymentGateway, PaymentGatewaySession, PaymentGateways } from './resources/payment-gateways';
 import {
   Product,
@@ -940,9 +947,11 @@ export declare namespace CheckoutIntents {
 
   export {
     Orders as Orders,
+    type Cancellation as Cancellation,
     type Order as Order,
     type OrdersCursorPagination as OrdersCursorPagination,
     type OrderListParams as OrderListParams,
+    type OrderCancelParams as OrderCancelParams,
   };
 
   export {
