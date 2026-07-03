@@ -452,8 +452,6 @@ export namespace Offer {
 export type PaymentMethod =
   | PaymentMethod.StripeTokenPaymentMethod
   | PaymentMethod.BasisTheoryPaymentMethod
-  | PaymentMethod.NekudaPaymentMethod
-  | PaymentMethod.PravaPaymentMethod
   | PaymentMethod.DrawdownPaymentMethod
   | PaymentMethod.X402PaymentMethod;
 
@@ -468,23 +466,6 @@ export namespace PaymentMethod {
     basisTheoryToken: string;
 
     type: 'basis_theory_token';
-  }
-
-  export interface NekudaPaymentMethod {
-    nekudaUserId: string;
-
-    type: 'nekuda_token';
-
-    /**
-     * Construct a type with a set of properties K of type T
-     */
-    nekudaMandateData?: { [key: string]: string | number };
-  }
-
-  export interface PravaPaymentMethod {
-    pravaToken: string;
-
-    type: 'prava_token';
   }
 
   export interface DrawdownPaymentMethod {
