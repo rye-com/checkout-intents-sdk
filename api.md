@@ -67,12 +67,19 @@ Types:
 - <code><a href="./src/resources/products.ts">Product</a></code>
 - <code><a href="./src/resources/products.ts">ProductAvailability</a></code>
 - <code><a href="./src/resources/products.ts">ProductImage</a></code>
+- <code><a href="./src/resources/products.ts">ProductSubscription</a></code>
+- <code><a href="./src/resources/products.ts">ProductSubscriptionProduct</a></code>
+- <code><a href="./src/resources/products.ts">ProductSubscriptionStore</a></code>
 - <code><a href="./src/resources/products.ts">ProductVariant</a></code>
 - <code><a href="./src/resources/products.ts">VariantDimension</a></code>
+- <code><a href="./src/resources/products.ts">ProductListSubscriptionsResponse</a></code>
 
 Methods:
 
+- <code title="get /api/v1/products/subscriptions">client.products.<a href="./src/resources/products.ts">listSubscriptions</a>() -> ProductListSubscriptionsResponse</code>
 - <code title="get /api/v1/products/lookup">client.products.<a href="./src/resources/products.ts">lookup</a>({ ...params }) -> Product</code>
+- <code title="post /api/v1/products/subscribe">client.products.<a href="./src/resources/products.ts">subscribe</a>({ ...params }) -> ProductSubscription</code>
+- <code title="post /api/v1/products/unsubscribe">client.products.<a href="./src/resources/products.ts">unsubscribe</a>({ ...params }) -> ProductSubscription</code>
 
 # Shipments
 
