@@ -55,9 +55,15 @@ export {
   type Product,
   type ProductAvailability,
   type ProductImage,
+  type ProductSubscription,
+  type ProductSubscriptionProduct,
+  type ProductSubscriptionStore,
   type ProductVariant,
   type VariantDimension,
+  type ProductListSubscriptionsResponse,
   type ProductLookupParams,
+  type ProductSubscribeParams,
+  type ProductUnsubscribeParams,
 } from './products';
 export {
   Returns,
