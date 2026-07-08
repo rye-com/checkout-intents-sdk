@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.30.0 (2026-07-08)
+
+Full Changelog: [v0.29.0...v0.30.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.29.0...v0.30.0)
+
+### Features
+
+* **api:** publish product subscriptions api ([5e61600](https://github.com/rye-com/checkout-intents-sdk/commit/5e61600a6fd3eec0dc71728c17c0202c2f85ecf7))
+* Remove Nekuda & Prava payment tokens ([bb9c22c](https://github.com/rye-com/checkout-intents-sdk/commit/bb9c22c44171b4de5b5c8c9e069b2e7eb351e699))
+
 ## 0.29.0 (2026-07-02)
 
 Full Changelog: [v0.28.0...v0.29.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.28.0...v0.29.0)
