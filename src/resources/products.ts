@@ -33,12 +33,12 @@ export class Products extends APIResource {
   }
 
   /**
-   * Subscribe to product events for one integrated Shopify URL.
+   * Subscribe to product events from a store.
    *
    * @example
    * ```ts
    * const productSubscription = await client.products.subscribe(
-   *   { type: 'store', url: 'https://store.myshopify.com' },
+   *   { type: 'store', url: 'https://store.com' },
    * );
    * ```
    */
@@ -47,14 +47,14 @@ export class Products extends APIResource {
   }
 
   /**
-   * Unsubscribe from product events for one integrated Shopify URL.
+   * Unsubscribe from product events from a store.
    *
    * @example
    * ```ts
    * const productSubscription =
    *   await client.products.unsubscribe({
    *     type: 'store',
-   *     url: 'https://store.myshopify.com',
+   *     url: 'https://store.com',
    *   });
    * ```
    */

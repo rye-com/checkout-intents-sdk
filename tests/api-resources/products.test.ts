@@ -39,7 +39,7 @@ describe('resource products', () => {
 
   // Mock server tests are disabled
   test.skip('subscribe: only required params', async () => {
-    const responsePromise = client.products.subscribe({ type: 'store', url: 'https://store.myshopify.com' });
+    const responsePromise = client.products.subscribe({ type: 'store', url: 'https://store.com' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -51,15 +51,12 @@ describe('resource products', () => {
 
   // Mock server tests are disabled
   test.skip('subscribe: required and optional params', async () => {
-    const response = await client.products.subscribe({ type: 'store', url: 'https://store.myshopify.com' });
+    const response = await client.products.subscribe({ type: 'store', url: 'https://store.com' });
   });
 
   // Mock server tests are disabled
   test.skip('unsubscribe: only required params', async () => {
-    const responsePromise = client.products.unsubscribe({
-      type: 'store',
-      url: 'https://store.myshopify.com',
-    });
+    const responsePromise = client.products.unsubscribe({ type: 'store', url: 'https://store.com' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -71,6 +68,6 @@ describe('resource products', () => {
 
   // Mock server tests are disabled
   test.skip('unsubscribe: required and optional params', async () => {
-    const response = await client.products.unsubscribe({ type: 'store', url: 'https://store.myshopify.com' });
+    const response = await client.products.unsubscribe({ type: 'store', url: 'https://store.com' });
   });
 });
