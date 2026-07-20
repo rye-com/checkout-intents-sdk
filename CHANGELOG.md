@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.31.0 (2026-07-20)
+
+Full Changelog: [v0.30.0...v0.31.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.30.0...v0.31.0)
+
+### Features
+
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([eacafb2](https://github.com/rye-com/checkout-intents-sdk/commit/eacafb2ecf484a846584cd508334ced37318af41))
+
+
+### Bug Fixes
+
+* **ci:** bump @arethetypeswrong/cli to ^0.18.0 and run CI workflows on Node 24 ([25d2099](https://github.com/rye-com/checkout-intents-sdk/commit/25d209956da016895cc3ee1c988430cc69d835a2))
+
+
+### Chores
+
+* **docs:** tidy descriptions ([95be767](https://github.com/rye-com/checkout-intents-sdk/commit/95be767543439697bc8ad2c0e987c22ace64d64a))
+
 ## 0.30.0 (2026-07-08)
 
 Full Changelog: [v0.29.0...v0.30.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.29.0...v0.30.0)
