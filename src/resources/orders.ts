@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as CheckoutIntentsAPI from './checkout-intents/checkout-intents';
 import { APIPromise } from '../core/api-promise';
 import { CursorPagination, type CursorPaginationParams, PagePromise } from '../core/pagination';
 import { RequestOptions } from '../internal/request-options';
@@ -135,6 +136,11 @@ export namespace Cancellation {
  */
 export interface Order {
   id: string;
+
+  /**
+   * Buyer and shipping-address details captured for this order.
+   */
+  buyer: CheckoutIntentsAPI.Buyer;
 
   /**
    * The cancellation for this order, or `null` if none has been requested. Populated
