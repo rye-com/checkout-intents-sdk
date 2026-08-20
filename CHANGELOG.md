@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.31.0 (2026-08-20)
+
+Full Changelog: [v0.30.0...v0.31.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.30.0...v0.31.0)
+
+### Features
+
+* Impl address update endpoint ([2dcc069](https://github.com/rye-com/checkout-intents-sdk/commit/2dcc069a7f361c8f31f929ae063e702673b8f6c8))
+* Plumbing for updating order addresses ([7e778a2](https://github.com/rye-com/checkout-intents-sdk/commit/7e778a2ab6d6c5bbd83639375d9b6bd08385c11d))
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([eacafb2](https://github.com/rye-com/checkout-intents-sdk/commit/eacafb2ecf484a846584cd508334ced37318af41))
+
+
+### Bug Fixes
+
+* **ci:** bump @arethetypeswrong/cli to ^0.18.0 and run CI workflows on Node 24 ([25d2099](https://github.com/rye-com/checkout-intents-sdk/commit/25d209956da016895cc3ee1c988430cc69d835a2))
+* **stlc:** stop hand-edited CI workflows from blocking seals and builds ([9221396](https://github.com/rye-com/checkout-intents-sdk/commit/922139693927a777d3bab674022c0c44bbbedc3e))
+
+
+### Chores
+
+* **docs:** tidy descriptions ([95be767](https://github.com/rye-com/checkout-intents-sdk/commit/95be767543439697bc8ad2c0e987c22ace64d64a))
+* **internal:** codegen related update ([3290ed3](https://github.com/rye-com/checkout-intents-sdk/commit/3290ed30b7171857441e6acb58ef6f08253888f2))
+
 ## 0.30.0 (2026-07-08)
 
 Full Changelog: [v0.29.0...v0.30.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.29.0...v0.30.0)
