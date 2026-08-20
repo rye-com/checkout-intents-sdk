@@ -59,6 +59,7 @@ Methods:
 - <code title="get /api/v1/orders/{id}">client.orders.<a href="./src/resources/orders.ts">retrieve</a>(id) -> Order</code>
 - <code title="get /api/v1/orders">client.orders.<a href="./src/resources/orders.ts">list</a>({ ...params }) -> OrdersCursorPagination</code>
 - <code title="post /api/v1/orders/{id}/cancel">client.orders.<a href="./src/resources/orders.ts">cancel</a>(id, { ...params }) -> Cancellation</code>
+- <code title="put /api/v1/orders/{id}/buyer">client.orders.<a href="./src/resources/orders.ts">updateBuyer</a>(id, { ...params }) -> Order</code>
 
 # Products
 
