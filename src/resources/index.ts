@@ -47,6 +47,7 @@ export {
   type Order,
   type OrderListParams,
   type OrderCancelParams,
+  type OrderUpdateBuyerParams,
   type OrdersCursorPagination,
 } from './orders';
 export { PaymentGateways, type PaymentGateway, type PaymentGatewaySession } from './payment-gateways';
