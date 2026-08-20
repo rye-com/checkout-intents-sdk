@@ -33,6 +33,13 @@ export class Orders extends APIResource {
   cancel(id: string, body: OrderCancelParams, options?: RequestOptions): APIPromise<Cancellation> {
     return this._client.post(path`/api/v1/orders/${id}/cancel`, { body, ...options });
   }
+
+  /**
+   * Update buyer fields for an order and update its Shopify shipping address.
+   */
+  updateBuyer(id: string, body: OrderUpdateBuyerParams, options?: RequestOptions): APIPromise<Order> {
+    return this._client.put(path`/api/v1/orders/${id}/buyer`, { body, ...options });
+  }
 }
 
 export type OrdersCursorPagination = CursorPagination<Order>;
@@ -189,6 +196,40 @@ export namespace OrderCancelParams {
   }
 }
 
+export interface OrderUpdateBuyerParams {
+  /**
+   * Buyer fields to merge over the order's current buyer.
+   */
+  buyer: OrderUpdateBuyerParams.Buyer;
+}
+
+export namespace OrderUpdateBuyerParams {
+  /**
+   * Buyer fields to merge over the order's current buyer.
+   */
+  export interface Buyer {
+    address1?: string;
+
+    address2?: string;
+
+    city?: string;
+
+    country?: string;
+
+    email?: string;
+
+    firstName?: string;
+
+    lastName?: string;
+
+    phone?: string;
+
+    postalCode?: string;
+
+    province?: string;
+  }
+}
+
 export declare namespace Orders {
   export {
     type Cancellation as Cancellation,
@@ -196,5 +237,6 @@ export declare namespace Orders {
     type OrdersCursorPagination as OrdersCursorPagination,
     type OrderListParams as OrderListParams,
     type OrderCancelParams as OrderCancelParams,
+    type OrderUpdateBuyerParams as OrderUpdateBuyerParams,
   };
 }

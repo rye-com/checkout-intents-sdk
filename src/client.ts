@@ -49,6 +49,7 @@ import {
   Order,
   OrderCancelParams,
   OrderListParams,
+  OrderUpdateBuyerParams,
   Orders,
   OrdersCursorPagination,
 } from './resources/orders';
@@ -958,6 +959,7 @@ export declare namespace CheckoutIntents {
     type OrdersCursorPagination as OrdersCursorPagination,
     type OrderListParams as OrderListParams,
     type OrderCancelParams as OrderCancelParams,
+    type OrderUpdateBuyerParams as OrderUpdateBuyerParams,
   };
 
   export {
