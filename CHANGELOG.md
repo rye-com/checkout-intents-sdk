@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.31.1 (2026-08-26)
+
+Full Changelog: [v0.31.0...v0.31.1](https://github.com/rye-com/checkout-intents-sdk/compare/v0.31.0...v0.31.1)
+
 ## 0.31.0 (2026-08-20)
 
 Full Changelog: [v0.30.0...v0.31.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.30.0...v0.31.0)
