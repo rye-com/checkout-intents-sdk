@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.32.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.31.0...v0.32.0) (2026-10-02)
+
+
+### Features
+
+* point the default environments at the Jolly API hosts ([3470f04](https://github.com/rye-com/checkout-intents-sdk/commit/3470f04c6b207b87da70fc3987919653b7587676))
+* point the default environments at the Jolly API hosts ([ba127cb](https://github.com/rye-com/checkout-intents-sdk/commit/ba127cb584755eeb951cf280af3868125cbb13a1))
+
 ## 0.31.0 (2026-08-20)
 
 Full Changelog: [v0.30.0...v0.31.0](https://github.com/rye-com/checkout-intents-sdk/compare/v0.30.0...v0.31.0)
