@@ -822,12 +822,12 @@ describe('environment auto-inference', () => {
 
   test('auto-infers staging from API key', () => {
     const client = new CheckoutIntents({ apiKey: 'RYE/staging-abc123def456' });
-    expect(baseOrigin(client.baseURL)).toEqual('https://staging.api.rye.com');
+    expect(baseOrigin(client.baseURL)).toEqual('https://api.commerce.staging.jolly.dev');
   });
 
   test('auto-infers production from API key', () => {
     const client = new CheckoutIntents({ apiKey: 'RYE/production-xyz789ghi012' });
-    expect(baseOrigin(client.baseURL)).toEqual('https://api.rye.com');
+    expect(baseOrigin(client.baseURL)).toEqual('https://api.commerce.jolly.dev');
   });
 
   test('works when environment matches API key (staging)', () => {
@@ -835,7 +835,7 @@ describe('environment auto-inference', () => {
       apiKey: 'RYE/staging-abc123def456',
       environment: 'staging',
     });
-    expect(baseOrigin(client.baseURL)).toEqual('https://staging.api.rye.com');
+    expect(baseOrigin(client.baseURL)).toEqual('https://api.commerce.staging.jolly.dev');
   });
 
   test('works when environment matches API key (production)', () => {
@@ -843,7 +843,7 @@ describe('environment auto-inference', () => {
       apiKey: 'RYE/production-xyz789ghi012',
       environment: 'production',
     });
-    expect(baseOrigin(client.baseURL)).toEqual('https://api.rye.com');
+    expect(baseOrigin(client.baseURL)).toEqual('https://api.commerce.jolly.dev');
   });
 
   test('throws error when environment mismatches API key (staging key, production env)', () => {
@@ -872,7 +872,7 @@ describe('environment auto-inference', () => {
 
   test('falls back to staging for malformed API key', () => {
     const client = new CheckoutIntents({ apiKey: 'malformed-api-key' });
-    expect(baseOrigin(client.baseURL)).toEqual('https://staging.api.rye.com');
+    expect(baseOrigin(client.baseURL)).toEqual('https://api.commerce.staging.jolly.dev');
   });
 
   test('uses explicit environment for malformed API key', () => {
@@ -880,7 +880,7 @@ describe('environment auto-inference', () => {
       apiKey: 'malformed-api-key',
       environment: 'production',
     });
-    expect(baseOrigin(client.baseURL)).toEqual('https://api.rye.com');
+    expect(baseOrigin(client.baseURL)).toEqual('https://api.commerce.jolly.dev');
   });
 
   test('auto-inference works with baseURL: null', () => {
@@ -888,7 +888,7 @@ describe('environment auto-inference', () => {
       apiKey: 'RYE/production-xyz789ghi012',
       baseURL: null,
     });
-    expect(baseOrigin(client.baseURL)).toEqual('https://api.rye.com');
+    expect(baseOrigin(client.baseURL)).toEqual('https://api.commerce.jolly.dev');
   });
 
   test('baseURL overrides auto-inferred environment', () => {
@@ -902,24 +902,24 @@ describe('environment auto-inference', () => {
   test('empty API key prefix does not match pattern', () => {
     const client = new CheckoutIntents({ apiKey: 'RYE/-abc123' });
     // falls back to default base url
-    expect(baseOrigin(client.baseURL)).toEqual('https://staging.api.rye.com');
+    expect(baseOrigin(client.baseURL)).toEqual('https://api.commerce.staging.jolly.dev');
   });
 
   test('case sensitivity - uppercase STAGING does not match', () => {
     const client = new CheckoutIntents({ apiKey: 'RYE/STAGING-abc123' });
     // falls back to default base url
-    expect(baseOrigin(client.baseURL)).toEqual('https://staging.api.rye.com');
+    expect(baseOrigin(client.baseURL)).toEqual('https://api.commerce.staging.jolly.dev');
   });
 
   test('partial match does not work', () => {
     const client = new CheckoutIntents({ apiKey: 'RYE/production' });
     // falls back to default base url
-    expect(baseOrigin(client.baseURL)).toEqual('https://staging.api.rye.com');
+    expect(baseOrigin(client.baseURL)).toEqual('https://api.commerce.staging.jolly.dev');
   });
 
   test('auto-inference preserved in withOptions when no environment specified', () => {
     const client = new CheckoutIntents({ apiKey: 'RYE/production-xyz789ghi012' });
     const newClient = client.withOptions({ maxRetries: 5 });
-    expect(baseOrigin(newClient.baseURL)).toEqual('https://api.rye.com');
+    expect(baseOrigin(newClient.baseURL)).toEqual('https://api.commerce.jolly.dev');
   });
 });
